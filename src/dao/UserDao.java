@@ -11,22 +11,22 @@ import entity.User;
 public interface UserDao {
 
 	/*
-	 * 新增一个用户
+	 * 锟斤拷锟斤拷一锟斤拷锟矫伙拷
 	 */
 	void addUser(User user);
 
 	/*
-	 * 登录操作
+	 * 锟斤拷录锟斤拷锟斤拷
 	 */
-	User checkUser(User user);
+	User deleteUser(User user);
 
 	/*
-	 * 更改用户信息
+	 * 锟斤拷锟斤拷锟矫伙拷锟斤拷息
 	 */
 	void modifyUser(User user);
 
 	/*
-	 * 查询用户信息
+	 * 锟斤拷询锟矫伙拷锟斤拷息
 	 */
 	List<User> selectUser(User user);
 	
