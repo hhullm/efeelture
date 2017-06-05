@@ -2,12 +2,11 @@ package entity;
 
 public class Talk {
 	
-	String id;
-	String firstid;
-	String secondid;
-	int type;
-	String content;
-	
+	private String id;
+	private String firstid;
+	private String secondid;
+	private String type;
+	private String content;
 	
 	
 	public String getId() {
@@ -28,10 +27,10 @@ public class Talk {
 	public void setSecondid(String secondid) {
 		this.secondid = secondid;
 	}
-	public int getType() {
+	public String getType() {
 		return type;
 	}
-	public void setType(int type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 	public String getContent() {
@@ -42,7 +41,8 @@ public class Talk {
 	}
 	
 	
-
+	
+	
 	
 
 

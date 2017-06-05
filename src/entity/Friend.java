@@ -5,10 +5,7 @@ public class Friend {
 	private String id;
 	private String firstid;
 	private String secondid;
-	private int status;
-	
-	
-	
+	private String status;
 	
 	public String getId() {
 		return id;
@@ -28,12 +25,16 @@ public class Friend {
 	public void setSecondid(String secondid) {
 		this.secondid = secondid;
 	}
-	public int getStatus() {
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(int status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	
+	
+	
 	
 
 

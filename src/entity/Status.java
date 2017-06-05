@@ -2,7 +2,7 @@ package entity;
 
 public class Status {
 	private String id;
-	private int sstatus;
+	private String sstatus;
 	private String stime;
 	private String ipaddress;
 	private String ipport;
@@ -16,10 +16,10 @@ public class Status {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public int getSstatus() {
+	public String getSstatus() {
 		return sstatus;
 	}
-	public void setSstatus(int sstatus) {
+	public void setSstatus(String sstatus) {
 		this.sstatus = sstatus;
 	}
 	public String getStime() {
@@ -52,6 +52,9 @@ public class Status {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	
+	
+	
 
 	
 	

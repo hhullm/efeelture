@@ -2,18 +2,16 @@ package entity;
 
 public class User {
 	private	String id;
-	private	int phone;
+	private	String phone;
 	private	String name;
-	private	int type;
+	private	String type;
 	private	String password;
 	private	String ipaddress;
-	private	int status;
+	private	String status;
 	private	String sex;
-	private	int age;
+	private	String age;
 	private	String picture;
 	private	String sign;
-	
-	
 	
 	public String getId() {
 		return id;
@@ -21,10 +19,10 @@ public class User {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public String getName() {
@@ -33,10 +31,10 @@ public class User {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getType() {
+	public String getType() {
 		return type;
 	}
-	public void setType(int type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 	public String getPassword() {
@@ -51,10 +49,10 @@ public class User {
 	public void setIpaddress(String ipaddress) {
 		this.ipaddress = ipaddress;
 	}
-	public int getStatus() {
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(int status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 	public String getSex() {
@@ -63,10 +61,10 @@ public class User {
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 	public String getPicture() {
@@ -81,6 +79,8 @@ public class User {
 	public void setSign(String sign) {
 		this.sign = sign;
 	}
+	
+	
 	
 
 

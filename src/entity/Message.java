@@ -6,10 +6,10 @@ public class Message {
 	private String content;
 	private String picture;
 	private String address;
-	private int status;
-	private int permission;
+	private String status;
+	private String permission;
 	private String comment;
-	private int likenumber;
+	private String likenumber;
 	private String uname;
 	private String uid;
 	private int type;
@@ -39,16 +39,16 @@ public class Message {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public int getStatus() {
+	public String getStatus() {
 		return status;
 	}
-	public void setStatus(int status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
-	public int getPermission() {
+	public String getPermission() {
 		return permission;
 	}
-	public void setPermission(int permission) {
+	public void setPermission(String permission) {
 		this.permission = permission;
 	}
 	public String getComment() {
@@ -57,10 +57,10 @@ public class Message {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	public int getLikenumber() {
+	public String getLikenumber() {
 		return likenumber;
 	}
-	public void setLikenumber(int likenumber) {
+	public void setLikenumber(String likenumber) {
 		this.likenumber = likenumber;
 	}
 	public String getUname() {
@@ -81,7 +81,9 @@ public class Message {
 	public void setType(int type) {
 		this.type = type;
 	}
-
+	
+	
+	
 	
 
 

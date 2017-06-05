@@ -2,9 +2,9 @@ package entity;
 
 public class Hardware {
 	
-	String id;
-	String uid;
-	String hardwareid;
+	private String id;
+	private String uid;
+	private String hardwareid;
 	
 	
 	public String getId() {

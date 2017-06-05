@@ -6,11 +6,11 @@ public class Object {
 	private String temperature;
 	private String humidity;
 	private String air;
-	private int weekday;
-	private int peoplenumber;
+	private String weekday;
+	private String peoplenumber;
 	private String word;
 	private String picturecolor;
-	private int picturenumber;
+	private String picturenumber;
 	private String music;
 	private String time;
 	
@@ -39,16 +39,16 @@ public class Object {
 	public void setAir(String air) {
 		this.air = air;
 	}
-	public int getWeekday() {
+	public String getWeekday() {
 		return weekday;
 	}
-	public void setWeekday(int weekday) {
+	public void setWeekday(String weekday) {
 		this.weekday = weekday;
 	}
-	public int getPeoplenumber() {
+	public String getPeoplenumber() {
 		return peoplenumber;
 	}
-	public void setPeoplenumber(int peoplenumber) {
+	public void setPeoplenumber(String peoplenumber) {
 		this.peoplenumber = peoplenumber;
 	}
 	public String getWord() {
@@ -63,10 +63,10 @@ public class Object {
 	public void setPicturecolor(String picturecolor) {
 		this.picturecolor = picturecolor;
 	}
-	public int getPicturenumber() {
+	public String getPicturenumber() {
 		return picturenumber;
 	}
-	public void setPicturenumber(int picturenumber) {
+	public void setPicturenumber(String picturenumber) {
 		this.picturenumber = picturenumber;
 	}
 	public String getMusic() {
@@ -81,6 +81,7 @@ public class Object {
 	public void setTime(String time) {
 		this.time = time;
 	}
+	
 	
 	
 
