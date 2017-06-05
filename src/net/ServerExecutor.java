@@ -10,9 +10,11 @@ import java.util.concurrent.Executors;
 public class ServerExecutor {
 
 	public static void startServerExecutor() throws IOException{
-		//服务端在20000端口监听客户端请求的TCP连接 
+
+		//server port 20000
 		ServerSocket server = new ServerSocket(20000);
 		Socket client = null;
+		
 		//通过调用Executors类的静态方法，创建一个ExecutorService实例
 		//ExecutorService接口是Executor接口的子接口
 		Executor service = Executors.newCachedThreadPool();
