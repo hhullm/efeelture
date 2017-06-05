@@ -5,16 +5,6 @@ public class Like {
 	private String lid;
 	private String uid;
 	private String mid;
-	private int lnumber;
-	
-	public int getLnumber() {
-		return lnumber;
-	}
-
-	public void setLnumber(int lnumber) {
-		this.lnumber = lnumber;
-	}
-
 
 
 	public String getLid() {
