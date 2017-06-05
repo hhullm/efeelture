@@ -4,8 +4,7 @@ public class Like {
 	
 	private String id;
 	private String uid;
-	private String mid;
-	
+	private String messageid;
 	
 	public String getId() {
 		return id;
@@ -19,12 +18,15 @@ public class Like {
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
-	public String getMid() {
-		return mid;
+	public String getMessageid() {
+		return messageid;
 	}
-	public void setMid(String mid) {
-		this.mid = mid;
+	public void setMessageid(String messageid) {
+		this.messageid = messageid;
 	}
+	
+	
+	
 
 
 	

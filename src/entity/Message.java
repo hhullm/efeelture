@@ -6,13 +6,12 @@ public class Message {
 	private String content;
 	private String picture;
 	private String address;
-	private String status;
+	private String mstatus;
 	private String permission;
-	private String comment;
 	private String likenumber;
 	private String uname;
 	private String uid;
-	private String type;
+	private String mtype;
 	
 	public String getId() {
 		return id;
@@ -38,23 +37,17 @@ public class Message {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public String getStatus() {
-		return status;
+	public String getMstatus() {
+		return mstatus;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setMstatus(String mstatus) {
+		this.mstatus = mstatus;
 	}
 	public String getPermission() {
 		return permission;
 	}
 	public void setPermission(String permission) {
 		this.permission = permission;
-	}
-	public String getComment() {
-		return comment;
-	}
-	public void setComment(String comment) {
-		this.comment = comment;
 	}
 	public String getLikenumber() {
 		return likenumber;
@@ -74,12 +67,14 @@ public class Message {
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
-	public String getType() {
-		return type;
+	public String getMtype() {
+		return mtype;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setMtype(String mtype) {
+		this.mtype = mtype;
 	}
+	
+	
 	
 	
 	

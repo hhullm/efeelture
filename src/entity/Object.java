@@ -12,8 +12,7 @@ public class Object {
 	private String picturecolor;
 	private String picturenumber;
 	private String music;
-	private String time;
-	
+	private String otime;
 	
 	public String getId() {
 		return id;
@@ -75,13 +74,15 @@ public class Object {
 	public void setMusic(String music) {
 		this.music = music;
 	}
-	public String getTime() {
-		return time;
+	public String getOtime() {
+		return otime;
 	}
-	public void setTime(String time) {
-		this.time = time;
+	public void setOtime(String otime) {
+		this.otime = otime;
 	}
 	
+	
+
 	
 	
 

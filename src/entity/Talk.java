@@ -5,9 +5,8 @@ public class Talk {
 	private String id;
 	private String firstid;
 	private String secondid;
-	private String type;
+	private String ttype;
 	private String content;
-	
 	
 	public String getId() {
 		return id;
@@ -27,11 +26,11 @@ public class Talk {
 	public void setSecondid(String secondid) {
 		this.secondid = secondid;
 	}
-	public String getType() {
-		return type;
+	public String getTtype() {
+		return ttype;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setTtype(String ttype) {
+		this.ttype = ttype;
 	}
 	public String getContent() {
 		return content;
@@ -39,6 +38,9 @@ public class Talk {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	
+	
+	
 	
 	
 	

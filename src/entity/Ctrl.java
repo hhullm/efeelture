@@ -3,10 +3,9 @@ package entity;
 public class Ctrl {
 	
 	private String id;
-	private String name;
-	private String status;
+	private String uname;
+	private String cstatus;
 	private String content;
-	
 	
 	public String getId() {
 		return id;
@@ -14,17 +13,17 @@ public class Ctrl {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getUname() {
+		return uname;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUname(String uname) {
+		this.uname = uname;
 	}
-	public String getStatus() {
-		return status;
+	public String getCstatus() {
+		return cstatus;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setCstatus(String cstatus) {
+		this.cstatus = cstatus;
 	}
 	public String getContent() {
 		return content;

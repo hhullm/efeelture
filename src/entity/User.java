@@ -3,11 +3,11 @@ package entity;
 public class User {
 	private	String id;
 	private	String phone;
-	private	String name;
-	private	String type;
-	private	String password;
+	private	String uname;
+	private	String utype;
+	private	String upassword;
 	private	String ipaddress;
-	private	String status;
+	private	String ustatus;
 	private	String sex;
 	private	String age;
 	private	String picture;
@@ -25,23 +25,23 @@ public class User {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getName() {
-		return name;
+	public String getUname() {
+		return uname;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setUname(String uname) {
+		this.uname = uname;
 	}
-	public String getType() {
-		return type;
+	public String getUtype() {
+		return utype;
 	}
-	public void setType(String type) {
-		this.type = type;
+	public void setUtype(String utype) {
+		this.utype = utype;
 	}
-	public String getPassword() {
-		return password;
+	public String getUpassword() {
+		return upassword;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setUpassword(String upassword) {
+		this.upassword = upassword;
 	}
 	public String getIpaddress() {
 		return ipaddress;
@@ -49,11 +49,11 @@ public class User {
 	public void setIpaddress(String ipaddress) {
 		this.ipaddress = ipaddress;
 	}
-	public String getStatus() {
-		return status;
+	public String getUstatus() {
+		return ustatus;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setUstatus(String ustatus) {
+		this.ustatus = ustatus;
 	}
 	public String getSex() {
 		return sex;
@@ -79,6 +79,8 @@ public class User {
 	public void setSign(String sign) {
 		this.sign = sign;
 	}
+	
+	
 	
 	
 	
