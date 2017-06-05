@@ -2,11 +2,11 @@ package entity;
 
 public class Talk {
 	
-	String tid;
-	String tfirstid;
-	String tsecondid;
-	int ttype;
-	String tcontent;
+	private String tid;
+	private String tfirstid;
+	private String tsecondid;
+	private int ttype;
+	private String tcontent;
 	
 	
 
