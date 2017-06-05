@@ -1,4 +1,4 @@
-package dao;
+package daoimpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,7 +10,7 @@ import dao.ObjectDao;
 import util.DBUtil;
 import entity.Object;
 /**
- * DAO²ã£¬ÓëÊý¾Ý¿âÁ¬½Ó
+ * DAOï¿½ã£¬ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 
 
@@ -23,15 +23,15 @@ public class ObjectDaoImp implements ObjectDao {
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
 					.prepareStatement("INSERT INTO OBJECT(OID,OTEMPERATURE,OHUMIDITY,OAIR,OWEEKDAYS,OAMOUNTOFPEOPLE,OWORDS,OMUSIC,OTIME) VALUES(?,?,?,?,?,?,?,?,?)");
-			stat.setString(1, object.getOid());
-			stat.setString(2, object.getOtemperature());
-			stat.setString(3, object.getOhumidity());
-			stat.setString(4, object.getOair());
-			stat.setLong(5, object.getOweekdays());
-			stat.setLong(6, object.getOamountofpeople());
-			stat.setString(7, object.getOwords());
-			stat.setString(8, object.getOmusic());
-			stat.setString(9, object.getOtime());
+			stat.setString(1, object.getId());
+			stat.setString(2, object.getTemperature());
+			stat.setString(3, object.getHumidity());
+			stat.setString(4, object.getAir());
+			stat.setLong(5, object.getWeekday());
+			stat.setLong(6, object.getPeoplenumber());
+			stat.setString(7, object.getWord());
+			stat.setString(8, object.getMusic());
+			stat.setString(9, object.getTime());
 
 			stat.executeUpdate();
 		} catch (Exception e) {
@@ -51,19 +51,19 @@ public class ObjectDaoImp implements ObjectDao {
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
 					.prepareStatement("DELETE * FROM OBJECT WHERE OID=?");
-			stat.setString(1, object.getOid());
+			stat.setString(1, object.getId());
 			ResultSet rst = stat.executeQuery();
 			object = new Object();
 			if (rst.next()) {
-				object.setOid(rst.getString("Oid"));
-				object.setOtemperature(rst.getString("Otemperature"));
-				object.setOhumidity(rst.getString("Ohumidity"));
-				object.setOair(rst.getString("Oair"));
-				object.setOweekdays(rst.getInt("Oweekdays"));
-				object.setOamountofpeople(rst.getInt("Oamountofpeople"));
-				object.setOwords(rst.getString("Owords"));
-				object.setOmusic(rst.getString("Omusic"));
-				object.setOtime(rst.getString("Otime"));
+				object.setId(rst.getString("Oid"));
+				object.setTemperature(rst.getString("Otemperature"));
+				object.setHumidity(rst.getString("Ohumidity"));
+				object.setAir(rst.getString("Oair"));
+				object.setWeekday(rst.getInt("Oweekdays"));
+				object.setPeoplenumber(rst.getInt("Oamountofpeople"));
+				object.setWord(rst.getString("Owords"));
+				object.setMusic(rst.getString("Omusic"));
+				object.setTime(rst.getString("Otime"));
 
 			}
 		} catch (Exception e) {
@@ -84,15 +84,15 @@ public class ObjectDaoImp implements ObjectDao {
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
 					.prepareStatement("UPDATE OBJECT SET OID=?,OTEMPERATURE=?,OHUMIDITY=?,OAIR=?,OWEEKDAYS=?,OAMOUNTOFPEOPLE=?,OWORDS=?,OMUSIC=?,OTIME=?");
-			stat.setString(1, object.getOid());
-			stat.setString(2, object.getOtemperature());
-			stat.setString(3, object.getOhumidity());
-			stat.setString(4, object.getOair());
-			stat.setLong(5, object.getOweekdays());
-			stat.setLong(6, object.getOamountofpeople());
-			stat.setString(7, object.getOwords());
-			stat.setString(8, object.getOmusic());
-			stat.setString(9, object.getOtime());
+			stat.setString(1, object.getId());
+			stat.setString(2, object.getTemperature());
+			stat.setString(3, object.getHumidity());
+			stat.setString(4, object.getAir());
+			stat.setLong(5, object.getWeekday());
+			stat.setLong(6, object.getPeoplenumber());
+			stat.setString(7, object.getWord());
+			stat.setString(8, object.getMusic());
+			stat.setString(9, object.getTime());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -110,21 +110,21 @@ public class ObjectDaoImp implements ObjectDao {
 		try {
 			conn = DBUtil.getConnection();
 			String sql = "SELECT * FROM OBJECT WHERE 1=1 OR OID=? ";
-			if (object.getOid() != null)
+			if (object.getId() != null)
 				sql = "SELECT * FROM OBJECT WHERE OID=?";
 			PreparedStatement stat = conn.prepareStatement(sql);
-			stat.setString(1, object.getOid());
+			stat.setString(1, object.getId());
 			ResultSet rst = stat.executeQuery();
 			while (rst.next()) {
-				object.setOid(rst.getString("Oid"));
-				object.setOtemperature(rst.getString("Otemperature"));
-				object.setOhumidity(rst.getString("Ohumidity"));
-				object.setOair(rst.getString("Oair"));
-				object.setOweekdays(rst.getInt("Oweekdays"));
-				object.setOamountofpeople(rst.getInt("Oamountofpeople"));
-				object.setOwords(rst.getString("Owords"));
-				object.setOmusic(rst.getString("Omusic"));
-				object.setOtime(rst.getString("Otime"));
+				object.setId(rst.getString("Oid"));
+				object.setTemperature(rst.getString("Otemperature"));
+				object.setHumidity(rst.getString("Ohumidity"));
+				object.setAir(rst.getString("Oair"));
+				object.setWeekday(rst.getInt("Oweekdays"));
+				object.setPeoplenumber(rst.getInt("Oamountofpeople"));
+				object.setWord(rst.getString("Owords"));
+				object.setMusic(rst.getString("Omusic"));
+				object.setTime(rst.getString("Otime"));
 
 
 				objectList.add(object);

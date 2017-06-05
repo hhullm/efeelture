@@ -1,4 +1,4 @@
-package dao;
+package daoimpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +9,7 @@ import java.util.List;
 import dao.TalkDao;
 import util.DBUtil;
 /**
- * DAO²ã£¬ÓëÊý¾Ý¿âÁ¬½Ó
+ * DAOï¿½ã£¬ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 import entity.Talk;
 
@@ -22,11 +22,11 @@ public class TalkDaoImp implements TalkDao {
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
 					.prepareStatement("INSERT INTO TALK(TID,TFIRSTID,TSECONDID,TTYPE,TCONTENT) VALUES(?,?,?,?,?)");
-			stat.setString(1, talk.getTid());
-			stat.setString(2, talk.getTfirstid());
-			stat.setString(3, talk.getTsecondid());
-			stat.setLong(4, talk.getTtype());
-			stat.setString(5, talk.getTcontent());
+			stat.setString(1, talk.getId());
+			stat.setString(2, talk.getFirstid());
+			stat.setString(3, talk.getSecondid());
+			stat.setLong(4, talk.getType());
+			stat.setString(5, talk.getContent());
 
 			stat.executeUpdate();
 		} catch (Exception e) {
@@ -46,15 +46,15 @@ public class TalkDaoImp implements TalkDao {
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
 					.prepareStatement("DELETE * FROM TALK WHERE TID=?");
-			stat.setString(1, talk.getTid());
+			stat.setString(1, talk.getId());
 			ResultSet rst = stat.executeQuery();
 			talk = new Talk();
 			if (rst.next()) {
-				talk.setTid(rst.getString("tid"));
-				talk.setTfirstid(rst.getString("tFirstid"));
-				talk.setTsecondid(rst.getString("tSecondid"));
-				talk.setTtype(rst.getInt("tType"));
-				talk.setTcontent(rst.getString("uStatus"));
+				talk.setId(rst.getString("tid"));
+				talk.setFirstid(rst.getString("tFirstid"));
+				talk.setSecondid(rst.getString("tSecondid"));
+				talk.setType(rst.getInt("tType"));
+				talk.setContent(rst.getString("uStatus"));
 
 			}
 		} catch (Exception e) {
@@ -73,11 +73,11 @@ public class TalkDaoImp implements TalkDao {
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
 					.prepareStatement("UPDATE TALK SET TID=?,TFIRSTID=?,TSECONDID=?,TTYPE=?,TCONTENT=?");
-			stat.setString(1, talk.getTid());
-			stat.setString(2, talk.getTfirstid());
-			stat.setString(3, talk.getTsecondid());
-			stat.setLong(4, talk.getTtype());
-			stat.setString(5, talk.getTcontent());
+			stat.setString(1, talk.getId());
+			stat.setString(2, talk.getFirstid());
+			stat.setString(3, talk.getSecondid());
+			stat.setLong(4, talk.getType());
+			stat.setString(5, talk.getContent());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -94,18 +94,18 @@ public class TalkDaoImp implements TalkDao {
 		try {
 			conn = DBUtil.getConnection();
 			String sql = "SELECT * FROM TALK WHERE 1=1 OR TID=? ";
-			if (talk.getTid() != null)
+			if (talk.getId() != null)
 				sql = "SELECT * FROM TALK WHERE TID=?";
 			PreparedStatement stat = conn.prepareStatement(sql);
-			stat.setString(1, talk.getTid());
+			stat.setString(1, talk.getId());
 			ResultSet rst = stat.executeQuery();
 			while (rst.next()) {
 				talk = new Talk();
-				talk.setTid(rst.getString("tid"));
-				talk.setTfirstid(rst.getString("tFirstid"));
-				talk.setTsecondid(rst.getString("tSecondid"));
-				talk.setTtype(rst.getInt("tType"));
-				talk.setTcontent(rst.getString("uStatus"));
+				talk.setId(rst.getString("tid"));
+				talk.setFirstid(rst.getString("tFirstid"));
+				talk.setSecondid(rst.getString("tSecondid"));
+				talk.setType(rst.getInt("tType"));
+				talk.setContent(rst.getString("uStatus"));
 
 				talkList.add(talk);
 			}

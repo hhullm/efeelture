@@ -8,6 +8,8 @@ public class Status {
 	private String ipport;
 	private String uname;
 	private String address;
+	
+	
 	public String getId() {
 		return id;
 	}

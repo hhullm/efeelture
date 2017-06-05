@@ -6,131 +6,83 @@ public class Message {
 	private String content;
 	private String picture;
 	private String address;
-	private int mstatus;
+	private int status;
 	private int permission;
+	private String comment;
 	private int likenumber;
 	private String uname;
 	private String uid;
-	private int mtype;
-
-	public String getMid() {
+	private int type;
+	
+	
+	public String getId() {
 		return id;
 	}
-
-
-
-	public void setMid(String mid) {
-		this.id = mid;
+	public void setId(String id) {
+		this.id = id;
 	}
-
-
-
-	public String getMcontent() {
+	public String getContent() {
 		return content;
 	}
-
-
-
-	public void setMcontent(String mcontent) {
-		this.content = mcontent;
+	public void setContent(String content) {
+		this.content = content;
 	}
-
-
-
-	public String getMpicture() {
+	public String getPicture() {
 		return picture;
 	}
-
-
-
-	public void setMpicture(String mpicture) {
-		this.picture = mpicture;
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
-
-
-
-	public String getMaddress() {
+	public String getAddress() {
 		return address;
 	}
-
-
-
-	public void setMaddress(String maddress) {
-		this.address = maddress;
+	public void setAddress(String address) {
+		this.address = address;
 	}
-
-
-
-	public int getMstatus() {
-		return mstatus;
+	public int getStatus() {
+		return status;
 	}
-
-
-
-	public void setMstatus(int mstatus) {
-		this.mstatus = mstatus;
+	public void setStatus(int status) {
+		this.status = status;
 	}
-
-
-
-	public int getMpermission() {
+	public int getPermission() {
 		return permission;
 	}
-
-
-
-	public void setMpermission(int mpermission) {
-		this.permission = mpermission;
+	public void setPermission(int permission) {
+		this.permission = permission;
 	}
-
-
-
-
-	public int getMlikenumber() {
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+	public int getLikenumber() {
 		return likenumber;
 	}
-
-
-
-	public void setMlikenumber(int mlikenumber) {
-		this.likenumber = mlikenumber;
+	public void setLikenumber(int likenumber) {
+		this.likenumber = likenumber;
 	}
-
-
-
 	public String getUname() {
 		return uname;
 	}
-
-
-
 	public void setUname(String uname) {
 		this.uname = uname;
 	}
-
-
-
 	public String getUid() {
 		return uid;
 	}
-
-
-
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
-
-
-
-	public int getMtype() {
-		return mtype;
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
 	}
 
-
-
-	public void setMtype(int mtype) {
-		this.mtype = mtype;
-	}
+	
 
 
 }

@@ -5,53 +5,37 @@ public class Friend {
 	private String id;
 	private String firstid;
 	private String secondid;
-	private int fstatus;
+	private int status;
 	
-	public String getFid() {
+	
+	
+	
+	public String getId() {
 		return id;
 	}
-
-
-
-	public void setFid(String fid) {
-		this.id = fid;
+	public void setId(String id) {
+		this.id = id;
 	}
-
-
-
-	public String getFfirstid() {
+	public String getFirstid() {
 		return firstid;
 	}
-
-
-
-	public void setFfirstid(String ffirstid) {
-		this.firstid = ffirstid;
+	public void setFirstid(String firstid) {
+		this.firstid = firstid;
 	}
-
-
-
-	public String getFsecondid() {
+	public String getSecondid() {
 		return secondid;
 	}
-
-
-
-	public void setFsecondid(String fsecondid) {
-		this.secondid = fsecondid;
+	public void setSecondid(String secondid) {
+		this.secondid = secondid;
 	}
-
-
-
-	public int getFstatus() {
-		return fstatus;
+	public int getStatus() {
+		return status;
 	}
-
-
-
-	public void setFstatus(int fstatus) {
-		this.fstatus = fstatus;
+	public void setStatus(int status) {
+		this.status = status;
 	}
+	
+
 
 
 }

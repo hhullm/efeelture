@@ -4,43 +4,29 @@ public class Like {
 	
 	private String id;
 	private String uid;
-	private String messageid;
-
-
-	public String getLid() {
+	private String mid;
+	
+	
+	public String getId() {
 		return id;
 	}
-
-
-
-	public void setLid(String lid) {
-		this.id = lid;
+	public void setId(String id) {
+		this.id = id;
 	}
-
-
-
 	public String getUid() {
 		return uid;
 	}
-
-
-
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
-
-
-
 	public String getMid() {
-		return messageid;
+		return mid;
 	}
-
-
-
 	public void setMid(String mid) {
-		this.messageid = mid;
+		this.mid = mid;
 	}
 
 
+	
 
 }

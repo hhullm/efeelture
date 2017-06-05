@@ -5,6 +5,8 @@ public class Hardware {
 	String id;
 	String uid;
 	String hardwareid;
+	
+	
 	public String getId() {
 		return id;
 	}

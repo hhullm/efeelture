@@ -1,4 +1,4 @@
-package dao;
+package daoimpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,7 +9,7 @@ import java.util.List;
 import dao.UserDao;
 import util.DBUtil;
 /**
- * DAO²ã£¬ÓëÊý¾Ý¿âÁ¬½Ó
+ * DAOï¿½ã£¬ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½
  */
 import entity.User;
 
@@ -22,13 +22,13 @@ public class UserDaoImp implements UserDao {
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
 					.prepareStatement("INSERT INTO USER(UID,UNAME,PHONE,PASSWORD,SEX,AGE,UPICTURE,SIGN) VALUES(?,?,?,?,?,?,?,?)");
-			stat.setString(1, user.getUid());
-			stat.setString(2, user.getUname());
+			stat.setString(1, user.getId());
+			stat.setString(2, user.getName());
 			stat.setLong(3, user.getPhone());
 			stat.setString(4, user.getPassword());
 			stat.setString(5, user.getSex());
 			stat.setLong(6, user.getAge());
-			stat.setString(7, user.getUpicture());
+			stat.setString(7, user.getPicture());
 			stat.setString(8, user.getSign());
 			stat.executeUpdate();
 		} catch (Exception e) {
@@ -46,17 +46,17 @@ public class UserDaoImp implements UserDao {
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
 					.prepareStatement("SELECT * FROM USER WHERE (UNAME=? OR PHONENUMBER=?) AND PASSWORD=?");
-			stat.setString(1, user.getUname());
+			stat.setString(1, user.getName());
 			stat.setLong(2, user.getPhone());
 			stat.setString(3, user.getPassword());
 			ResultSet rst = stat.executeQuery();
 			user = new User();
 			if (rst.next()) {
-				user.setUid(rst.getString("uId"));
-				user.setUname(rst.getString("uName"));
+				user.setId(rst.getString("uId"));
+				user.setName(rst.getString("uName"));
 				user.setPhone(rst.getInt("phone"));
 				user.setPassword(rst.getString("password"));
-				user.setUstatus(rst.getInt("uStatus"));
+				user.setStatus(rst.getInt("uStatus"));
 				user.setAge(rst.getInt("age"));
 				user.setSign(rst.getString("sign"));
 				user.setSex(rst.getString("sex"));
@@ -76,14 +76,14 @@ public class UserDaoImp implements UserDao {
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
 					.prepareStatement("UPDATE USER SET UNAME=?,PHONE=?,PASSWORD=?,SEX=?,AGE=?,UPICTURE=?,SIGN=?,UID=?");
-			stat.setString(1, user.getUname());
+			stat.setString(1, user.getName());
 			stat.setLong(2, user.getPhone());
 			stat.setString(3, user.getPassword());
 			stat.setString(4, user.getSex());
 			stat.setLong(5, user.getAge());
-			stat.setString(6, user.getUpicture());
+			stat.setString(6, user.getPicture());
 			stat.setString(7, user.getSign());
-			stat.setString(19, user.getUid());
+			stat.setString(19, user.getId());
 			stat.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -99,18 +99,18 @@ public class UserDaoImp implements UserDao {
 		try {
 			conn = DBUtil.getConnection();
 			String sql = "SELECT * FROM USER WHERE 1=1 OR UID=? ";
-			if (user.getUid() != null)
+			if (user.getId() != null)
 				sql = "SELECT * FROM USER WHERE CUSTID=?";
 			PreparedStatement stat = conn.prepareStatement(sql);
-			stat.setString(1, user.getUid());
+			stat.setString(1, user.getId());
 			ResultSet rst = stat.executeQuery();
 			while (rst.next()) {
 				user = new User();
-				user.setUid(rst.getString("uId"));
-				user.setUname(rst.getString("uName"));
+				user.setId(rst.getString("uId"));
+				user.setName(rst.getString("uName"));
 				user.setPhone(rst.getInt("phone"));
 				user.setPassword(rst.getString("password"));
-				user.setUstatus(rst.getInt("uStatus"));
+				user.setStatus(rst.getInt("uStatus"));
 				user.setAge(rst.getInt("age"));
 				user.setSign(rst.getString("sign"));
 				user.setSex(rst.getString("sex"));

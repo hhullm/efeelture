@@ -1,126 +1,87 @@
 package entity;
 
 public class User {
-	private	String uid;
+	private	String id;
 	private	int phone;
-	private	String uname;
-	private	int utype;
+	private	String name;
+	private	int type;
 	private	String password;
 	private	String ipaddress;
-	private	int ustatus;
+	private	int status;
 	private	String sex;
 	private	int age;
-	private	String upicture;
+	private	String picture;
 	private	String sign;
 	
-
-	public String getUid() {
-		return uid;
+	
+	
+	public String getId() {
+		return id;
 	}
-
-
-	public void setUid(String uid) {
-		this.uid = uid;
+	public void setId(String id) {
+		this.id = id;
 	}
-
-
 	public int getPhone() {
 		return phone;
 	}
-
-
 	public void setPhone(int phone) {
 		this.phone = phone;
 	}
-
-
-	public String getUname() {
-		return uname;
+	public String getName() {
+		return name;
 	}
-
-
-	public void setUname(String uname) {
-		this.uname = uname;
+	public void setName(String name) {
+		this.name = name;
 	}
-
-
-	public int getUtype() {
-		return utype;
+	public int getType() {
+		return type;
 	}
-
-
-	public void setUtype(int utype) {
-		this.utype = utype;
+	public void setType(int type) {
+		this.type = type;
 	}
-
-
 	public String getPassword() {
 		return password;
 	}
-
-
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-
 	public String getIpaddress() {
 		return ipaddress;
 	}
-
-
 	public void setIpaddress(String ipaddress) {
 		this.ipaddress = ipaddress;
 	}
-
-
-	public int getUstatus() {
-		return ustatus;
+	public int getStatus() {
+		return status;
 	}
-
-
-	public void setUstatus(int ustatus) {
-		this.ustatus = ustatus;
+	public void setStatus(int status) {
+		this.status = status;
 	}
-
-
 	public String getSex() {
 		return sex;
 	}
-
-
 	public void setSex(String sex) {
 		this.sex = sex;
 	}
-
-
 	public int getAge() {
 		return age;
 	}
-
-
 	public void setAge(int age) {
 		this.age = age;
 	}
-
-
-	public String getUpicture() {
-		return upicture;
+	public String getPicture() {
+		return picture;
 	}
-
-
-	public void setUpicture(String upicture) {
-		this.upicture = upicture;
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
-
-
 	public String getSign() {
 		return sign;
 	}
-
-
 	public void setSign(String sign) {
 		this.sign = sign;
 	}
+	
+
 
 }

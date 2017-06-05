@@ -3,55 +3,58 @@ package entity;
 public class Ctrl {
 	
 	private String id;
-	private String uname;
-	private int cstatus;
+	private String name;
+	private int status;
 	private String content;
 	
-	public String getCid() {
+	public String getId() {
 		return id;
 	}
 
 
 
-	public void setCid(String cid) {
-		this.id = cid;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 
 
-	public String getCname() {
-		return uname;
+	public String getName() {
+		return name;
 	}
 
 
 
-	public void setCname(String cname) {
-		this.uname = cname;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 
 
-	public int getCstatus() {
-		return cstatus;
+	public int getStatus() {
+		return status;
 	}
 
 
 
-	public void setCstatus(int cstatus) {
-		this.cstatus = cstatus;
+	public void setStatus(int status) {
+		this.status = status;
 	}
 
 
 
-	public String getCcontent() {
+	public String getContent() {
 		return content;
 	}
 
 
 
-	public void setCcontent(String ccontent) {
-		this.content = ccontent;
+	public void setContent(String content) {
+		this.content = content;
 	}
+
+
+
 
 
 }
