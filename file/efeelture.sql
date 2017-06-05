@@ -119,6 +119,7 @@ CREATE TABLE 'db_status' (
   'status' varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '状态改变',
   'time' varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '状态改变时间',
   'ipaddress' varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户ip',
+  'ipport' varchar(16) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户port',
   'uname' varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户名',
   'address' varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '地址',
   PRIMARY KEY ('sid')
