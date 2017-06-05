@@ -2,31 +2,31 @@ package entity;
 
 public class Ctrl {
 	
-	private String cid;
-	private String cname;
+	private String id;
+	private String uname;
 	private int cstatus;
-	private String ccontent;
+	private String content;
 	
 	public String getCid() {
-		return cid;
+		return id;
 	}
 
 
 
 	public void setCid(String cid) {
-		this.cid = cid;
+		this.id = cid;
 	}
 
 
 
 	public String getCname() {
-		return cname;
+		return uname;
 	}
 
 
 
 	public void setCname(String cname) {
-		this.cname = cname;
+		this.uname = cname;
 	}
 
 
@@ -44,13 +44,13 @@ public class Ctrl {
 
 
 	public String getCcontent() {
-		return ccontent;
+		return content;
 	}
 
 
 
 	public void setCcontent(String ccontent) {
-		this.ccontent = ccontent;
+		this.content = ccontent;
 	}
 
 

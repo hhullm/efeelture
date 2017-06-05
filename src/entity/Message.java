@@ -2,62 +2,61 @@ package entity;
 
 public class Message {
 	
-	private String mid;
-	private String mcontent;
-	private String mpicture;
-	private String maddress;
+	private String id;
+	private String content;
+	private String picture;
+	private String address;
 	private int mstatus;
-	private int mpermission;
-	private String mcomment;
-	private int mlikenumber;
+	private int permission;
+	private int likenumber;
 	private String uname;
 	private String uid;
 	private int mtype;
 
 	public String getMid() {
-		return mid;
+		return id;
 	}
 
 
 
 	public void setMid(String mid) {
-		this.mid = mid;
+		this.id = mid;
 	}
 
 
 
 	public String getMcontent() {
-		return mcontent;
+		return content;
 	}
 
 
 
 	public void setMcontent(String mcontent) {
-		this.mcontent = mcontent;
+		this.content = mcontent;
 	}
 
 
 
 	public String getMpicture() {
-		return mpicture;
+		return picture;
 	}
 
 
 
 	public void setMpicture(String mpicture) {
-		this.mpicture = mpicture;
+		this.picture = mpicture;
 	}
 
 
 
 	public String getMaddress() {
-		return maddress;
+		return address;
 	}
 
 
 
 	public void setMaddress(String maddress) {
-		this.maddress = maddress;
+		this.address = maddress;
 	}
 
 
@@ -75,37 +74,26 @@ public class Message {
 
 
 	public int getMpermission() {
-		return mpermission;
+		return permission;
 	}
 
 
 
 	public void setMpermission(int mpermission) {
-		this.mpermission = mpermission;
+		this.permission = mpermission;
 	}
 
-
-
-	public String getMcomment() {
-		return mcomment;
-	}
-
-
-
-	public void setMcomment(String mcomment) {
-		this.mcomment = mcomment;
-	}
 
 
 
 	public int getMlikenumber() {
-		return mlikenumber;
+		return likenumber;
 	}
 
 
 
 	public void setMlikenumber(int mlikenumber) {
-		this.mlikenumber = mlikenumber;
+		this.likenumber = mlikenumber;
 	}
 
 

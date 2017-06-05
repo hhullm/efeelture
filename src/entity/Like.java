@@ -2,19 +2,19 @@ package entity;
 
 public class Like {
 	
-	private String lid;
+	private String id;
 	private String uid;
-	private String mid;
+	private String messageid;
 
 
 	public String getLid() {
-		return lid;
+		return id;
 	}
 
 
 
 	public void setLid(String lid) {
-		this.lid = lid;
+		this.id = lid;
 	}
 
 
@@ -32,13 +32,13 @@ public class Like {
 
 
 	public String getMid() {
-		return mid;
+		return messageid;
 	}
 
 
 
 	public void setMid(String mid) {
-		this.mid = mid;
+		this.messageid = mid;
 	}
 
 
