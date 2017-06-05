@@ -12,8 +12,7 @@ public class Message {
 	private String likenumber;
 	private String uname;
 	private String uid;
-	private int type;
-	
+	private String type;
 	
 	public String getId() {
 		return id;
@@ -75,10 +74,10 @@ public class Message {
 	public void setUid(String uid) {
 		this.uid = uid;
 	}
-	public int getType() {
+	public String getType() {
 		return type;
 	}
-	public void setType(int type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 	
