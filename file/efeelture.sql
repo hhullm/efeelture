@@ -5,8 +5,8 @@
 DROP TABLE IF EXISTS db_ctrl;
 CREATE TABLE db_ctrl (
   id varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'pk',
-  name varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '硬件名',
-  status varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '硬件状态',
+  uname varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '硬件名',
+  cstatus varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '硬件状态',
   content varchar(64) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '附加内容',
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -20,7 +20,7 @@ CREATE TABLE db_friend (
   id varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'pk',
   firstid varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户id',
   secondid varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '朋友id',
-  status varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '朋友状态',
+  fstatus varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '朋友状态',
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -32,7 +32,7 @@ CREATE TABLE db_friend (
 DROP TABLE IF EXISTS db_hardware;
 CREATE TABLE db_hardware (
   id varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'pk',
-  userid varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户id',
+  uid varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户id',
   hardwareid varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '硬件id',
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -46,7 +46,7 @@ DROP TABLE IF EXISTS db_like;
 CREATE TABLE db_like (
   id varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'pk',
   uid varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT 'user表pk',
-  mid varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT 'message表pk',
+  messageid varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT 'message表pk',
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -61,9 +61,8 @@ CREATE TABLE db_message (
   content varchar(64) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '动态内容',
   picture varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '动态图片',
   address varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '动态地址',
-  status varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '动态状态',
+  mstatus varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '动态状态',
   permission varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '动态权限',
-  comment varchar(64) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '动态评论',
   likenumber varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '点赞数',
   uname varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户名',
   uid varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT 'user表pk',
@@ -100,7 +99,7 @@ CREATE TABLE db_object (
 DROP TABLE IF EXISTS db_reply;
 CREATE TABLE db_reply (
   id varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'pk',
-  mid varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '动态id',
+  messageid varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '动态id',
   rtime varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '回复时间',
   firstid varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户1id',
   secondid varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户2id',
@@ -116,7 +115,7 @@ CREATE TABLE db_reply (
 DROP TABLE IF EXISTS db_status;
 CREATE TABLE db_status (
   id varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'pk',
-  status varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '状态改变',
+  sstatus varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '状态改变',
   stime varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '状态改变时间',
   ipaddress varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户ip',
   ipport varchar(16) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户port',
@@ -149,11 +148,11 @@ DROP TABLE IF EXISTS db_user;
 CREATE TABLE db_user (
   id varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'pk',
   phone varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '手机号',
-  name varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户名',
+  uname varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户名',
   utype varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '使用者类型',
-  password varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '密码',
+  upassword varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '密码',
   ipaddress varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT 'ip地址',
-  status varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户状态',
+  ustatus varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户状态',
   sex varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '性别',
   age varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '年龄',
   picture varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '图片头像',
