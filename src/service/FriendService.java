@@ -1,6 +1,7 @@
 package service;
 
 import java.util.List;
+import java.util.Map;
 
 import entity.Friend;
 import entity.User;
@@ -11,25 +12,25 @@ public interface FriendService {
 	/*
 	 * 好友列表查询
 	 */
-	List<Friend> selectFriend(Friend friend);
+	List<Friend> selectFriend(Map<String, Object> map);
 
 	/*
 	 * 加好友
 	 */
-	String addFriend(Friend friend);
+	String addFriend(Map<String, Object> map);
 
 	/*
 	 * 删除好友
 	 */
-	String delFriend(Friend friend);
+	String deleteFriend(Map<String, Object> map);
 	
 	/*
 	 * 修改好友信息
 	 */
-	String modifyFriend(Friend friend);
+	String modifyFriend(Map<String, Object> map);
 	
 	/*
 	 * 查询非好友信息
 	 */
-	List<User> selectNoFriend(User user);
+	List<User> selectNoFriend(Map<String, Object> map);
 }

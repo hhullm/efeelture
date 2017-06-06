@@ -8,7 +8,7 @@ import java.util.List;
 
 import dao.ObjectDao;
 import util.DBUtil;
-import entity.Object;
+import entity.Jective;
 /**
  * DAO�㣬�����ݿ�����
  */
@@ -17,7 +17,7 @@ import entity.Object;
 public class ObjectDaoImp implements ObjectDao {
 
 	@Override
-	public void addObject(Object object) {
+	public void addObject(Jective object) {
 		Connection conn = null;
 		try {
 			conn = DBUtil.getConnection();
@@ -45,7 +45,7 @@ public class ObjectDaoImp implements ObjectDao {
 
 
 	@Override
-	public void deleteObject(Object object) {
+	public void deleteObject(Jective object) {
 		Connection conn = null;
 		try {
 			conn = DBUtil.getConnection();
@@ -53,7 +53,7 @@ public class ObjectDaoImp implements ObjectDao {
 					.prepareStatement("DELETE * FROM OBJECT WHERE OID=?");
 			stat.setString(1, object.getId());
 			ResultSet rst = stat.executeQuery();
-			object = new Object();
+			object = new Jective();
 			if (rst.next()) {
 				object.setId(rst.getString("Oid"));
 				object.setTemperature(rst.getString("Otemperature"));
@@ -78,7 +78,7 @@ public class ObjectDaoImp implements ObjectDao {
 
 
 	@Override
-	public void modifyObject(Object object) {
+	public void modifyObject(Jective object) {
 		Connection conn = null;
 		try {
 			conn = DBUtil.getConnection();
@@ -104,9 +104,9 @@ public class ObjectDaoImp implements ObjectDao {
 
 
 	@Override
-	public List<Object> selectObject(Object object) {
+	public List<Jective> selectObject(Jective object) {
 		Connection conn = null;
-		List<Object> objectList = new ArrayList<Object>();
+		List<Jective> objectList = new ArrayList<Jective>();
 		try {
 			conn = DBUtil.getConnection();
 			String sql = "SELECT * FROM OBJECT WHERE 1=1 OR OID=? ";

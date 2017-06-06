@@ -2,6 +2,8 @@ package entity;
 
 public class Status {
 	private String id;
+	private String uid;
+
 	private String sstatus;
 	private String stime;
 	private String ipaddress;
@@ -10,6 +12,12 @@ public class Status {
 	private String address;
 	
 	
+	public String getUid() {
+		return uid;
+	}
+	public void setUid(String uid) {
+		this.uid = uid;
+	}
 	public String getId() {
 		return id;
 	}

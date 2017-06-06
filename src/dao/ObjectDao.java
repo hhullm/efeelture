@@ -6,29 +6,29 @@ package dao;
  */
 import java.util.List;
 
-import entity.Object;
+import entity.Jective;
 
 public interface ObjectDao {
 
 	/*
-	 * 新增对象
+	 * 锟斤拷锟斤拷锟斤拷锟斤拷
 	 */
-	void addObject(Object object);
+	void addObject(Jective object);
 	
 	/*
-	 * 删除对象信息
+	 * 删锟斤拷锟斤拷锟斤拷锟斤拷息
 	 */
 	
-	void deleteObject(Object object);
+	void deleteObject(Jective object);
 	
 	/*
-	 * 更改对象信息
+	 * 锟斤拷锟侥讹拷锟斤拷锟斤拷息
 	 */
-	void modifyObject(Object object);
+	void modifyObject(Jective object);
 
 	/*
-	 * 查询对象信息
+	 * 锟斤拷询锟斤拷锟斤拷锟斤拷息
 	 */
-	List<Object> selectObject(Object object);
+	List<Jective> selectObject(Jective object);
 	
 }

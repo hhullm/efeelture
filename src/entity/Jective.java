@@ -1,8 +1,9 @@
 package entity;
 
-public class Object {
+public class Jective {
 	
 	private String id;
+	private String uid;
 	private String temperature;
 	private String humidity;
 	private String air;
@@ -13,12 +14,17 @@ public class Object {
 	private String picturenumber;
 	private String music;
 	private String otime;
-	
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getUid() {
+		return uid;
+	}
+	public void setUid(String uid) {
+		this.uid = uid;
 	}
 	public String getTemperature() {
 		return temperature;
@@ -80,14 +86,6 @@ public class Object {
 	public void setOtime(String otime) {
 		this.otime = otime;
 	}
-	
-	
 
 	
-	
-
-	
-
-
-
 }
