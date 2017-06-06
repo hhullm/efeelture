@@ -33,4 +33,20 @@ public interface UserService {
 	 * 重置密码
 	 */
 	String resetPassword(Map<String, Object> map);
+	
+	/*
+	 * 忘记密码
+	 */
+	String findPassword(Map<String, Object> map);
+	
+	/*
+	 * 绑定手机
+	 */
+	String bindPhone(Map<String, Object> map);
+	
+	/*
+	 * get yanzhen
+	 */
+	String getCode(Map<String, Object> map);
+	
 }
