@@ -1,44 +1,44 @@
 package serviceimpl;
 
 import java.util.List;
-import java.util.Map;
 
 import entity.Message;
+import service.MessageService;
 
-public class MessageServiceImpl {
+public class MessageServiceImpl implements MessageService {
 
 	/*
 	 * 
 	 */
-	String addMessage(Map<String, Object> map) {
+	public String addMessage(Message message) {
 		return null;
 	}
 	
 	/*
 	 * 
 	 */
-	String deleteMessage(Map<String, Object> map) {
+	public String deleteMessage(Message message) {
 		return null;
 	}
 
 	/*
 	 * 
 	 */
-	List<Message> selectMessaga(Map<String, Object> map) {
+	public List<Message> selectMessaga(Message message) {
 		return null;
 	}
 	
 	/*
 	 * 
 	 */
-	List<Message> selectUidMessaga(Map<String, Object> map) {
+	public List<Message> selectUidMessaga(Message message) {
 		return null;
 	}
 	
 	/*
 	 * no realize
 	 */
-	List<Message> selectFriendMessaga(Map<String, Object> map) {
+	public List<Message> selectFriendMessaga(Message message) {
 		return null;
 	}
 }

@@ -1,25 +1,25 @@
 package serviceimpl;
 
 import java.util.List;
-import java.util.Map;
 
 import entity.Status;
+import service.StatusService;
 
 
-public class StatusServiceImpl {
+public class StatusServiceImpl implements StatusService {
 	
 
 	/*
 	 * 
 	 */
-	String addStatus(Map<String, Object> map) {
+	public String addStatus(Status status) {
 		return null;
 	}
 	
 	/*
 	 * 
 	 */
-	List<Status> selectStatus(Map<String, Object> map) {
+	public List<Status> selectStatus(Status status) {
 		return null;
 	}
 }

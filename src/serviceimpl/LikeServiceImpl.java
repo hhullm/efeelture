@@ -1,29 +1,29 @@
 package serviceimpl;
 
 import java.util.List;
-import java.util.Map;
 
 import entity.Like;
+import service.LikeService;
 
-public class LikeServiceImpl {
+public class LikeServiceImpl implements LikeService {
 	/*
 	 * 
 	 */
-	String addLike(Map<String, Object> map) {
+	public String addLike(Like like) {
 		return null;
 	}
 
 	/*
 	 * 
 	 */
-	String deleteLike(Map<String, Object> map) {
+	public String deleteLike(Like like) {
 		return null;
 	}
 	
 	/*
 	 * 
 	 */
-	List<Like> selectLike(Map<String, Object> map) {
+	public List<Like> selectLike(Like like) {
 		return null;
 	}
 }

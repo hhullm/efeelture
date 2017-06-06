@@ -1,9 +1,9 @@
 package serviceimpl;
 
 import java.util.List;
-import java.util.Map;
 
 import entity.Talk;
+import service.TalkService;
 
 /**
  * @author 
@@ -12,27 +12,27 @@ import entity.Talk;
  */
 
 
-public class TalkServiceImpl {
+public class TalkServiceImpl implements TalkService {
 
 
 	/*
 	 * 
 	 */
-	String addTalk(Map<String, Object> map) {
+	public String addTalk(Talk talk) {
 		return null;
 	}
 
 	/*
 	 * 
 	 */
-	String deleteTalk(Map<String, Object> map) {
+	public String deleteTalk(Talk talk) {
 		return null;
 	}
 	
 	/*
 	 * 
 	 */
-	List<Talk> selectTalk(Map<String, Object> map) {
+	public List<Talk> selectTalk(Talk talk) {
 		return null;
 	}
 	

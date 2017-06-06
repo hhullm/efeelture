@@ -1,24 +1,24 @@
 package serviceimpl;
 
 import java.util.List;
-import java.util.Map;
 
 import entity.Jective;
+import service.JectiveService;
 
 
-public class JectiveServiceImpl {
+public class JectiveServiceImpl implements JectiveService {
 
 	/*
 	 * 
 	 */
-	String addJective(Map<String, Object> map) {
+	public String addJective(Jective jective) {
 		return null;
 	}
 	
 	/*
 	 * 
 	 */
-	List<Jective> selectJective(Map<String, Object> map) {
+	public List<Jective> selectJective(Jective jective) {
 		return null;
 	}
 	

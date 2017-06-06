@@ -1,31 +1,31 @@
 package serviceimpl;
 
 import java.util.List;
-import java.util.Map;
 
 import entity.Reply;
+import service.ReplyService;
 
 
-public class ReplyServiceImpl {
+public class ReplyServiceImpl implements ReplyService {
 
 	/*
 	 * 
 	 */
-	String addReply(Map<String, Object> map) {
+	public String addReply(Reply reply) {
 		return null;
 	}
 
 	/*
 	 * 
 	 */
-	String deleteReply(Map<String, Object> map) {
+	public String deleteReply(Reply reply) {
 		return null;
 	}
 	
 	/*
 	 * 
 	 */
-	List<Reply> selectReply(Map<String, Object> map) {
+	public List<Reply> selectReply(Reply reply) {
 		return null;
 	}
 }

@@ -3,27 +3,30 @@ package serviceimpl;
 import java.util.List;
 
 import entity.Ctrl;
+import service.CtrlService;
 
-public class CtrlServiceImpl {
+public class CtrlServiceImpl implements CtrlService {
 
 	/*
 	 * save db
 	 */
-	String saveCtrl(Ctrl ctrl) {
+
+	public String saveCtrl(Ctrl ctrl) {
 		return null;
-	}
+
+	};
 
 	/*
 	 * to raspberry
 	 */
-	String forwardCtrl(Ctrl ctrl) {
+	public String forwardCtrl(Ctrl ctrl) {
 		return null;
 	}
 
 	/*
 	 * select ctrl
 	 */
-	List<Ctrl> selectCtrl(Ctrl ctrl) {
+	public List<Ctrl> selectCtrl(Ctrl ctrl) {
 		return null;
 	}
 }

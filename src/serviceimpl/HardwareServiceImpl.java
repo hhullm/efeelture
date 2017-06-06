@@ -1,29 +1,29 @@
 package serviceimpl;
 
 import java.util.List;
-import java.util.Map;
 
 import entity.Hardware;
+import service.HardwareService;
 
-public class HardwareServiceImpl {
+public class HardwareServiceImpl implements HardwareService {
 	/*
 	 * 
 	 */
-	String addHardware(Map<String, Object> map) {
+	public String addHardware(Hardware hardware) {
 		return null;
 	}
 	
 	/*
 	 * 
 	 */
-	String deleteHardware(Map<String, Object> map) {
+	public String deleteHardware(Hardware hardware) {
 		return null;
 	}
 	
 	/*
 	 * 
 	 */
-	List<Hardware> selectHardware(Map<String, Object> map) {
+	public List<Hardware> selectHardware(Hardware hardware) {
 		return null;
 	}
 
