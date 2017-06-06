@@ -8,27 +8,27 @@ import java.util.List;
 
 import entity.Jective;
 
-public interface ObjectDao {
+public interface JectiveDao {
 
 	/*
 	 * ��������
 	 */
-	void addObject(Jective object);
+	void addJective(Jective jective);
 	
 	/*
 	 * ɾ��������Ϣ
 	 */
 	
-	void deleteObject(Jective object);
+	void deleteJective(Jective jective);
 	
 	/*
 	 * ���Ķ�����Ϣ
 	 */
-	void modifyObject(Jective object);
+	void modifyJective(Jective jective);
 
 	/*
 	 * ��ѯ������Ϣ
 	 */
-	List<Jective> selectObject(Jective object);
+	List<Jective> selectJective(Jective jective);
 	
 }

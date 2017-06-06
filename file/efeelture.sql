@@ -5,7 +5,12 @@
 DROP TABLE IF EXISTS db_ctrl;
 CREATE TABLE db_ctrl (
   id varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'pk',
-  uname varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '硬件名',
+  uid varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'user pk',
+  hid varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'hardware pk',
+  uname varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户名',
+  hname varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '硬件名',
+  uipaddress varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '用户ip',
+  ctime varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '改变时间',
   cstatus varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '硬件状态',
   content varchar(64) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '附加内容',
   PRIMARY KEY (id)
@@ -72,12 +77,13 @@ CREATE TABLE db_message (
 
 
 #
-# Source for table "db_object"
+# Source for table "db_jective"
 #
 
-DROP TABLE IF EXISTS db_object;
-CREATE TABLE db_object (
+DROP TABLE IF EXISTS db_jective;
+CREATE TABLE db_jective (
   id varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'pk',
+  uid varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'user pk',
   temperature varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '温度',
   humidity varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '湿度',
   air varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '空气',
@@ -87,7 +93,7 @@ CREATE TABLE db_object (
   picturecolor varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '图片颜色',
   pictureamount varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '图片数量',
   music varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '音乐',
-  otime varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '时间',
+  jtime varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '时间',
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -115,6 +121,7 @@ CREATE TABLE db_reply (
 DROP TABLE IF EXISTS db_status;
 CREATE TABLE db_status (
   id varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'pk',
+  uid varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'user pk',
   sstatus varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '状态改变',
   stime varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '状态改变时间',
   ipaddress varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户ip',

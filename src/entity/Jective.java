@@ -13,7 +13,8 @@ public class Jective {
 	private String picturecolor;
 	private String picturenumber;
 	private String music;
-	private String otime;
+	private String jtime;
+	
 	public String getId() {
 		return id;
 	}
@@ -80,11 +81,11 @@ public class Jective {
 	public void setMusic(String music) {
 		this.music = music;
 	}
-	public String getOtime() {
-		return otime;
+	public String getJtime() {
+		return jtime;
 	}
-	public void setOtime(String otime) {
-		this.otime = otime;
+	public void setJtime(String jtime) {
+		this.jtime = jtime;
 	}
 
 	

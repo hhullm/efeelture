@@ -3,7 +3,6 @@ package entity;
 public class Status {
 	private String id;
 	private String uid;
-
 	private String sstatus;
 	private String stime;
 	private String ipaddress;
