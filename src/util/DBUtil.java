@@ -19,7 +19,7 @@ public class DBUtil {
 		try {
 			Properties prop = new Properties();
 			InputStream is = DBUtil.class.getClassLoader().getResourceAsStream(
-					"utils/config.properties");
+					"util/config.properties");
 
 			prop.load(is);
 			is.close();

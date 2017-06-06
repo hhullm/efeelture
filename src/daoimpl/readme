@@ -1,0 +1,7 @@
+1:？的个数
+2:？后面的“）”
+3：getsql中的“ ”
+4:sql小写
+5:rst.getString("uType") utype
+6:userList.add(user);
+7:UPDATE USER SET ID=?,PHONE=?,UNAME=?,UTYPE =?   where哪里去了
