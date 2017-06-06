@@ -5,3 +5,4 @@
 5:rst.getString("uType") utype
 6:userList.add(user);
 7:UPDATE USER SET ID=?,PHONE=?,UNAME=?,UTYPE =?   where哪里去了
+8:每个表加time
