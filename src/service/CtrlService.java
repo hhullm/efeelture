@@ -1,7 +1,6 @@
 package service;
 
 import java.util.List;
-import java.util.Map;
 
 import entity.Ctrl;
 
@@ -10,15 +9,15 @@ public interface CtrlService {
 	/*
 	 * save db
 	 */
-	String saveCtrl(Map<String, Object> map);
+	String saveCtrl(Ctrl ctrl);
 
 	/*
 	 * to raspberry
 	 */
-	String forwardCtrl(Map<String, Object> map);
+	String forwardCtrl(Ctrl ctrl);
 
 	/*
 	 * select ctrl
 	 */
-	List<Ctrl> selectCtrl(Map<String, Object> map);
+	List<Ctrl> selectCtrl(Ctrl ctrl);
 }

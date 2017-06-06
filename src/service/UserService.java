@@ -1,52 +1,54 @@
 package service;
+
+import entity.User;
+
 /**
  * @author 
  * 
  * 
  */
 
-import java.util.Map;
 
 public interface UserService {
 
 	/*
 	 * 注册
 	 */
-	String register(Map<String, Object> map);
+	String register(User user);
 
 	/*
 	 * 登录
 	 */
-	String login(Map<String, Object> map);
+	String login(User user);
 
 	/*
 	 * 头像上传
 	 */
-	String uploadPicture(Map<String, Object> map);
+	String uploadPicture(User user);
 
 	/*
 	 * 用户信息修改
 	 */
-	String modifyUser(Map<String, Object> map);
+	String modifyUser(User user);
 
 	/*
 	 * 重置密码
 	 */
-	String resetPassword(Map<String, Object> map);
+	String resetPassword(User user);
 	
 	/*
 	 * 忘记密码
 	 */
-	String findPassword(Map<String, Object> map);
+	String findPassword(User user);
 	
 	/*
 	 * 绑定手机
 	 */
-	String bindPhone(Map<String, Object> map);
+	String bindPhone(User user);
 	
 	/*
 	 * get yanzhen
 	 */
-	String getCode(Map<String, Object> map);
+	String getCode(User user);
 	
 }

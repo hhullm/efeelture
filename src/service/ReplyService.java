@@ -1,7 +1,6 @@
 package service;
 
 import java.util.List;
-import java.util.Map;
 
 import entity.Reply;
 
@@ -11,15 +10,15 @@ public interface ReplyService {
 	/*
 	 * 
 	 */
-	String addReply(Map<String, Object> map);
+	String addReply(Reply reply);
 
 	/*
 	 * 
 	 */
-	String deleteReply(Map<String, Object> map);
+	String deleteReply(Reply reply);
 	
 	/*
 	 * 
 	 */
-	List<Reply> selectReply(Map<String, Object> map);
+	List<Reply> selectReply(Reply reply);
 }
