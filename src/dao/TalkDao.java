@@ -11,23 +11,23 @@ import entity.Talk;
 public interface TalkDao {
 
 	/*
-	 * пбтЖадлЛдзхщ
+	 * О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	 */
 	void addTalk(Talk talk);
 	
 	/*
-	 * и╬ЁЩадлЛдзхщ
+	 * и╬О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	 */
 	
 	void deleteTalk(Talk talk);
 	
 	/*
-	 * ╦Э╦дадлЛдзхщ
+	 * О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	 */
-	void modifyTalk(Talk talk);
+	void updateTalk(Talk talk);
 
 	/*
-	 * ╡Ия╞адлЛдзхщ
+	 * О©╫О©╫я╞О©╫О©╫О©╫О©╫О©╫О©╫О©╫О©╫
 	 */
 	List<Talk> selectTalk(Talk talk);
 	

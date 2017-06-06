@@ -23,7 +23,7 @@ public interface UserDao {
 	/*
 	 * �����û���Ϣ
 	 */
-	void modifyUser(User user);
+	void updateUser(User user);
 
 	/*
 	 * ��ѯ�û���Ϣ

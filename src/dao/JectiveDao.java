@@ -24,7 +24,7 @@ public interface JectiveDao {
 	/*
 	 * ���Ķ�����Ϣ
 	 */
-	void modifyJective(Jective jective);
+	void updateJective(Jective jective);
 
 	/*
 	 * ��ѯ������Ϣ
