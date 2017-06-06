@@ -8,7 +8,6 @@ import java.util.List;
 
 import dao.UserDao;
 import util.DBUtil;
-import entity.Friend;
 /**
  * DAO�㣬�����ݿ�����
  */
@@ -84,7 +83,7 @@ public class UserDaoImpl implements UserDao {
 			user = getUser(user,user.getId());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("UPDATE USER SET UNAME=?,PHONE=?,PASSWORD=?,SEX=?,AGE=?,UPICTURE=?,SIGN=?,UID=?");
+					.prepareStatement("UPDATE USER SET ID=?,PHONE=?,UNAME=?,UTYPE =?,UPASSWORD=?,UIPADDRESS=?,SEX=?,AGE=?,PICTURE=?,SIGN=?");
 			stat.setString(1, user.getId());
 			stat.setString(2, user.getPhone());
 			stat.setString(3, user.getUname());

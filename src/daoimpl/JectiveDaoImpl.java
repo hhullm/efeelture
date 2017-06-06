@@ -8,9 +8,7 @@ import java.util.List;
 
 import dao.JectiveDao;
 import util.DBUtil;
-import entity.Friend;
 import entity.Jective;
-import entity.Talk;
 /**
  * DAO�㣬�����ݿ�����
  */

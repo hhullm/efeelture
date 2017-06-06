@@ -8,12 +8,10 @@ import java.util.List;
 
 import dao.TalkDao;
 import util.DBUtil;
-import entity.Friend;
 /**
  * DAO�㣬�����ݿ�����
  */
 import entity.Talk;
-import entity.User;
 
 public class TalkDaoImpl implements TalkDao {
 
