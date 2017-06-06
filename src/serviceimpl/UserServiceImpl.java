@@ -1,5 +1,10 @@
 package serviceimpl;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.google.gson.Gson;
+
 import entity.User;
 import service.UserService;
 
@@ -16,7 +21,28 @@ public class UserServiceImpl implements UserService {
 	 * 注册
 	 */
 	public String register(User user) {
-		return null;
+		Gson j = new Gson();
+		Map<String, Object> m = new HashMap<String, Object>();
+		try {
+			UserDaoImpl userDaoImpl = new UserDaoImpl();
+			User u = userDaoImpl.checkUser(user);
+			String custId = u.getId();
+			if (custId != null && !custId.equals(""))
+				m.put("resultCode", "601");// 已被注册
+			else {
+				userDaoImpl.addUser(user);
+				u.setPhone(user.getPhone());
+				m.put("userList", userDaoImpl.selectUser(u));
+				m.put("resultCode", "200");
+				String headUrl = getAvatar(custId);
+				if (headUrl != null && !headUrl.equals(""))
+					m.put("headUrl", headUrl);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			m.put("resultCode", "602");// 注册失败
+		}
+		return j.toJson(m);
 	}
 
 	/*
