@@ -5,12 +5,12 @@
 DROP TABLE IF EXISTS db_ctrl;
 CREATE TABLE db_ctrl (
   id varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'pk',
-  uid varchar(64) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT 'user pk',
-  hid varchar(64) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT 'hardware pk',
+  uid varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT 'user pk',
+  hid varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT 'hardware pk',
   uname varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户名',
-  hname varchar(64) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '硬件名',
-  uipaddress varchar(64) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户ip',
-  ctime varchar(64) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '控制时间',
+  hname varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '硬件名',
+  uipaddress varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户ip',
+  ctime varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '控制时间',
   cstatus varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '硬件状态',
   content varchar(64) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '附加内容',
   PRIMARY KEY (id)
