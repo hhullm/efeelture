@@ -1,7 +1,7 @@
 package util;
 
 public class ResultUtil {
-	public static String getResult(String resultCode) {
+	public static String getResultCode(String resultCode) {
 		int result = Integer.valueOf(resultCode);
 		switch (result) {
 		/*
