@@ -9,6 +9,8 @@ import java.util.List;
 import dao.HardwareDao;
 import entity.Hardware;
 import util.DBUtil;
+import util.DateUtil;
+import util.PKUtil;
 
 public class HardwareDaoImpl implements HardwareDao{
 
@@ -17,12 +19,15 @@ public class HardwareDaoImpl implements HardwareDao{
 		// TODO Auto-generated method stub
 		Connection conn = null;
 		try {
+			hardware.setId(PKUtil.getRandomPk());
+			hardware.setHtime(DateUtil.getDate());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("insert into hardware(id,uid,hardwareid) VALUES(?,?,?)");
+					.prepareStatement("insert into hardware(id,uid,hardwareid,htime) VALUES(?,?,?,?)");
 			stat.setString(1, hardware.getId());
 			stat.setString(2, hardware.getUid());
 			stat.setString(3, hardware.getHardwareid());
+			stat.setString(4, hardware.getHtime());
 			stat.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -57,10 +62,11 @@ public class HardwareDaoImpl implements HardwareDao{
 			hardware = getHardware(hardware,hardware.getId());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("update hardware set uid=?,hardwareid=? WHERE id=?");
+					.prepareStatement("update hardware set uid=?,hardwareid=?,htime=? where id=?");
 			stat.setString(1, hardware.getUid());
 			stat.setString(2, hardware.getHardwareid());
-			stat.setString(3, hardware.getId());
+			stat.setString(3, hardware.getHtime());
+			stat.setString(4, hardware.getId());
 			stat.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -81,6 +87,8 @@ public class HardwareDaoImpl implements HardwareDao{
 			h.setUid(hardware.getUid());
 		if (hardware.getHardwareid() != null && !hardware.getHardwareid().equals(""))
 			h.setHardwareid(hardware.getHardwareid());
+		if (hardware.getHtime() != null && !hardware.getHtime().equals(""))
+			h.setHtime(hardware.getHtime());
 		return h;
 	}
 
@@ -100,6 +108,7 @@ public class HardwareDaoImpl implements HardwareDao{
 				hardware.setId(rst.getString("id"));
 				hardware.setUid(rst.getString("uid"));
 				hardware.setHardwareid(rst.getString("hardwareid"));
+				hardware.setHtime(rst.getString("htime"));
 				hardwareList.add(hardware);
 			}
 		} catch (Exception e) {
@@ -116,11 +125,13 @@ public class HardwareDaoImpl implements HardwareDao{
 		if (hardware != null) {
 			sql += " WHERE 1=1 ";
 			if (hardware.getId() != null && !hardware.getId().equals(""))
-				sql += "and id=" + hardware.getId();
+				sql += " and id=" + hardware.getId();
 			if (hardware.getUid() != null && !hardware.getUid().equals(""))
-				sql += "and uid=" + hardware.getUid();
+				sql += " and uid=" + hardware.getUid();
 			if (hardware.getHardwareid()!= null && !hardware.getHardwareid().equals(""))
-				sql += "and hardwareid=" + hardware.getHardwareid();
+				sql += " and hardwareid=" + hardware.getHardwareid();
+			if (hardware.getHtime()!= null && !hardware.getHtime().equals(""))
+				sql += " and htime=" + hardware.getHtime();
 			
 		}
 

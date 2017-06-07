@@ -7,6 +7,7 @@ public class Talk {
 	private String secondid;
 	private String ttype;
 	private String content;
+	private String ttime;
 	
 	public String getId() {
 		return id;
@@ -37,6 +38,12 @@ public class Talk {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public String getTtime() {
+		return ttime;
+	}
+	public void setTtime(String ttime) {
+		this.ttime = ttime;
 	}
 	
 	

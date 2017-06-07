@@ -9,6 +9,8 @@ import java.util.List;
 import dao.StatusDao;
 import entity.Status;
 import util.DBUtil;
+import util.DateUtil;
+import util.PKUtil;
 
 public class StatusDaoImpl implements StatusDao{
 
@@ -17,6 +19,8 @@ public class StatusDaoImpl implements StatusDao{
 		// TODO Auto-generated method stub
 		Connection conn = null;
 		try {
+			status.setId(PKUtil.getRandomPk());
+			status.setStime(DateUtil.getDate());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
 					.prepareStatement("insert into status(id,uid,sstatus,stime,ipaddress,ipport,uname,address) VALUES(?,?,?,?,?,?,?,?)");
@@ -147,21 +151,21 @@ private String getSql(Status status) {
 	if (status != null) {
 		sql += " WHERE 1=1 ";
 		if (status.getId() != null && !status.getId().equals(""))
-			sql += "and id=" + status.getId();
+			sql += " and id=" + status.getId();
 		if (status.getUid() != null && !status.getUid().equals(""))
-			sql += "and uid=" + status.getUid();
+			sql += " and uid=" + status.getUid();
 		if (status.getSstatus() != null && !status.getSstatus().equals(""))
-			sql += "and sstatus=" + status.getSstatus();
+			sql += " and sstatus=" + status.getSstatus();
 		if (status.getStime() != null && !status.getStime().equals(""))
-			sql += "and stime=" + status.getStime();
+			sql += " and stime=" + status.getStime();
 		if (status.getIpaddress() != null && !status.getIpaddress().equals(""))
-			sql += "and ipaddress=" + status.getIpaddress();
+			sql += " and ipaddress=" + status.getIpaddress();
 		if (status.getIpport() != null && !status.getIpport().equals(""))
-			sql += "and ipport=" + status.getIpport();
+			sql += " and ipport=" + status.getIpport();
 		if (status.getUname() != null && !status.getUname().equals(""))
-			sql += "and uname=" + status.getUname();
+			sql += " and uname=" + status.getUname();
 		if (status.getAddress() != null && !status.getAddress().equals(""))
-			sql += "and address=" + status.getAddress();
+			sql += " and address=" + status.getAddress();
 		
 		}
 

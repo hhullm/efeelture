@@ -5,6 +5,7 @@ public class Like {
 	private String id;
 	private String uid;
 	private String messageid;
+	private String ltime;
 	
 	public String getId() {
 		return id;
@@ -23,6 +24,12 @@ public class Like {
 	}
 	public void setMessageid(String messageid) {
 		this.messageid = messageid;
+	}
+	public String getLtime() {
+		return ltime;
+	}
+	public void setLtime(String ltime) {
+		this.ltime = ltime;
 	}
 	
 	

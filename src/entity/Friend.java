@@ -6,6 +6,7 @@ public class Friend {
 	private String firstid;
 	private String secondid;
 	private String fstatus;
+	private String ftime;
 	
 	public String getId() {
 		return id;
@@ -31,6 +32,13 @@ public class Friend {
 	public void setFstatus(String fstatus) {
 		this.fstatus = fstatus;
 	}
+	public String getFtime() {
+		return ftime;
+	}
+	public void setFtime(String ftime) {
+		this.ftime = ftime;
+	}
+	
 	
 
 	

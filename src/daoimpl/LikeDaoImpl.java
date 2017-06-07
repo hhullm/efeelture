@@ -9,6 +9,8 @@ import java.util.List;
 import dao.LikeDao;
 import entity.Like;
 import util.DBUtil;
+import util.DateUtil;
+import util.PKUtil;
 
 public class LikeDaoImpl implements LikeDao{
 
@@ -17,12 +19,15 @@ public class LikeDaoImpl implements LikeDao{
 		// TODO Auto-generated method stub
 		Connection conn = null;
 		try {
+			like.setId(PKUtil.getRandomPk());
+			like.setLtime(DateUtil.getDate());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("insert into like(id,uid,messageid) VALUES(?,?,?)");
+					.prepareStatement("insert into like(id,uid,messageid,ltime) VALUES(?,?,?,?)");
 			stat.setString(1, like.getId());
 			stat.setString(2, like.getUid());
 			stat.setString(3, like.getMessageid());
+			stat.setString(4, like.getLtime());
 			stat.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -56,10 +61,11 @@ public class LikeDaoImpl implements LikeDao{
 			like = getLike(like,like.getId());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("update like set uid=?,messageid=? where id=?");
+					.prepareStatement("update like set uid=?,messageid=?,ltime=? where id=?");
 			stat.setString(1, like.getUid());
 			stat.setString(2, like.getMessageid());
-			stat.setString(3, like.getId());
+			stat.setString(3, like.getLtime());
+			stat.setString(4, like.getId());
 			stat.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -80,6 +86,8 @@ public class LikeDaoImpl implements LikeDao{
 			l.setUid(like.getUid());
 		if (like.getMessageid() != null && !like.getMessageid().equals(""))
 			l.setMessageid(like.getMessageid());
+		if (like.getLtime() != null && !like.getLtime().equals(""))
+			l.setLtime(like.getLtime());
 		return l;
 	}
 
@@ -99,6 +107,7 @@ public class LikeDaoImpl implements LikeDao{
 				like.setId(rst.getString("id"));
 				like.setUid(rst.getString("uid"));
 				like.setMessageid(rst.getString("messageid"));
+				like.setLtime(rst.getString("ltime"));
 				likeList.add(like);
 			}
 		} catch (Exception e) {
@@ -115,11 +124,13 @@ public class LikeDaoImpl implements LikeDao{
 		if (like != null) {
 			sql += " WHERE 1=1 ";
 			if (like.getId() != null && !like.getId().equals(""))
-				sql += "and id=" + like.getId();
+				sql += " and id=" + like.getId();
 			if (like.getUid() != null && !like.getUid().equals(""))
-				sql += "and uid=" + like.getUid();
+				sql += " and uid=" + like.getUid();
 			if (like.getMessageid()!= null && !like.getMessageid().equals(""))
-				sql += "and messageid=" + like.getMessageid();
+				sql += " and messageid=" + like.getMessageid();
+			if (like.getLtime()!= null && !like.getLtime().equals(""))
+				sql += " and ltime=" + like.getLtime();
 			
 		}
 

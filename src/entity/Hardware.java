@@ -5,6 +5,7 @@ public class Hardware {
 	private String id;
 	private String uid;
 	private String hardwareid;
+	private String htime;
 	
 	
 	public String getId() {
@@ -24,6 +25,12 @@ public class Hardware {
 	}
 	public void setHardwareid(String hardwareid) {
 		this.hardwareid = hardwareid;
+	}
+	public String getHtime() {
+		return htime;
+	}
+	public void setHtime(String htime) {
+		this.htime = htime;
 	}
 	
 	

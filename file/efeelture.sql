@@ -26,6 +26,7 @@ CREATE TABLE db_friend (
   firstid varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户id',
   secondid varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '朋友id',
   fstatus varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '朋友状态',
+  ftime varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '朋友时间',
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -39,6 +40,7 @@ CREATE TABLE db_hardware (
   id varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'pk',
   uid varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户id',
   hardwareid varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '硬件id',
+  htime varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '硬件增加时间',
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -52,6 +54,7 @@ CREATE TABLE db_like (
   id varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'pk',
   uid varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT 'user表pk',
   messageid varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT 'message表pk',
+  ltime varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '点赞时间',
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -72,6 +75,7 @@ CREATE TABLE db_message (
   uname varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户名',
   uid varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT 'user表pk',
   mtype varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '动态类型',
+  mtime varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '动态时间',
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -143,6 +147,7 @@ CREATE TABLE db_talk (
   secondid varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '接收方id',
   ttype varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '聊天内容类型',
   content varchar(64) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '聊天内容',
+  ttime varchar(64) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '聊天时间',
   PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -164,6 +169,7 @@ CREATE TABLE db_user (
   age varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '年龄',
   picture varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '图片头像',
   sign varchar(64) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '签名',
+  utime varchar(64) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户时间',
   PRIMARY KEY (id)
   UNIQUE (phone)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

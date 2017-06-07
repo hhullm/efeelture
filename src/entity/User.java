@@ -12,6 +12,7 @@ public class User {
 	private	String age;
 	private	String picture;
 	private	String sign;
+	private	String utime;
 	
 	public String getId() {
 		return id;
@@ -78,6 +79,12 @@ public class User {
 	}
 	public void setSign(String sign) {
 		this.sign = sign;
+	}
+	public String getUtime() {
+		return utime;
+	}
+	public void setUtime(String utime) {
+		this.utime = utime;
 	}
 	
 	

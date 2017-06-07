@@ -9,6 +9,8 @@ import java.util.List;
 import dao.MessageDao;
 import entity.Message;
 import util.DBUtil;
+import util.DateUtil;
+import util.PKUtil;
 
 public class MessageDaoImpl implements MessageDao{
 
@@ -17,19 +19,22 @@ public class MessageDaoImpl implements MessageDao{
 		// TODO Auto-generated method stub
 		Connection conn = null;
 		try {
+			message.setId(PKUtil.getRandomPk());
+			message.setMtime(DateUtil.getDate());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("insert into message(id,content,picture,address,mstatus,permission,likenumber,uname,uid,mtype) VALUES(?,?,?,?,?,?,?,?,?,?)");
+					.prepareStatement("insert into message(id,content,picture,address,mstatus,permission,likenumber,uname,uid,mtype,mtime) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
 			stat.setString(1, message.getId());
 			stat.setString(2, message.getContent());
 			stat.setString(3, message.getPicture());
 			stat.setString(4, message.getAddress());
 			stat.setString(5, message.getMstatus());
 			stat.setString(6, message.getPermission());
-			stat.setString(3, message.getLikenumber());
-			stat.setString(4, message.getUname());
-			stat.setString(5, message.getUid());
-			stat.setString(6, message.getMtype());
+			stat.setString(7, message.getLikenumber());
+			stat.setString(8, message.getUname());
+			stat.setString(9, message.getUid());
+			stat.setString(10, message.getMtype());
+			stat.setString(11, message.getMtime());
 			stat.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -64,7 +69,7 @@ public class MessageDaoImpl implements MessageDao{
 			message = getMessage(message,message.getId());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("update message set content=?,picture=?,address=?,mstatus=?,permission=?,likenumber=?,uname=?,uid=?,mtype=? where id=?");
+					.prepareStatement("update message set content=?,picture=?,address=?,mstatus=?,permission=?,likenumber=?,uname=?,uid=?,mtype=?,mtime=? where id=?");
 			stat.setString(1, message.getContent());
 			stat.setString(2, message.getPicture());
 			stat.setString(3, message.getAddress());
@@ -74,7 +79,8 @@ public class MessageDaoImpl implements MessageDao{
 			stat.setString(7, message.getUname());
 			stat.setString(8, message.getUid());
 			stat.setString(9, message.getMtype());
-			stat.setString(10, message.getId());
+			stat.setString(10, message.getMtime());
+			stat.setString(11, message.getId());
 			stat.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -109,6 +115,8 @@ public class MessageDaoImpl implements MessageDao{
 			m.setUid(message.getUid());
 		if (message.getMtype() != null && !message.getMtype().equals(""))
 			m.setMtype(message.getMtype());
+		if (message.getMtime() != null && !message.getMtime().equals(""))
+			m.setMtime(message.getMtime());
 		return m;
 	}
 
@@ -135,6 +143,7 @@ public class MessageDaoImpl implements MessageDao{
 				message.setUname(rst.getString("uname"));
 				message.setUid(rst.getString("uid"));
 				message.setMtype(rst.getString("mtype"));
+				message.setMtime(rst.getString("mtime"));
 				messageList.add(message);
 			}
 		} catch (Exception e) {
@@ -151,25 +160,27 @@ public class MessageDaoImpl implements MessageDao{
 		if (message != null) {
 			sql += " WHERE 1=1 ";
 			if (message.getId() != null && !message.getId().equals(""))
-				sql += "and id=" + message.getId();
+				sql += " and id=" + message.getId();
 			if (message.getContent() != null && !message.getContent().equals(""))
-				sql += "and content=" + message.getContent();
+				sql += " and content=" + message.getContent();
 			if (message.getPicture() != null && !message.getPicture().equals(""))
-				sql += "and picture=" + message.getPicture();
+				sql += " and picture=" + message.getPicture();
 			if (message.getAddress() != null && !message.getAddress().equals(""))
-				sql += "and address=" + message.getAddress();
+				sql += " and address=" + message.getAddress();
 			if (message.getMstatus() != null && !message.getMstatus().equals(""))
-				sql += "and mstatus=" + message.getMstatus();
+				sql += " and mstatus=" + message.getMstatus();
 			if (message.getPermission() != null && !message.getPermission().equals(""))
-				sql += "and permission=" + message.getPermission();
+				sql += " and permission=" + message.getPermission();
 			if (message.getLikenumber() != null && !message.getLikenumber().equals(""))
-				sql += "and likenumber=" + message.getLikenumber();
+				sql += " and likenumber=" + message.getLikenumber();
 			if (message.getUname() != null && !message.getUname().equals(""))
-				sql += "and uname=" + message.getUname();
+				sql += " and uname=" + message.getUname();
 			if (message.getUid() != null && !message.getUid().equals(""))
-				sql += "and uid=" + message.getUid();
+				sql += " and uid=" + message.getUid();
 			if (message.getMtype() != null && !message.getMtype().equals(""))
-				sql += "and mtype=" + message.getMtype();
+				sql += " and mtype=" + message.getMtype();
+			if (message.getMtime() != null && !message.getMtime().equals(""))
+				sql += " and mtime=" + message.getMtime();
 			
 		}
 

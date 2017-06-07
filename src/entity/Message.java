@@ -12,6 +12,7 @@ public class Message {
 	private String uname;
 	private String uid;
 	private String mtype;
+	private String mtime;
 	
 	public String getId() {
 		return id;
@@ -72,6 +73,12 @@ public class Message {
 	}
 	public void setMtype(String mtype) {
 		this.mtype = mtype;
+	}
+	public String getMtime() {
+		return mtime;
+	}
+	public void setMtime(String mtime) {
+		this.mtime = mtime;
 	}
 	
 	
