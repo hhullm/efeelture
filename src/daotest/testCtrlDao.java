@@ -11,10 +11,10 @@ public class testCtrlDao {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		add();
+//		add();
 //	    delete();
 //		update();
-//    	select();
+    	select();
 
 	}
 	
@@ -41,8 +41,9 @@ public class testCtrlDao {
 	}
 	
 	public static void select(){
+		c.setId("6eab27e6faa043dd");
 		System.out.println(ci.selectCtrl(c).get(0).getId());
-		System.out.println(ci.selectCtrl(c).get(1).getId());
+		System.out.println(ci.selectCtrl(c).get(0).getCtime());
 		
 	}
 

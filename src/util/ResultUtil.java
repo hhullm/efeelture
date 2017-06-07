@@ -17,11 +17,11 @@ public class ResultUtil {
 		 * 999 true
 		 */
 		case 999:
-			return "操作成功";
+			return "operate success";
 		case 110:
-			return "未知错误600";
+			return "save ctrl error";
 		case 111:
-			return "未知错误601";
+			return "lose data";
 		case 131:
 			return "未知错误602";
 		case 130:

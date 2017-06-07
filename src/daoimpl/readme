@@ -9,3 +9,7 @@
 
 add use pk,time,status
 select status
+
+select *
+update ?geshu
+select "'"
