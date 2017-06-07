@@ -23,7 +23,7 @@ public class ReplyDaoImpl implements ReplyDao{
 			reply.setRtime(DateUtil.getDate());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("insert into reply(id,messageid,rtime,firstid,secondid,content) VALUES(?,?,?,?,?,?)");
+					.prepareStatement("insert into db_reply(id,messageid,rtime,firstid,secondid,content) VALUES(?,?,?,?,?,?)");
 			stat.setString(1, reply.getId());
 			stat.setString(2, reply.getMessageid());
 			stat.setString(3, reply.getRtime());
@@ -45,7 +45,7 @@ public class ReplyDaoImpl implements ReplyDao{
 		Connection conn = null;
 		try {
 			conn = DBUtil.getConnection();
-			PreparedStatement stat = conn.prepareStatement("delete from reply where id=?");
+			PreparedStatement stat = conn.prepareStatement("delete from db_reply where id=?");
 			stat.setString(1, reply.getId());
 			stat.executeUpdate();
 		} catch (Exception e) {
@@ -64,7 +64,7 @@ public class ReplyDaoImpl implements ReplyDao{
 			reply = getReply(reply,reply.getId());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("update reply set messageid=?,rtime=?,firstid=?,secondid=?,content=? where id=?");
+					.prepareStatement("update db_reply set messageid=?,rtime=?,firstid=?,secondid=?,content=? where id=?");
 			stat.setString(1, reply.getMessageid());
 			stat.setString(2, reply.getRtime());
 			stat.setString(3, reply.getFirstid());
@@ -131,7 +131,7 @@ public class ReplyDaoImpl implements ReplyDao{
 
 	private String getSql(Reply reply) {
 		// TODO Auto-generated method stub
-		String sql = "select * from reply";
+		String sql = "select * from db_reply";
 		if (reply != null) {
 			sql += " WHERE 1=1 ";
 			if (reply.getId() != null && !reply.getId().equals(""))

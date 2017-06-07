@@ -23,7 +23,7 @@ public class FriendDaoImpl implements FriendDao{
 			friend.setFtime(DateUtil.getDate());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("insert into friend(id,firstid,secondid,fstatus,ftime) VALUES(?,?,?,?,?)");
+					.prepareStatement("insert into db_friend(id,firstid,secondid,fstatus,ftime) VALUES(?,?,?,?,?)");
 			stat.setString(1, friend.getId());
 			stat.setString(2, friend.getFirstid());
 			stat.setString(3, friend.getSecondid());
@@ -44,7 +44,7 @@ public class FriendDaoImpl implements FriendDao{
 		Connection conn = null;
 		try {
 			conn = DBUtil.getConnection();
-			PreparedStatement stat = conn.prepareStatement("delete from friend where id=?");
+			PreparedStatement stat = conn.prepareStatement("delete from db_friend where id=?");
 			stat.setString(1, friend.getId());
 			stat.executeUpdate();
 		} catch (Exception e) {
@@ -63,7 +63,7 @@ public class FriendDaoImpl implements FriendDao{
 			friend = getFriend(friend,friend.getId());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("update friend set firstid=?,secondid=?,fstatus=?,ftime=? where id=?");
+					.prepareStatement("update db_friend set firstid=?,secondid=?,fstatus=?,ftime=? where id=?");
 			stat.setString(1, friend.getFirstid());
 			stat.setString(2, friend.getSecondid());
 			stat.setString(3, friend.getFstatus());
@@ -127,7 +127,7 @@ public class FriendDaoImpl implements FriendDao{
 
 	private String getSql(Friend friend) {
 		// TODO Auto-generated method stub
-		String sql = "select * from friend";
+		String sql = "select * from db_friend";
 		if (friend != null) {
 			sql += " WHERE 1=1 ";
 			if (friend.getId() != null && !friend.getId().equals(""))

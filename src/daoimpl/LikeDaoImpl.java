@@ -23,7 +23,7 @@ public class LikeDaoImpl implements LikeDao{
 			like.setLtime(DateUtil.getDate());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("insert into like(id,uid,messageid,ltime) VALUES(?,?,?,?)");
+					.prepareStatement("insert into db_like(id,uid,messageid,ltime) VALUES(?,?,?,?)");
 			stat.setString(1, like.getId());
 			stat.setString(2, like.getUid());
 			stat.setString(3, like.getMessageid());
@@ -42,7 +42,7 @@ public class LikeDaoImpl implements LikeDao{
 		Connection conn = null;
 		try {
 			conn = DBUtil.getConnection();
-			PreparedStatement stat = conn.prepareStatement("delete from like where id=?");
+			PreparedStatement stat = conn.prepareStatement("delete from db_like where id=?");
 			stat.setString(1, like.getId());
 			stat.executeUpdate();
 		} catch (Exception e) {
@@ -61,7 +61,7 @@ public class LikeDaoImpl implements LikeDao{
 			like = getLike(like,like.getId());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("update like set uid=?,messageid=?,ltime=? where id=?");
+					.prepareStatement("update db_like set uid=?,messageid=?,ltime=? where id=?");
 			stat.setString(1, like.getUid());
 			stat.setString(2, like.getMessageid());
 			stat.setString(3, like.getLtime());
@@ -120,7 +120,7 @@ public class LikeDaoImpl implements LikeDao{
 
 	private String getSql(Like like) {
 		// TODO Auto-generated method stub
-		String sql = "select * from like";
+		String sql = "select * from db_like";
 		if (like != null) {
 			sql += " WHERE 1=1 ";
 			if (like.getId() != null && !like.getId().equals(""))

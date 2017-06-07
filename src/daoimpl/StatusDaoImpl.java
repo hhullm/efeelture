@@ -23,7 +23,7 @@ public class StatusDaoImpl implements StatusDao{
 			status.setStime(DateUtil.getDate());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("insert into status(id,uid,sstatus,stime,ipaddress,ipport,uname,address) VALUES(?,?,?,?,?,?,?,?)");
+					.prepareStatement("insert into db_status(id,uid,sstatus,stime,ipaddress,ipport,uname,address) VALUES(?,?,?,?,?,?,?,?)");
 			stat.setString(1, status.getId());
 			stat.setString(2, status.getUid());
 			stat.setString(3, status.getSstatus());
@@ -47,7 +47,7 @@ public class StatusDaoImpl implements StatusDao{
 		Connection conn = null;
 		try {
 			conn = DBUtil.getConnection();
-			PreparedStatement stat = conn.prepareStatement("delete from status where id=?");
+			PreparedStatement stat = conn.prepareStatement("delete from db_status where id=?");
 			stat.setString(1, status.getId());
 			stat.executeUpdate();
 		} catch (Exception e) {
@@ -66,7 +66,7 @@ public class StatusDaoImpl implements StatusDao{
 			status = getStatus(status,status.getId());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("update status set uid=?,sstatus=?,stime=?,ipaddress=?,ipport=?,uname=?,address=? where id=?");
+					.prepareStatement("update db_status set uid=?,sstatus=?,stime=?,ipaddress=?,ipport=?,uname=?,address=? where id=?");
 			stat.setString(1, status.getUid());
 			stat.setString(2, status.getSstatus());
 			stat.setString(3, status.getStime());
@@ -147,7 +147,7 @@ public class StatusDaoImpl implements StatusDao{
 
 private String getSql(Status status) {
 		// TODO Auto-generated method stub
-	String sql = "select * from status";
+	String sql = "select * from db_status";
 	if (status != null) {
 		sql += " WHERE 1=1 ";
 		if (status.getId() != null && !status.getId().equals(""))

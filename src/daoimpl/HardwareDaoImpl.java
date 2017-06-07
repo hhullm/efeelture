@@ -23,7 +23,7 @@ public class HardwareDaoImpl implements HardwareDao{
 			hardware.setHtime(DateUtil.getDate());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("insert into hardware(id,uid,hardwareid,htime) VALUES(?,?,?,?)");
+					.prepareStatement("insert into db_hardware(id,uid,hardwareid,htime) VALUES(?,?,?,?)");
 			stat.setString(1, hardware.getId());
 			stat.setString(2, hardware.getUid());
 			stat.setString(3, hardware.getHardwareid());
@@ -43,7 +43,7 @@ public class HardwareDaoImpl implements HardwareDao{
 		Connection conn = null;
 		try {
 			conn = DBUtil.getConnection();
-			PreparedStatement stat = conn.prepareStatement("delete from hardware where id=?");
+			PreparedStatement stat = conn.prepareStatement("delete from db_hardware where id=?");
 			stat.setString(1, hardware.getId());
 			stat.executeUpdate();
 		} catch (Exception e) {
@@ -62,7 +62,7 @@ public class HardwareDaoImpl implements HardwareDao{
 			hardware = getHardware(hardware,hardware.getId());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("update hardware set uid=?,hardwareid=?,htime=? where id=?");
+					.prepareStatement("update db_hardware set uid=?,hardwareid=?,htime=? where id=?");
 			stat.setString(1, hardware.getUid());
 			stat.setString(2, hardware.getHardwareid());
 			stat.setString(3, hardware.getHtime());
@@ -121,7 +121,7 @@ public class HardwareDaoImpl implements HardwareDao{
 
 	private String getSql(Hardware hardware) {
 		// TODO Auto-generated method stub
-		String sql = "select * from hardware";
+		String sql = "select * from db_hardware";
 		if (hardware != null) {
 			sql += " WHERE 1=1 ";
 			if (hardware.getId() != null && !hardware.getId().equals(""))

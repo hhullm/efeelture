@@ -23,7 +23,7 @@ public class CtrlDaoImpl implements CtrlDao{
 			ctrl.setCtime(DateUtil.getDate());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("insert into ctrl(id,uid,hid,uname,hname,uipaddress,ctime,cstatus,content) VALUES(?,?,?,?,?,?,?,?,?)");
+					.prepareStatement("insert into db_ctrl(id,uid,hid,uname,hname,uipaddress,ctime,cstatus,content) VALUES(?,?,?,?,?,?,?,?,?)");
 			stat.setString(1, ctrl.getId());
 			stat.setString(2, ctrl.getUid());
 			stat.setString(3, ctrl.getHid());
@@ -48,7 +48,7 @@ public class CtrlDaoImpl implements CtrlDao{
 		Connection conn = null;
 		try {
 			conn = DBUtil.getConnection();
-			PreparedStatement stat = conn.prepareStatement("delete from ctrl where id=?");
+			PreparedStatement stat = conn.prepareStatement("delete from db_ctrl where id=?");
 			stat.setString(1, ctrl.getId());
 			stat.executeUpdate();
 		} catch (Exception e) {
@@ -67,7 +67,7 @@ public class CtrlDaoImpl implements CtrlDao{
 			ctrl = getCtrl(ctrl,ctrl.getId());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("update ctrl set uid=?,hid=?,uname=?,hname=?,uipaddress=?,ctime=?,cstatus=?,content=? where id=?");
+					.prepareStatement("update db_ctrl set uid=?,hid=?,uname=?,hname=?,uipaddress=?,ctime=?,cstatus=?,content=? where id=?");
 			stat.setString(1, ctrl.getUid());
 			stat.setString(2, ctrl.getHid());
 			stat.setString(3, ctrl.getUname());
@@ -147,7 +147,7 @@ public class CtrlDaoImpl implements CtrlDao{
 	private String getSql(Ctrl ctrl) {
 		// TODO Auto-generated method stub
 		
-		String sql = "select * from ctrl";
+		String sql = "select * from db_ctrl";
 		if (ctrl != null) {
 			sql += " WHERE 1=1 ";
 			if (ctrl.getId() != null && !ctrl.getId().equals(""))

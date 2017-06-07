@@ -23,7 +23,7 @@ public class MessageDaoImpl implements MessageDao{
 			message.setMtime(DateUtil.getDate());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("insert into message(id,content,picture,address,mstatus,permission,likenumber,uname,uid,mtype,mtime) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+					.prepareStatement("insert into db_message(id,content,picture,address,mstatus,permission,likenumber,uname,uid,mtype,mtime) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
 			stat.setString(1, message.getId());
 			stat.setString(2, message.getContent());
 			stat.setString(3, message.getPicture());
@@ -50,7 +50,7 @@ public class MessageDaoImpl implements MessageDao{
 		Connection conn = null;
 		try {
 			conn = DBUtil.getConnection();
-			PreparedStatement stat = conn.prepareStatement("delete from message where id=?");
+			PreparedStatement stat = conn.prepareStatement("delete from db_message where id=?");
 			stat.setString(1, message.getId());
 			stat.executeUpdate();
 		} catch (Exception e) {
@@ -69,7 +69,7 @@ public class MessageDaoImpl implements MessageDao{
 			message = getMessage(message,message.getId());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("update message set content=?,picture=?,address=?,mstatus=?,permission=?,likenumber=?,uname=?,uid=?,mtype=?,mtime=? where id=?");
+					.prepareStatement("update db_message set content=?,picture=?,address=?,mstatus=?,permission=?,likenumber=?,uname=?,uid=?,mtype=?,mtime=? where id=?");
 			stat.setString(1, message.getContent());
 			stat.setString(2, message.getPicture());
 			stat.setString(3, message.getAddress());
@@ -156,7 +156,7 @@ public class MessageDaoImpl implements MessageDao{
 
 	private String getSql(Message message) {
 		// TODO Auto-generated method stub
-		String sql = "select * from message";
+		String sql = "select * from db_message";
 		if (message != null) {
 			sql += " WHERE 1=1 ";
 			if (message.getId() != null && !message.getId().equals(""))
