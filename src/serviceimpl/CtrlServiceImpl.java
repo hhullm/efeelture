@@ -31,7 +31,7 @@ public class CtrlServiceImpl implements CtrlService {
 			else {
 				CtrlDaoImpl daoimpl = new CtrlDaoImpl();
 				daoimpl.addCtrl(ctrl);
-				m.put("resultCode", "001");
+				m.put("resultCode", "999");
 			// 成功
 			}
 		} catch (Exception e) {
@@ -46,13 +46,28 @@ public class CtrlServiceImpl implements CtrlService {
 	 * to raspberry
 	 */
 	public String forwardCtrl(Ctrl ctrl) {
-		return null;
+		return "";
 	}
 
 	/*
 	 * select ctrl
 	 */
-	public List<Ctrl> selectCtrl(Ctrl ctrl) {
-		return null;
+	public String selectCtrl(Ctrl ctrl) {
+
+		Map<String, Object> m = new HashMap<String, Object>();
+		Gson j = new Gson();
+		try {
+			CtrlDaoImpl daoImpl = new CtrlDaoImpl();
+			List<Ctrl> ctrlList = daoImpl.selectCtrl(ctrl);
+			if (ctrlList.size() > 0) {
+				m.put("ctrlList", ctrlList);
+				m.put("resultCode", "999");
+			} else
+				m.put("resultCode", "131");
+		} catch (Exception e) {
+			e.printStackTrace();
+			m.put("resultCode", "130");
+		}
+		return j.toJson(m);
 	}
 }

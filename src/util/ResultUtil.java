@@ -9,7 +9,7 @@ public class ResultUtil {
 		 * second function
 		 * third 0:Exception 1~9
 		 * 
-		 * 00x true
+		 * 999 true
 		 */
 		case 200:
 			return "操作成功";

@@ -1,6 +1,5 @@
 package service;
 
-import java.util.List;
 
 import entity.Ctrl;
 
@@ -19,5 +18,5 @@ public interface CtrlService {
 	/*
 	 * select ctrl
 	 */
-	List<Ctrl> selectCtrl(Ctrl ctrl);
+	String selectCtrl(Ctrl ctrl);
 }
