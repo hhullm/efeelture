@@ -26,15 +26,18 @@ public class CtrlServiceImpl implements CtrlService {
 			String uipaddress = ctrl.getUipaddress();
 			if (hid == null || hid.equals("") || uid == null || uid.equals("") || uipaddress == null
 					|| uipaddress.equals(""))
-				m.put("resultCode", "111");// 缺少数据
+				m.put("resultCode", "111");
+			// 缺少数据
 			else {
 				CtrlDaoImpl daoimpl = new CtrlDaoImpl();
 				daoimpl.addCtrl(ctrl);
 				m.put("resultCode", "001");
+			// 成功
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "110");// 注册失败
+			m.put("resultCode", "110");
+			// 注册失败
 		}
 		return j.toJson(m);
 	};
