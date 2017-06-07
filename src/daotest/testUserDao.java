@@ -23,7 +23,7 @@ public class testUserDao {
 		ti.addUser(t);
 	}
 	public static void delete() {
-		t.setPhone("18262896789w");
+		t.setId("a30455616d9b4af6");
 		ti.deleteUser(t);
 	}
 	public static void update() {
@@ -37,7 +37,8 @@ public class testUserDao {
 //		t.setPhone("18262896789w");
 		t.setId("a30455616d9b4af6");
 		System.out.println(ti.selectUser(t).get(0).getPhone());
-		System.out.println(ti.selectUser(t).get(0).getId());
+		System.out.println(ti.selectUser(t).get(0).getSign());
+		
 		
 		//System.out.println(ti.selectUser(t).get(1).getPhone());
 		//System.out.println(ti.selectUser(t).get(1).getId());

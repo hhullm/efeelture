@@ -53,7 +53,7 @@ public class UserDaoImpl implements UserDao {
 		Connection conn = null;
 		try {
 			conn = DBUtil.getConnection();
-			PreparedStatement stat = conn.prepareStatement("select from db_user where id=?");
+			PreparedStatement stat = conn.prepareStatement("delete from db_user where id=?");
 			stat.setString(1, user.getId());
 			stat.executeUpdate();
 		} catch (Exception e) {
@@ -61,7 +61,6 @@ public class UserDaoImpl implements UserDao {
 		} finally {
 			DBUtil.close(conn);
 		}
-
 	}
 
 	@Override
@@ -71,7 +70,7 @@ public class UserDaoImpl implements UserDao {
 			user = getUser(user,user.getId());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("update user set phone=?,uname=?,utype =?,upassword=?,ipaddress=?,sex=?,age=?,picture=?,sign=?,utime=? where id=?");
+					.prepareStatement("update db_user set phone=?,uname=?,utype=?,upassword=?,ipaddress=?,ustatus=?,sex=?,age=?,picture=?,sign=?,utime=? where id=?");
 			stat.setString(1, user.getPhone());
 			stat.setString(2, user.getUname());
 			stat.setString(3, user.getUtype());
@@ -162,29 +161,29 @@ public class UserDaoImpl implements UserDao {
 		if (user != null) {
 			sql += " WHERE 1=1";
 			if (user.getId() != null && !user.getId().equals(""))
-				sql += " and id=" + user.getId();
+				sql += " and id='" + user.getId()+"'";
 			if (user.getPhone() != null && !user.getPhone().equals(""))
-				sql += " and phone=" + user.getPhone();
+				sql += " and phone='" + user.getPhone()+"'";
 			if (user.getUname() != null && !user.getUname().equals(""))
-				sql += " and uname=" + user.getUname();
+				sql += " and uname='" + user.getUname()+"'";
 			if (user.getUtype() != null && !user.getUtype().equals(""))
-				sql += " and utype=" + user.getUtype();
+				sql += " and utype='" + user.getUtype()+"'";
 			if (user.getUpassword() != null && !user.getUpassword().equals(""))
-				sql += " and upassword=" + user.getUpassword();
+				sql += " and upassword='" + user.getUpassword()+"'";
 			if (user.getIpaddress() != null && !user.getIpaddress().equals(""))
-				sql += " and ipaddress=" + user.getIpaddress();
+				sql += " and ipaddress='" + user.getIpaddress()+"'";
 			if (user.getUstatus() != null && !user.getUstatus().equals(""))
-				sql += " and ustatus=" + user.getUstatus();
+				sql += " and ustatus='" + user.getUstatus()+"'";
 			if (user.getSex() != null && !user.getSex().equals(""))
-				sql += " and sex=" + user.getSex();
+				sql += " and sex='" + user.getSex()+"'";
 			if (user.getAge() != null && !user.getAge().equals(""))
-				sql += " and age=" + user.getAge();
+				sql += " and age='" + user.getAge()+"'";
 			if (user.getPicture() != null && !user.getPicture().equals(""))
-				sql += " and picture=" + user.getPicture();
+				sql += " and picture='" + user.getPicture()+"'";
 			if (user.getSign() != null && !user.getSign().equals(""))
-				sql += " and sign=" + user.getSign();
+				sql += " and sign='" + user.getSign()+"'";
 			if (user.getUtime() != null && !user.getUtime().equals(""))
-				sql += " and utime=" + user.getUtime();
+				sql += " and utime='" + user.getUtime()+"'";
 			
 		}
 

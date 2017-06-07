@@ -62,8 +62,10 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 		case login:
 			try {
 				if (map.containsKey("custName") && map.containsKey("password")) {
-					MobileAppServiceImpl mobile = new MobileAppServiceImpl();
-					String resultCode = mobile.login(map);
+					UserServiceImpl mobile = new UserServiceImpl();
+					User user=new User();
+					user=MapToEntity.toUser(map);
+					String resultCode = mobile.login(user);
 					out.write(resultCode);
 				} else
 					out.write(ResultUtil.getResultCode());
@@ -72,11 +74,13 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 				out.write(ResultUtil.getErrorResultCode());
 			}
 			break;
-		case updateHeadPic:
+		case uploadPicture:
 			try {
 				if (map.containsKey("custId") && map.containsKey("attaSrc")) {
-					MobileAppServiceImpl mobile = new MobileAppServiceImpl();
-					String resultCode = mobile.uploadHeadPic(map);
+					UserServiceImpl mobile = new UserServiceImpl();
+					User user=new User();
+					user=MapToEntity.toUser(map);
+					String resultCode = mobile.uploadPicture(user);
 					out.write(resultCode);
 				} else
 					out.write(ResultUtil.getResultCode());
