@@ -28,7 +28,7 @@ public class testUserDao {
 	}
 	public static void update() {
 		t.setPhone("32412412");
-		ti.updateUser(t);
+		ti.modifyUser(t);
 	}
 	public static void select() {
 		//t.setPhone("18262896780");
