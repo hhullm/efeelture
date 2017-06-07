@@ -8,6 +8,8 @@ import java.util.List;
 
 import dao.JectiveDao;
 import util.DBUtil;
+import util.DateUtil;
+import util.PKUtil;
 import entity.Jective;
 /**
  * DAO�㣬�����ݿ�����
@@ -20,9 +22,11 @@ public class JectiveDaoImpl implements JectiveDao {
 	public void addJective(Jective jective) {
 		Connection conn = null;
 		try {
+			jective.setId(PKUtil.getRandomPk());
+			jective.setJtime(DateUtil.getDate());	
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("INSERT INTO JECTIVE(ID,UID,TEMPERATURE,HUMIDITY,AIR,WEEKDAY,PEOPLENUMBER,WORD,PICTURECOLOR,PICTURENUMBER,MUSIC,JTIME) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
+					.prepareStatement("insert into db_jective(id,uid,temperature,humidity,air,weekday,peoplenumber,word,picturecolor,picturenumber,music,jtime) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
 			stat.setString(1, jective.getId());
 			stat.setString(2, jective.getUid());
 			stat.setString(3, jective.getTemperature());
@@ -53,7 +57,7 @@ public class JectiveDaoImpl implements JectiveDao {
 		try {
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("DELETE * FROM JECTIVE WHERE ID=?");
+					.prepareStatement("delete * from db_jective where id=?");
 			stat.setString(1, jective.getId());
 			ResultSet rst = stat.executeQuery();
 			jective = new Jective();
@@ -84,13 +88,13 @@ public class JectiveDaoImpl implements JectiveDao {
 
 
 	@Override
-	public void updateJective(Jective jective) {
+	public void modifyJective(Jective jective) {
 		Connection conn = null;
 		try {
 			jective = getJective(jective,jective.getId());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("UPDATE JECTIVE SET ID=?,UID=?,TEMPERATURE=?,HUMIDITY=?,AIR=?,WEEKDAY=?,PEOPLENUMBER=?,WORD=?,PICTURECOLOR=?,PICTURENUMBER=?,MUSIC=?,JTIME=?");
+					.prepareStatement("update db_jective set id=?,uid=?,temperature=?,humidity=?,air=?,weekday=?,peoplenumber=?,word=?,picturecolor=?,Picturenumber=?,music=?,jtime=?");
 			stat.setString(1, jective.getId());
 			stat.setString(2, jective.getUid());
 			stat.setString(3, jective.getTemperature());
@@ -183,34 +187,34 @@ public class JectiveDaoImpl implements JectiveDao {
 	}
 	
 	private String getSql(Jective jective) {
-		String sql = "SELECT * FROM JECTIVE";
+		String sql = "selete * from db_jective";
 		if (jective != null) {
 			sql += " WHERE 1=1 ";
 				
 			if (jective.getId() != null && !jective.getId().equals(""))
-				sql += "AND ID=" + jective.getId();
+				sql += " and id=" + jective.getId();
 			if (jective.getUid() != null && !jective.getUid().equals(""))
-				sql += "AND UID=" + jective.getUid();
+				sql += " and uid=" + jective.getUid();
 			if (jective.getTemperature() != null && !jective.getTemperature().equals(""))
-				sql += "AND TEPMERATURE=" + jective.getTemperature();
+				sql += " and temperature=" + jective.getTemperature();
 			if (jective.getHumidity() != null && !jective.getHumidity().equals(""))
-				sql += "AND HUMIDIDITY=" + jective.getHumidity();
+				sql += " and humidity=" + jective.getHumidity();
 			if (jective.getAir() != null && !jective.getAir().equals(""))
-				sql += "AND AIR=" + jective.getAir();
+				sql += " and air=" + jective.getAir();
 			if (jective.getWeekday() != null && !jective.getWeekday().equals(""))
-				sql += "AND WEEKDAY=" + jective.getWeekday();
+				sql += " and weekday=" + jective.getWeekday();
 			if (jective.getPeoplenumber() != null && !jective.getPeoplenumber().equals(""))
-				sql += "AND PEOPLENUMBER=" + jective.getPeoplenumber();
+				sql += " and eoplenumber=" + jective.getPeoplenumber();
 			if (jective.getWord() != null && !jective.getWord().equals(""))
-				sql += "AND WORD=" + jective.getWord();
+				sql += " and word=" + jective.getWord();
 			if (jective.getPicturecolor() != null && !jective.getPicturecolor().equals(""))
-				sql += "AND PICTURECOLOR=" + jective.getPicturecolor();
+				sql += " and picturecolor=" + jective.getPicturecolor();
 			if (jective.getPicturenumber() != null && !jective.getPicturenumber().equals(""))
-				sql += "AND PICTURENUMBER=" + jective.getPicturenumber();
+				sql += " and icturenumber=" + jective.getPicturenumber();
 			if (jective.getMusic() != null && !jective.getMusic().equals(""))
-				sql += "AND MUSIC=" + jective.getMusic();
+				sql += " and music=" + jective.getMusic();
 			if (jective.getJtime() != null && !jective.getJtime().equals(""))
-				sql += "AND JTIME=" + jective.getJtime();
+				sql += " and jtime=" + jective.getJtime();
 			
 			
 		}

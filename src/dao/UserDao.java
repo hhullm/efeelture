@@ -23,11 +23,25 @@ public interface UserDao {
 	/*
 	 * �����û���Ϣ
 	 */
-	void updateUser(User user);
+	void modifyUser(User user);
 
 	/*
 	 * ��ѯ�û���Ϣ
 	 */
 	List<User> selectUser(User user);
+	
+	
+	
+	User loginUser(User user);
+	
+	
+	
+	
+	User isEmpty(User user);
+	
+	
+	
+	
+	User checkUser(User user);
 	
 }

@@ -24,7 +24,7 @@ public interface TalkDao {
 	/*
 	 * ������������
 	 */
-	void updateTalk(Talk talk);
+	void modifyTalk(Talk talk);
 
 	/*
 	 * ��ѯ��������

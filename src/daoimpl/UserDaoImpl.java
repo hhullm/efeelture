@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.UserDao;
+import util.CipherUtil;
 import util.DBUtil;
+import util.DateUtil;
+import util.PKUtil;
 /**
  * DAO�㣬�����ݿ�����
  */
@@ -19,9 +22,11 @@ public class UserDaoImpl implements UserDao {
 	public void addUser(User user) {
 		Connection conn = null;
 		try {
+			user.setId(PKUtil.getRandomPk());
+			user.setUtime(DateUtil.getDate());			
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("INSERT INTO db_user(ID,PHONE,UNAME,UTYPE,UPASSWORD,IPADDRESS,USTATUS,SEX,AGE,PICTURE,SIGN) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+					.prepareStatement("insert into db_user(id,phone,uname,utype,upassword,ipaddress,ustatus,sex,age,picture,sign) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
 			stat.setString(1, user.getId());
 			stat.setString(2, user.getPhone());
 			stat.setString(3, user.getUname());
@@ -48,20 +53,20 @@ public class UserDaoImpl implements UserDao {
 		try {
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("SELECT * FROM USER WHERE (UNAME=? OR PHONE=?) AND UPASSWORD=?");
+					.prepareStatement("select * from db_user where (uname=? or phone=?) and upassword=?");
 			stat.setString(1, user.getUname());
 			stat.setString(2, user.getPhone());
 			stat.setString(3, user.getUpassword());
 			ResultSet rst = stat.executeQuery();
 			user = new User();
 			if (rst.next()) {
-				user.setId(rst.getString("Id"));
+				user.setId(rst.getString("id"));
 				user.setPhone(rst.getString("phone"));
-				user.setUname(rst.getString("uName"));		
-				user.setUname(rst.getString("uType"));	
-				user.setUpassword(rst.getString("Upassword"));
-				user.setUpassword(rst.getString("Ipaddress"));
-				user.setUstatus(rst.getString("uStatus"));
+				user.setUname(rst.getString("uname"));		
+				user.setUname(rst.getString("utype"));	
+				user.setUpassword(rst.getString("upassword"));
+				user.setUpassword(rst.getString("ipaddress"));
+				user.setUstatus(rst.getString("ustatus"));
 				user.setSex(rst.getString("sex"));
 				user.setAge(rst.getString("age"));
 				user.setSex(rst.getString("picture"));
@@ -77,13 +82,13 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void updateUser(User user) {
+	public void modifyUser(User user) {
 		Connection conn = null;
 		try {
 			user = getUser(user,user.getId());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("UPDATE USER SET ID=?,PHONE=?,UNAME=?,UTYPE =?,UPASSWORD=?,UIPADDRESS=?,SEX=?,AGE=?,PICTURE=?,SIGN=?");
+					.prepareStatement("update user set id=?,phone=?,uname=?,utype =?,upassword=?,ipaddress=?,sex=?,age=?,picture=?,sign=?");
 			stat.setString(1, user.getId());
 			stat.setString(2, user.getPhone());
 			stat.setString(3, user.getUname());
@@ -169,35 +174,132 @@ public class UserDaoImpl implements UserDao {
 	}
 	
 	private String getSql(User user) {
-		String sql = "SELECT * FROM db_user";
+		String sql = "select * from db_user";
 		if (user != null) {
 			sql += " WHERE 1=1";
 			if (user.getId() != null && !user.getId().equals(""))
-				sql += " AND ID=" + user.getId();
+				sql += " and id=" + user.getId();
 			if (user.getPhone() != null && !user.getPhone().equals(""))
-				sql += " AND phone=" + user.getPhone();
+				sql += " and phone=" + user.getPhone();
 			if (user.getUname() != null && !user.getUname().equals(""))
-				sql += " AND UNAME=" + user.getUname();
+				sql += " and uname=" + user.getUname();
 			if (user.getUtype() != null && !user.getUtype().equals(""))
-				sql += " AND UTYPE=" + user.getUtype();
+				sql += " and utype=" + user.getUtype();
 			if (user.getUpassword() != null && !user.getUpassword().equals(""))
-				sql += " AND UPASSWORD=" + user.getUpassword();
+				sql += " and upassword=" + user.getUpassword();
 			if (user.getIpaddress() != null && !user.getIpaddress().equals(""))
-				sql += " AND IPADDRESS=" + user.getIpaddress();
+				sql += " and ipaddress=" + user.getIpaddress();
 			if (user.getUstatus() != null && !user.getUstatus().equals(""))
-				sql += " AND USTATUS=" + user.getUstatus();
+				sql += " and ustatus=" + user.getUstatus();
 			if (user.getSex() != null && !user.getSex().equals(""))
-				sql += " AND SEX=" + user.getSex();
+				sql += " and sex=" + user.getSex();
 			if (user.getAge() != null && !user.getAge().equals(""))
-				sql += " AND AGE=" + user.getAge();
+				sql += " and age=" + user.getAge();
 			if (user.getPicture() != null && !user.getPicture().equals(""))
-				sql += " AND PICTURE=" + user.getPicture();
+				sql += " and picture=" + user.getPicture();
 			if (user.getSign() != null && !user.getSign().equals(""))
-				sql += " AND SIGN=" + user.getSign();
+				sql += " and sign=" + user.getSign();
 			
 			
 		}
 
 		return sql;
 	}
+
+	@Override
+	public User loginUser(User user) {
+		Connection conn = null;
+		try {
+			user.setUpassword(CipherUtil.generatePassword(user.getUpassword()));
+			conn = DBUtil.getConnection();
+			PreparedStatement stat = conn
+					.prepareStatement("select * from db_user where (uname=? or phone=? or id=?) and password=?");
+			stat.setString(1, user.getUname());
+			stat.setString(2, user.getPhone());
+			stat.setString(3, user.getId());
+			stat.setString(4, user.getUpassword());
+			ResultSet rst = stat.executeQuery();
+			user = new User();
+			if (rst.next()) {
+				user.setId(rst.getString("id"));
+				user.setPhone(rst.getString("phone"));
+				user.setUname(rst.getString("uname"));		
+				user.setUtype(rst.getString("utype"));	
+				user.setUpassword(rst.getString("upassword"));
+				user.setIpaddress(rst.getString("ipaddress"));
+				user.setUstatus(rst.getString("ustatus"));
+				user.setSex(rst.getString("sex"));
+				user.setAge(rst.getString("age"));
+				user.setPicture(rst.getString("picture"));
+				user.setSign(rst.getString("sign"));
+			
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(conn);
+		}
+		return user;
+		
+	}
+
+	@Override
+	public User isEmpty(User user) {
+		// TODO 自动生成的方法存根
+		if (user.getId() == null)
+			user.setId("");
+		if (user.getPhone() == null)
+			user.setPhone("");
+		if (user.getUname() == null)
+			user.setUname("");
+		if (user.getUtype() == null)
+			user.setUtype("");
+		if (user.getUpassword() == null)
+			user.setUpassword("");
+		if (user.getIpaddress() == null)
+			user.setIpaddress("");
+		if (user.getUstatus() == null)
+			user.setUstatus("");
+		if (user.getSex() == null)
+			user.setSex("");
+		if (user.getAge() == null)
+			user.setAge("");
+		if (user.getPicture() == null)
+			user.setPicture("");
+		if (user.getSign() == null)
+			user.setSign("");
+		
+		if (user.getId().equals("") && user.getPhone().equals("") && user.getUname().equals("")
+				&& user.getUtype().equals("") && user.getUpassword().equals("") && user.getIpaddress().equals("")
+				&& user.getUstatus().equals("") && user.getSex().equals("") && user.getAge().equals("")
+				&& user.getPicture().equals("") && user.getSign().equals("")
+				)
+			return null;
+		else
+			return user;
+	
+	}
+
+	@Override
+	public User checkUser(User user) {
+		Connection conn = null;
+		try {
+			user.setUpassword(CipherUtil.generatePassword(user.getUpassword()));
+			conn = DBUtil.getConnection();
+			PreparedStatement stat = conn.prepareStatement("select * from user where name=? or phone=?");
+			stat.setString(1, user.getUname());
+			stat.setString(2, user.getPhone());
+			ResultSet rst = stat.executeQuery();
+			user = new User();
+			if (rst.next()) {
+				user.setId(rst.getString("custId"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(conn);
+		}
+		return user;
+	}
+
 }
