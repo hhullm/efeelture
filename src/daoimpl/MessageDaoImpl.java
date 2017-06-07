@@ -21,6 +21,7 @@ public class MessageDaoImpl implements MessageDao{
 		try {
 			message.setId(PKUtil.getRandomPk());
 			message.setMtime(DateUtil.getDate());
+			message.setMstatus("1");
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
 					.prepareStatement("insert into db_message(id,content,picture,address,mstatus,permission,likenumber,uname,uid,mtype,mtime) VALUES(?,?,?,?,?,?,?,?,?,?,?)");

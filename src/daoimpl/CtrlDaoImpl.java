@@ -23,7 +23,7 @@ public class CtrlDaoImpl implements CtrlDao{
 			ctrl.setCtime(DateUtil.getDate());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("insert into db_ctrl(id,uid,hid,uname,hname,uipaddress,ctime,cstatus,content) VALUES(?,?,?,?,?,?,?,?,?)");
+					.prepareStatement("insert into db_ctrl(id,uid,hid,uname,hname,uipaddress,ctime,clevel,content) VALUES(?,?,?,?,?,?,?,?,?)");
 			stat.setString(1, ctrl.getId());
 			stat.setString(2, ctrl.getUid());
 			stat.setString(3, ctrl.getHid());
@@ -31,7 +31,7 @@ public class CtrlDaoImpl implements CtrlDao{
 			stat.setString(5, ctrl.getHname());
 			stat.setString(6, ctrl.getUipaddress());
 			stat.setString(7, ctrl.getCtime());
-			stat.setString(8, ctrl.getCstatus());
+			stat.setString(8, ctrl.getClevel());
 			stat.setString(9, ctrl.getContent());
 			stat.executeUpdate();
 		} catch (Exception e) {
@@ -67,14 +67,14 @@ public class CtrlDaoImpl implements CtrlDao{
 			ctrl = getCtrl(ctrl,ctrl.getId());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("update db_ctrl set uid=?,hid=?,uname=?,hname=?,uipaddress=?,ctime=?,cstatus=?,content=? where id=?");
+					.prepareStatement("update db_ctrl set uid=?,hid=?,uname=?,hname=?,uipaddress=?,ctime=?,clevel=?,content=? where id=?");
 			stat.setString(1, ctrl.getUid());
 			stat.setString(2, ctrl.getHid());
 			stat.setString(3, ctrl.getUname());
 			stat.setString(4, ctrl.getHname());
 			stat.setString(5, ctrl.getUipaddress());
 			stat.setString(6, ctrl.getCtime());
-			stat.setString(7, ctrl.getCstatus());
+			stat.setString(7, ctrl.getClevel());
 			stat.setString(8, ctrl.getContent());
 			stat.setString(9, ctrl.getId());
 			stat.executeUpdate();
@@ -103,8 +103,8 @@ public class CtrlDaoImpl implements CtrlDao{
 			c.setUipaddress(ctrl.getUipaddress());
 		if (ctrl.getCtime() != null && !ctrl.getCtime().equals(""))
 			c.setCtime(ctrl.getCtime());
-		if (ctrl.getCstatus() != null && !ctrl.getCstatus().equals(""))
-			c.setCstatus(ctrl.getCstatus());
+		if (ctrl.getClevel() != null && !ctrl.getClevel().equals(""))
+			c.setClevel(ctrl.getClevel());
 		if (ctrl.getContent() != null && !ctrl.getContent().equals(""))
 			c.setContent(ctrl.getContent());
 		
@@ -132,7 +132,7 @@ public class CtrlDaoImpl implements CtrlDao{
 				ctrl.setHname(rst.getString("hname"));
 				ctrl.setUipaddress(rst.getString("uipaddress"));
 				ctrl.setCtime(rst.getString("ctime"));
-				ctrl.setCstatus(rst.getString("cstatus"));
+				ctrl.setClevel(rst.getString("clevel"));
 				ctrl.setContent(rst.getString("content"));
 				ctrlList.add(ctrl);
 			}
@@ -164,8 +164,8 @@ public class CtrlDaoImpl implements CtrlDao{
 				sql += " and uipaddress=" + ctrl.getUipaddress();
 			if (ctrl.getCtime() != null && !ctrl.getCtime().equals(""))
 				sql += " and ctime=" + ctrl.getCtime();
-			if (ctrl.getCstatus() != null && !ctrl.getCstatus().equals(""))
-				sql += " and cstatus=" + ctrl.getCstatus();
+			if (ctrl.getClevel() != null && !ctrl.getClevel().equals(""))
+				sql += " and clevel=" + ctrl.getClevel();
 			if (ctrl.getContent() != null && !ctrl.getContent().equals(""))
 				sql += " and content=" + ctrl.getContent();
 			

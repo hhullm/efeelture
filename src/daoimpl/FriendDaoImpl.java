@@ -21,6 +21,7 @@ public class FriendDaoImpl implements FriendDao{
 		try {
 			friend.setId(PKUtil.getRandomPk());
 			friend.setFtime(DateUtil.getDate());
+			friend.setFstatus("1");
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
 					.prepareStatement("insert into db_friend(id,firstid,secondid,fstatus,ftime) VALUES(?,?,?,?,?)");
@@ -103,6 +104,7 @@ public class FriendDaoImpl implements FriendDao{
 		Connection conn = null;
 		List<Friend> friendList = new ArrayList<Friend>();
 		try {
+			friend.setFstatus("1");
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = null;
 			String sql = getSql(friend);

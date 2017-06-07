@@ -9,8 +9,9 @@ public class Ctrl {
 	private String hname;
 	private String uipaddress;
 	private String ctime;
-	private String cstatus;
+	private String clevel;
 	private String content;
+	
 	public String getId() {
 		return id;
 	}
@@ -53,11 +54,11 @@ public class Ctrl {
 	public void setCtime(String ctime) {
 		this.ctime = ctime;
 	}
-	public String getCstatus() {
-		return cstatus;
+	public String getClevel() {
+		return clevel;
 	}
-	public void setCstatus(String cstatus) {
-		this.cstatus = cstatus;
+	public void setClevel(String clevel) {
+		this.clevel = clevel;
 	}
 	public String getContent() {
 		return content;
@@ -65,7 +66,6 @@ public class Ctrl {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
 
 
 
