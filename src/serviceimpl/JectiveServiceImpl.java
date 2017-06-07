@@ -25,7 +25,7 @@ public class JectiveServiceImpl implements JectiveService {
 			m.put("resultCode", "999");
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "310");
+			m.put("resultCode", "410");
 		}
 		return j.toJson(m);
 	}
@@ -43,10 +43,10 @@ public class JectiveServiceImpl implements JectiveService {
 				m.put("jectiveList", jectiveList);
 				m.put("resultCode", "999");
 			} else
-				m.put("resultCode", "331");
+				m.put("resultCode", "421");
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "330");
+			m.put("resultCode", "420");
 		}
 		return j.toJson(m);
 	}

@@ -23,7 +23,7 @@ public class LikeServiceImpl implements LikeService {
 			m.put("resultCode", "999");
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "310");
+			m.put("resultCode", "510");
 		}
 		return j.toJson(m);
 	}
@@ -40,7 +40,7 @@ public class LikeServiceImpl implements LikeService {
 			m.put("resultCode", "999");
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "320");
+			m.put("resultCode", "520");
 		}
 		return j.toJson(m);
 	}
@@ -58,10 +58,10 @@ public class LikeServiceImpl implements LikeService {
 				m.put("likeList", likeList);
 				m.put("resultCode", "999");
 			} else
-				m.put("resultCode", "331");
+				m.put("resultCode", "531");
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "330");
+			m.put("resultCode", "530");
 		}
 		return j.toJson(m);
 	}
