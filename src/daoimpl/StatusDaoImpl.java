@@ -21,6 +21,7 @@ public class StatusDaoImpl implements StatusDao{
 		try {
 			status.setId(PKUtil.getRandomPk());
 			status.setStime(DateUtil.getDate());
+			status.setSstatus("1");
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
 					.prepareStatement("insert into db_status(id,uid,sstatus,stime,ipaddress,ipport,uname,address) VALUES(?,?,?,?,?,?,?,?)");
@@ -114,6 +115,7 @@ public class StatusDaoImpl implements StatusDao{
 		Connection conn = null;
 		List<Status> statusList = new ArrayList<Status>();
 		try {
+			status.setSstatus("1");
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = null;
 			String sql = getSql(status);

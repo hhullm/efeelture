@@ -127,6 +127,7 @@ public class MessageDaoImpl implements MessageDao{
 		Connection conn = null;
 		List<Message> messageList = new ArrayList<Message>();
 		try {
+			message.setMstatus("1");
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = null;
 			String sql = getSql(message);
