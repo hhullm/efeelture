@@ -41,9 +41,9 @@ public interface MobileApp {
 	int selectTalk = 1083;
 	
 	int bindPhone = 1091;
-	int findPassword = 1092;
-	int getCode = 1093;
-	int login = 1094;
+	int getCode = 1092;
+	int login = 1093;
+	int modifyPassword = 1094;
 	int modifyUser = 1095;
 	int register = 1096;
 	int resetPassword = 1097;

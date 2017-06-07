@@ -39,7 +39,7 @@ public interface UserService {
 	/*
 	 * 忘记密码
 	 */
-	String findPassword(User user);
+	String modifyPassword(User user);
 	
 	/*
 	 * 绑定手机
