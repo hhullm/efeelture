@@ -39,6 +39,7 @@ public class JectiveDaoImpl implements JectiveDao {
 			stat.setString(10, jective.getPicturenumber());
 			stat.setString(11, jective.getMusic());
 			stat.setString(12, jective.getJtime());
+			stat.executeUpdate();
 
 			stat.executeUpdate();
 		} catch (Exception e) {
@@ -57,32 +58,15 @@ public class JectiveDaoImpl implements JectiveDao {
 		try {
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("delete * from db_jective where id=?");
+					.prepareStatement("delete from db_jective where id=?");
 			stat.setString(1, jective.getId());
-			ResultSet rst = stat.executeQuery();
-			jective = new Jective();
-			if (rst.next()) {
-				jective.setId(rst.getString("id"));
-				jective.setUid(rst.getString("uid"));
-				jective.setTemperature(rst.getString("temperature"));
-				jective.setHumidity(rst.getString("humidity"));
-				jective.setAir(rst.getString("air"));
-				jective.setWeekday(rst.getString("weekdays"));
-				jective.setPeoplenumber(rst.getString("amountofpeople"));
-				jective.setWord(rst.getString("words"));
-				jective.setPicturecolor(rst.getString("picturecolor"));
-				jective.setPicturenumber(rst.getString("picturenumber"));
-				jective.setMusic(rst.getString("music"));
-				jective.setJtime(rst.getString("jtime"));
-
-			}
+			stat.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			DBUtil.close(conn);
 		}
-		return;
-		
+	
 	}
 
 
@@ -94,19 +78,20 @@ public class JectiveDaoImpl implements JectiveDao {
 			jective = getJective(jective,jective.getId());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("update db_jective set id=?,uid=?,temperature=?,humidity=?,air=?,weekday=?,peoplenumber=?,word=?,picturecolor=?,Picturenumber=?,music=?,jtime=?");
-			stat.setString(1, jective.getId());
-			stat.setString(2, jective.getUid());
-			stat.setString(3, jective.getTemperature());
-			stat.setString(4, jective.getHumidity());
-			stat.setString(5, jective.getAir());
-			stat.setString(6, jective.getWeekday());
-			stat.setString(7, jective.getPeoplenumber());
-			stat.setString(8, jective.getWord());
-			stat.setString(9, jective.getPicturecolor());
-			stat.setString(10, jective.getPicturenumber());
-			stat.setString(11, jective.getMusic());
-			stat.setString(12, jective.getJtime());
+					.prepareStatement("update db_jective set uid=?,temperature=?,humidity=?,air=?,weekday=?,peoplenumber=?,word=?,picturecolor=?,Picturenumber=?,music=?,jtime=? where id=?");
+			stat.setString(1, jective.getUid());
+			stat.setString(2, jective.getTemperature());
+			stat.setString(3, jective.getHumidity());
+			stat.setString(4, jective.getAir());
+			stat.setString(5, jective.getWeekday());
+			stat.setString(6, jective.getPeoplenumber());
+			stat.setString(7, jective.getWord());
+			stat.setString(8, jective.getPicturecolor());
+			stat.setString(9, jective.getPicturenumber());
+			stat.setString(10, jective.getMusic());
+			stat.setString(11, jective.getJtime());
+			stat.setString(12, jective.getId());
+			stat.executeUpdate();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -129,6 +114,7 @@ public class JectiveDaoImpl implements JectiveDao {
 			stat.setString(1, jective.getId());
 			ResultSet rst = stat.executeQuery();
 			while (rst.next()) {
+				jective = new Jective();
 				jective.setId(rst.getString("id"));
 				jective.setUid(rst.getString("uid"));
 				jective.setTemperature(rst.getString("temperature"));
@@ -141,7 +127,6 @@ public class JectiveDaoImpl implements JectiveDao {
 				jective.setPicturenumber(rst.getString("picturenumber"));
 				jective.setMusic(rst.getString("music"));
 				jective.setJtime(rst.getString("jtime"));
-
 				jectiveList.add(jective);
 			}
 		} catch (Exception e) {

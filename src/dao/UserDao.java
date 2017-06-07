@@ -18,7 +18,7 @@ public interface UserDao {
 	/*
 	 * ��¼����
 	 */
-	User deleteUser(User user);
+	void deleteUser(User user);
 
 	/*
 	 * �����û���Ϣ

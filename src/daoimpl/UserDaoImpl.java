@@ -26,7 +26,7 @@ public class UserDaoImpl implements UserDao {
 			user.setUtime(DateUtil.getDate());			
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("insert into db_user(id,phone,uname,utype,upassword,ipaddress,ustatus,sex,age,picture,sign) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+					.prepareStatement("insert into db_user(id,phone,uname,utype,upassword,ipaddress,ustatus,sex,age,picture,sign,utime) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
 			stat.setString(1, user.getId());
 			stat.setString(2, user.getPhone());
 			stat.setString(3, user.getUname());
@@ -38,6 +38,7 @@ public class UserDaoImpl implements UserDao {
 			stat.setString(9, user.getAge());
 			stat.setString(10, user.getPicture());
 			stat.setString(11, user.getSign());
+			stat.setString(12, user.getUtime());
 			stat.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -48,37 +49,19 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User deleteUser(User user) {
+	public void deleteUser(User user) {
 		Connection conn = null;
 		try {
 			conn = DBUtil.getConnection();
-			PreparedStatement stat = conn
-					.prepareStatement("select * from db_user where (uname=? or phone=?) and upassword=?");
-			stat.setString(1, user.getUname());
-			stat.setString(2, user.getPhone());
-			stat.setString(3, user.getUpassword());
-			ResultSet rst = stat.executeQuery();
-			user = new User();
-			if (rst.next()) {
-				user.setId(rst.getString("id"));
-				user.setPhone(rst.getString("phone"));
-				user.setUname(rst.getString("uname"));		
-				user.setUname(rst.getString("utype"));	
-				user.setUpassword(rst.getString("upassword"));
-				user.setUpassword(rst.getString("ipaddress"));
-				user.setUstatus(rst.getString("ustatus"));
-				user.setSex(rst.getString("sex"));
-				user.setAge(rst.getString("age"));
-				user.setSex(rst.getString("picture"));
-				user.setSign(rst.getString("sign"));
-				
-			}
+			PreparedStatement stat = conn.prepareStatement("select from db_user where id=?");
+			stat.setString(1, user.getId());
+			stat.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			DBUtil.close(conn);
 		}
-		return user;
+
 	}
 
 	@Override
@@ -88,18 +71,19 @@ public class UserDaoImpl implements UserDao {
 			user = getUser(user,user.getId());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("update user set id=?,phone=?,uname=?,utype =?,upassword=?,ipaddress=?,sex=?,age=?,picture=?,sign=?");
-			stat.setString(1, user.getId());
-			stat.setString(2, user.getPhone());
-			stat.setString(3, user.getUname());
-			stat.setString(4, user.getUtype());
-			stat.setString(5, user.getUpassword());
-			stat.setString(6, user.getIpaddress());
-			stat.setString(7, user.getUstatus());
-			stat.setString(8, user.getSex());
-			stat.setString(9, user.getAge());
-			stat.setString(10, user.getPicture());
-			stat.setString(11, user.getSign());
+					.prepareStatement("update user set phone=?,uname=?,utype =?,upassword=?,ipaddress=?,sex=?,age=?,picture=?,sign=?,utime=? where id=?");
+			stat.setString(1, user.getPhone());
+			stat.setString(2, user.getUname());
+			stat.setString(3, user.getUtype());
+			stat.setString(4, user.getUpassword());
+			stat.setString(5, user.getIpaddress());
+			stat.setString(6, user.getUstatus());
+			stat.setString(7, user.getSex());
+			stat.setString(8, user.getAge());
+			stat.setString(9, user.getPicture());
+			stat.setString(10, user.getSign());
+			stat.setString(11, user.getUtime());
+			stat.setString(12, user.getId());
 			stat.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -113,11 +97,10 @@ public class UserDaoImpl implements UserDao {
 		Connection conn = null;
 		List<User> userList = new ArrayList<User>();
 		try {
-			
 			conn = DBUtil.getConnection();
-			String sql = getSql(user);			
-			PreparedStatement stat = conn.prepareStatement(sql);
-
+			PreparedStatement stat = null;
+			String sql = getSql(user);
+			stat = conn.prepareStatement(sql);
 			ResultSet rst = stat.executeQuery();
 			while (rst.next()) {
 				user = new User();
@@ -132,6 +115,7 @@ public class UserDaoImpl implements UserDao {
 				user.setAge(rst.getString("age"));
 				user.setPicture(rst.getString("picture"));
 				user.setSign(rst.getString("sign"));
+				user.setUtime(rst.getString("utime"));
 				userList.add(user);
 			}
 		} catch (Exception e) {
@@ -167,8 +151,8 @@ public class UserDaoImpl implements UserDao {
 			f.setPicture(user.getPicture());
 		if (user.getSign() != null && !user.getSign().equals(""))
 			f.setSign(user.getSign());
-	
-		
+		if (user.getUtime() != null && !user.getUtime().equals(""))
+			f.setUtime(user.getUtime());
 		
 		return f;
 	}
@@ -199,7 +183,8 @@ public class UserDaoImpl implements UserDao {
 				sql += " and picture=" + user.getPicture();
 			if (user.getSign() != null && !user.getSign().equals(""))
 				sql += " and sign=" + user.getSign();
-			
+			if (user.getUtime() != null && !user.getUtime().equals(""))
+				sql += " and utime=" + user.getUtime();
 			
 		}
 
@@ -232,6 +217,7 @@ public class UserDaoImpl implements UserDao {
 				user.setAge(rst.getString("age"));
 				user.setPicture(rst.getString("picture"));
 				user.setSign(rst.getString("sign"));
+				user.setUtime(rst.getString("utime"));
 			
 			}
 		} catch (Exception e) {
@@ -268,11 +254,13 @@ public class UserDaoImpl implements UserDao {
 			user.setPicture("");
 		if (user.getSign() == null)
 			user.setSign("");
+		if (user.getUtime() == null)
+			user.setUtime("");
 		
 		if (user.getId().equals("") && user.getPhone().equals("") && user.getUname().equals("")
 				&& user.getUtype().equals("") && user.getUpassword().equals("") && user.getIpaddress().equals("")
 				&& user.getUstatus().equals("") && user.getSex().equals("") && user.getAge().equals("")
-				&& user.getPicture().equals("") && user.getSign().equals("")
+				&& user.getPicture().equals("") && user.getSign().equals("") && user.getUtime().equals("")
 				)
 			return null;
 		else
@@ -286,13 +274,13 @@ public class UserDaoImpl implements UserDao {
 		try {
 			user.setUpassword(CipherUtil.generatePassword(user.getUpassword()));
 			conn = DBUtil.getConnection();
-			PreparedStatement stat = conn.prepareStatement("select * from user where name=? or phone=?");
+			PreparedStatement stat = conn.prepareStatement("select * from user where uname=? or phone=?");
 			stat.setString(1, user.getUname());
 			stat.setString(2, user.getPhone());
 			ResultSet rst = stat.executeQuery();
 			user = new User();
 			if (rst.next()) {
-				user.setId(rst.getString("custId"));
+				user.setId(rst.getString("id"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

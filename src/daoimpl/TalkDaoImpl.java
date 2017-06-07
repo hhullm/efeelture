@@ -22,15 +22,16 @@ public class TalkDaoImpl implements TalkDao {
 		Connection conn = null;
 		try {
 			talk.setId(PKUtil.getRandomPk());
+			talk.setTtime(DateUtil.getDate());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("insert into db_talk(id,firstid,secondid,ttype,content) VALUES(?,?,?,?,?)");
+					.prepareStatement("insert into db_talk(id,firstid,secondid,ttype,content,ttime) VALUES(?,?,?,?,?,?)");
 			stat.setString(1, talk.getId());
 			stat.setString(2, talk.getFirstid());
 			stat.setString(3, talk.getSecondid());
 			stat.setString(4, talk.getTtype());
 			stat.setString(5, talk.getContent());
-
+			stat.setString(6, talk.getTtime());
 			stat.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -48,24 +49,14 @@ public class TalkDaoImpl implements TalkDao {
 		try {
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("delete * from db_talk where id=?");
+					.prepareStatement("delete from db_talk where id=?");
 			stat.setString(1, talk.getId());
-			ResultSet rst = stat.executeQuery();
-			talk = new Talk();
-			if (rst.next()) {
-				talk.setId(rst.getString("id"));
-				talk.setFirstid(rst.getString("firstid"));
-				talk.setSecondid(rst.getString("secondid"));
-				talk.setTtype(rst.getString("ttype"));
-				talk.setContent(rst.getString("status"));
-
-			}
+			stat.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			DBUtil.close(conn);
 		}
-		return;
 		
 	}
 
@@ -76,13 +67,13 @@ public class TalkDaoImpl implements TalkDao {
 			talk = getTalk(talk,talk.getId());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("update db_talk set id=?,firstid=?,secondid=?,ttype=?,content=?");
-			stat.setString(1, talk.getId());
-			stat.setString(2, talk.getFirstid());
-			stat.setString(3, talk.getSecondid());
-			stat.setString(4, talk.getTtype());
-			stat.setString(5, talk.getContent());
-
+					.prepareStatement("update db_talk set firstid=?,secondid=?,ttype=?,content=?,ttime=? where id=?");
+			stat.setString(1, talk.getFirstid());
+			stat.setString(2, talk.getSecondid());
+			stat.setString(3, talk.getTtype());
+			stat.setString(4, talk.getContent());
+			stat.setString(5, talk.getTtime());
+			stat.setString(6, talk.getId());
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -108,6 +99,7 @@ public class TalkDaoImpl implements TalkDao {
 				talk.setSecondid(rst.getString("secondid"));
 				talk.setTtype(rst.getString("ttype"));
 				talk.setContent(rst.getString("content"));
+				talk.setTtime(rst.getString("ttime"));
 
 				talkList.add(talk);
 			}
@@ -133,9 +125,8 @@ public class TalkDaoImpl implements TalkDao {
 			f.setTtype(talk.getTtype());
 		if (talk.getContent() != null && !talk.getContent().equals(""))
 			f.setContent(talk.getContent());
-		
-	
-		
+		if (talk.getTtime() != null && !talk.getTtime().equals(""))
+			f.setTtime(talk.getTtime());
 		
 		return f;
 	}
@@ -154,7 +145,8 @@ public class TalkDaoImpl implements TalkDao {
 				sql += " and ttype=" + talk.getTtype();
 			if (talk.getContent() != null && !talk.getContent().equals(""))
 				sql += " and content=" + talk.getContent();
-			
+			if (talk.getTtime() != null && !talk.getTtime().equals(""))
+				sql += " and ttime=" + talk.getTtime();
 			
 		}
 
