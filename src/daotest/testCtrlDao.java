@@ -2,7 +2,6 @@ package daotest;
 
 import daoimpl.CtrlDaoImpl;
 import entity.Ctrl;
-import util.DateUtil;
 import util.PKUtil;
 
 public class testCtrlDao {
@@ -13,7 +12,7 @@ public class testCtrlDao {
 		// TODO Auto-generated method stub
 		
 		add();
-//		delete();
+//	    delete();
 //		update();
 //    	select();
 
@@ -29,6 +28,21 @@ public class testCtrlDao {
 	}
 	
 	public static void delete(){
+		c.setId("2799c475b9d64c11");
+		ci.deleteCtrl(c);
+		
+	}
+	
+	public static void update(){
+		c.setId("d4209a1aaa054989");
+		c.setUipaddress("192.168.1.2");
+		ci.modifyCtrl(c);
+		
+	}
+	
+	public static void select(){
+		System.out.println(ci.selectCtrl(c).get(0).getId());
+		System.out.println(ci.selectCtrl(c).get(1).getId());
 		
 	}
 
