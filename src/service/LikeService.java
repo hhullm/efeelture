@@ -1,7 +1,5 @@
 package service;
 
-import java.util.List;
-
 import entity.Like;
 
 public interface LikeService {
@@ -18,5 +16,5 @@ public interface LikeService {
 	/*
 	 * 
 	 */
-	List<Like> selectLike(Like like);
+	String selectLike(Like like);
 }

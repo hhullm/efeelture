@@ -27,7 +27,6 @@ public interface MobileApp {
 	int deleteMessage = 1052;
 	int selectFriendMessage = 1053;
 	int selectMessage = 1054;
-	int selectUidMessage = 1055;
 	
 	int addReply = 1061;
 	int deleteReply = 1062;

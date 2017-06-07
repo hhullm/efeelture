@@ -1,7 +1,5 @@
 package service;
 
-import java.util.List;
-
 import entity.Message;
 
 public interface MessageService {
@@ -19,15 +17,11 @@ public interface MessageService {
 	/*
 	 * 
 	 */
-	List<Message> selectMessaga(Message message);
+	String selectMessage(Message message);
 	
-	/*
-	 * 
-	 */
-	List<Message> selectUidMessaga(Message message);
 	
 	/*
 	 * no realize
 	 */
-	List<Message> selectFriendMessaga(Message message);
+	String selectFriendMessage(Message message);
 }

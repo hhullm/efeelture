@@ -1,7 +1,5 @@
 package service;
 
-import java.util.List;
-
 import entity.Talk;
 
 /**
@@ -27,7 +25,7 @@ public interface TalkService {
 	/*
 	 * 
 	 */
-	List<Talk> selectTalk(Talk talk);
+	String selectTalk(Talk talk);
 	
 }
 

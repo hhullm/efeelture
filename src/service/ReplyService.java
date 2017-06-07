@@ -1,7 +1,5 @@
 package service;
 
-import java.util.List;
-
 import entity.Reply;
 
 
@@ -20,5 +18,5 @@ public interface ReplyService {
 	/*
 	 * 
 	 */
-	List<Reply> selectReply(Reply reply);
+	String selectReply(Reply reply);
 }

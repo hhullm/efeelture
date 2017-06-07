@@ -1,7 +1,5 @@
 package service;
 
-import java.util.List;
-
 import entity.Jective;
 
 
@@ -15,6 +13,6 @@ public interface JectiveService {
 	/*
 	 * 
 	 */
-	List<Jective> selectJective(Jective jective);
+	String selectJective(Jective jective);
 	
 }

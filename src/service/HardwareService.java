@@ -1,7 +1,5 @@
 package service;
 
-import java.util.List;
-
 import entity.Hardware;
 
 public interface HardwareService {
@@ -18,6 +16,6 @@ public interface HardwareService {
 	/*
 	 * 
 	 */
-	List<Hardware> selectHardware(Hardware hardware);
+	String selectHardware(Hardware hardware);
 
 }

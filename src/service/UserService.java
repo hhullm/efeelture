@@ -1,5 +1,7 @@
 package service;
 
+import java.util.Map;
+
 import entity.User;
 
 /**
@@ -34,12 +36,12 @@ public interface UserService {
 	/*
 	 * 重置密码
 	 */
-	String resetPassword(User user);
+	String resetPassword(Map<String, Object> map);
 	
 	/*
 	 * 忘记密码
 	 */
-	String modifyPassword(User user);
+	String modifyPassword(Map<String, Object> map);
 	
 	/*
 	 * 绑定手机
