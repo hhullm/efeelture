@@ -14,12 +14,34 @@ public class testUserDao {
 //		add();
 //		delete();
 //		update();
-    	select();
+//    	select();
+//    	login();
+		isEmpty();
+//		check();
+	}
+	public static void check() {
+		t.setPhone("18262896789");
+		System.out.println(ti.checkUser(t).getId());
+		
+	}
+	public static void isEmpty() {
+		t.setId("5ccf490c287749dd");
+		t.setPhone("182628969");
+		System.out.println(ti.isEmpty(t).getId());
+		System.out.println(ti.isEmpty(t).getPhone());
+		
+	}
+	public static void login() {
+		t.setPhone("18262896789");
+		t.setUpassword("123456");
+		ti.loginUser(t);
+		
+		
 	}
 	public static void add() {
-
 		t.setId(PKUtil.getRandomPk());
-		t.setPhone("18262896780sda");
+		t.setPhone("18262896789");
+		t.setUpassword("123456");
 		ti.addUser(t);
 	}
 	public static void delete() {
@@ -27,21 +49,15 @@ public class testUserDao {
 		ti.deleteUser(t);
 	}
 	public static void update() {
-		
 		t.setId("a30455616d9b4af6");
-		//t.setPhone("18262896789");
 		t.setSign("saafsfas");
 		ti.modifyUser(t);
 	}
 	public static void select() {
-//		t.setPhone("18262896789w");
-		t.setId("a30455616d9b4af6");
+		t.setId("5ccf490c287749dd");
 		System.out.println(ti.selectUser(t).get(0).getPhone());
 		System.out.println(ti.selectUser(t).get(0).getSign());
-		
-		
-		//System.out.println(ti.selectUser(t).get(1).getPhone());
-		//System.out.println(ti.selectUser(t).get(1).getId());
+		System.out.println(ti.selectUser(t).get(0).getUpassword());
 	}
 
 }

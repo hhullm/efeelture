@@ -10,10 +10,10 @@ public class testStatusDao {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		add();
+//		add();
 //	    delete();
 //		update();
-//    	select();
+    	select();
 
 	}
 	
@@ -31,14 +31,16 @@ public class testStatusDao {
 	}
 	
 	public static void update(){
-		s.setId("d4209a1aaa054989");
+		s.setId("a6e8a4413af0410c");
+		s.setUname("cys");
 		si.modifyStatus(s);
 		
 	}
 	
 	public static void select(){
-		System.out.println(si.selectStatus(s).get(0).getId());
-		System.out.println(si.selectStatus(s).get(1).getId());
+		s.setId("a6e8a4413af0410c");
+		System.out.println(si.selectStatus(s).get(0).getSstatus());
+		System.out.println(si.selectStatus(s).get(0).getUname());
 		
 	}
 

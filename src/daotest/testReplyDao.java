@@ -10,10 +10,10 @@ public class testReplyDao {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		add();
+//		add();
 //	    delete();
 //		update();
-//    	select();
+    	select();
 
 	}
 	
@@ -33,14 +33,16 @@ public class testReplyDao {
 	}
 	
 	public static void update(){
-		r.setId("d4209a1aaa054989");
+		r.setId("4a44f5ff17644134");
+		r.setContent("cys");
 		ri.modifyReply(r);
 		
 	}
 	
 	public static void select(){
-		System.out.println(ri.selectReply(r).get(0).getId());
-		System.out.println(ri.selectReply(r).get(1).getId());
+		r.setId("4a44f5ff17644134");
+		System.out.println(ri.selectReply(r).get(0).getFirstid());
+		System.out.println(ri.selectReply(r).get(0).getContent());
 		
 	}
 

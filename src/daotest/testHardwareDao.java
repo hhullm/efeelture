@@ -11,9 +11,9 @@ public class testHardwareDao {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 //		add();
-	    delete();
+//	    delete();
 //		update();
-//    	select();
+    	select();
 
 	}
 	
@@ -25,20 +25,22 @@ public class testHardwareDao {
 	}
 	
 	public static void delete(){
-		h.setId("a057aa4150534c33");
+		h.setId("9e07772ca2d947af");
 		hi.deleteHardware(h);
 		
 	}
 	
 	public static void update(){
-		h.setId("d4209a1aaa054989");
+		h.setId("04b76fc9400b4a59");
+		h.setUid("44516546456466hk");
 		hi.modifyHardware(h);;
 		
 	}
 	
 	public static void select(){
-		System.out.println(hi.selectHardware(h).get(0).getId());
-		System.out.println(hi.selectHardware(h).get(1).getId());
+		h.setId("8031773b9eae476c");
+		System.out.println(hi.selectHardware(h).get(0).getUid());
+		System.out.println(hi.selectHardware(h).get(0).getHardwareid());
 		
 	}
 	

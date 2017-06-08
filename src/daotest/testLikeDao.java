@@ -10,10 +10,10 @@ public class testLikeDao {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-//		add();
+		add();
 //	    delete();
 //		update();
-    	select();
+//    	select();
 
 	}
 	
@@ -32,14 +32,16 @@ public class testLikeDao {
 	}
 	
 	public static void update(){
-		l.setId("d4209a1aaa054989");
+		l.setId("5fa0b2c06b8243b3");
+		l.setUid("654564as5d4sad55");
 		li.modifyLike(l);
 		
 	}
 	
 	public static void select(){
-		System.out.println(li.selectLike(l).get(0).getId());
-		System.out.println(li.selectLike(l).get(1).getId());
+		l.setId("5fa0b2c06b8243b3");
+		System.out.println(li.selectLike(l).get(0).getLtime());
+		System.out.println(li.selectLike(l).get(0).getMessageid());
 		
 	}
 

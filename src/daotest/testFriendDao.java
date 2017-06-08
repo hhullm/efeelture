@@ -32,14 +32,16 @@ public class testFriendDao {
 	}
 	
 	public static void update(){
-		f.setId("d4209a1aaa054989");
+		f.setId("8bc908ad44274eff");
+		f.setFstatus("0");
 		fi.modifyFriend(f);
 		
 	}
 	
 	public static void select(){
-		System.out.println(fi.selectFriend(f).get(0).getId());
-		System.out.println(fi.selectFriend(f).get(1).getId());
+		f.setId("308ca59380224559");
+		System.out.println(fi.selectFriend(f).get(0).getFirstid());
+		System.out.println(fi.selectFriend(f).get(0).getSecondid());
 		
 	}
 

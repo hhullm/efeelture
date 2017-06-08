@@ -151,23 +151,23 @@ public class CtrlDaoImpl implements CtrlDao{
 		if (ctrl != null) {
 			sql += " WHERE 1=1 ";
 			if (ctrl.getId() != null && !ctrl.getId().equals(""))
-				sql += " and id=" + ctrl.getId();
+				sql += " and id='" + ctrl.getId()+"'";
 			if (ctrl.getUid() != null && !ctrl.getUid().equals(""))
-				sql += " and uid=" + ctrl.getUid();
+				sql += " and uid='" + ctrl.getUid()+"'";
 			if (ctrl.getHid() != null && !ctrl.getHid().equals(""))
-				sql += " and hid=" + ctrl.getHid();
+				sql += " and hid='" + ctrl.getHid()+"'";
 			if (ctrl.getUname() != null && !ctrl.getUname().equals(""))
-				sql += " and uname=" + ctrl.getUname();
+				sql += " and uname='" + ctrl.getUname()+"'";
 			if (ctrl.getHname() != null && !ctrl.getHname().equals(""))
-				sql += " and hname=" + ctrl.getHname();
+				sql += " and hname='" + ctrl.getHname()+"'";
 			if (ctrl.getUipaddress() != null && !ctrl.getUipaddress().equals(""))
-				sql += " and uipaddress=" + ctrl.getUipaddress();
+				sql += " and uipaddress='" + ctrl.getUipaddress()+"'";
 			if (ctrl.getCtime() != null && !ctrl.getCtime().equals(""))
-				sql += " and ctime=" + ctrl.getCtime();
+				sql += " and ctime='" + ctrl.getCtime()+"'";
 			if (ctrl.getClevel() != null && !ctrl.getClevel().equals(""))
-				sql += " and clevel=" + ctrl.getClevel();
+				sql += " and clevel='" + ctrl.getClevel()+"'";
 			if (ctrl.getContent() != null && !ctrl.getContent().equals(""))
-				sql += " and content=" + ctrl.getContent();
+				sql += " and content='" + ctrl.getContent()+"'";
 			
 		}
 

@@ -125,13 +125,13 @@ public class HardwareDaoImpl implements HardwareDao{
 		if (hardware != null) {
 			sql += " WHERE 1=1 ";
 			if (hardware.getId() != null && !hardware.getId().equals(""))
-				sql += " and id=" + hardware.getId();
+				sql += " and id='" + hardware.getId()+"'";
 			if (hardware.getUid() != null && !hardware.getUid().equals(""))
-				sql += " and uid=" + hardware.getUid();
+				sql += " and uid='" + hardware.getUid()+"'";
 			if (hardware.getHardwareid()!= null && !hardware.getHardwareid().equals(""))
-				sql += " and hardwareid=" + hardware.getHardwareid();
+				sql += " and hardwareid='" + hardware.getHardwareid()+"'";
 			if (hardware.getHtime()!= null && !hardware.getHtime().equals(""))
-				sql += " and htime=" + hardware.getHtime();
+				sql += " and htime='" + hardware.getHtime()+"'";
 			
 		}
 

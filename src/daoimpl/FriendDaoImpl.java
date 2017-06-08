@@ -133,15 +133,15 @@ public class FriendDaoImpl implements FriendDao{
 		if (friend != null) {
 			sql += " WHERE 1=1 ";
 			if (friend.getId() != null && !friend.getId().equals(""))
-				sql += " and id=" + friend.getId();
+				sql += " and id='" + friend.getId()+"'";
 			if (friend.getFirstid() != null && !friend.getFirstid().equals(""))
-				sql += " and firstid=" + friend.getFirstid();
+				sql += " and firstid='" + friend.getFirstid()+"'";
 			if (friend.getSecondid()!= null && !friend.getSecondid().equals(""))
-				sql += " and secondid=" + friend.getSecondid();
+				sql += " and secondid='" + friend.getSecondid()+"'";
 			if (friend.getFstatus()!= null && !friend.getFstatus().equals(""))
-				sql += " and fstatus=" + friend.getFstatus();
+				sql += " and fstatus='" + friend.getFstatus()+"'";
 			if (friend.getFtime()!= null && !friend.getFtime().equals(""))
-				sql += " and ftime=" + friend.getFtime();
+				sql += " and ftime='" + friend.getFtime()+"'";
 			
 		}
 

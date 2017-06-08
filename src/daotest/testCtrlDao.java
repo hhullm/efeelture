@@ -41,9 +41,9 @@ public class testCtrlDao {
 	}
 	
 	public static void select(){
-		c.setId("6eab27e6faa043dd");
+		c.setId("d4209a1aaa054989");
 		System.out.println(ci.selectCtrl(c).get(0).getId());
-		System.out.println(ci.selectCtrl(c).get(0).getCtime());
+		System.out.println(ci.selectCtrl(c).get(0).getUipaddress());
 		
 	}
 

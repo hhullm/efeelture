@@ -74,6 +74,7 @@ public class TalkDaoImpl implements TalkDao {
 			stat.setString(4, talk.getContent());
 			stat.setString(5, talk.getTtime());
 			stat.setString(6, talk.getId());
+			stat.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -88,19 +89,18 @@ public class TalkDaoImpl implements TalkDao {
 		List<Talk> talkList = new ArrayList<Talk>();
 		try {
 			conn = DBUtil.getConnection();
+			PreparedStatement stat = null;
 			String sql = getSql(talk);
-			PreparedStatement stat = conn.prepareStatement(sql);
-			stat.setString(1, talk.getId());
+			stat = conn.prepareStatement(sql);
 			ResultSet rst = stat.executeQuery();
 			while (rst.next()) {
 				talk = new Talk();
-				talk.setId(rst.getString("tid"));
+				talk.setId(rst.getString("id"));
 				talk.setFirstid(rst.getString("firstid"));
 				talk.setSecondid(rst.getString("secondid"));
 				talk.setTtype(rst.getString("ttype"));
 				talk.setContent(rst.getString("content"));
 				talk.setTtime(rst.getString("ttime"));
-
 				talkList.add(talk);
 			}
 		} catch (Exception e) {
@@ -136,17 +136,17 @@ public class TalkDaoImpl implements TalkDao {
 		if (talk != null) {
 			sql += " WHERE 1=1 ";
 			if (talk.getId() != null && !talk.getId().equals(""))
-				sql += " and id=" + talk.getId();
+				sql += " and id='" + talk.getId()+"'";
 			if (talk.getFirstid() != null && !talk.getFirstid().equals(""))
-				sql += " and firstid=" + talk.getFirstid();
+				sql += " and firstid='" + talk.getFirstid()+"'";
 			if (talk.getSecondid() != null && !talk.getSecondid().equals(""))
-				sql += " and secondid=" + talk.getSecondid();
+				sql += " and secondid='" + talk.getSecondid()+"'";
 			if (talk.getTtype() != null && !talk.getTtype().equals(""))
-				sql += " and ttype=" + talk.getTtype();
+				sql += " and ttype='" + talk.getTtype()+"'";
 			if (talk.getContent() != null && !talk.getContent().equals(""))
-				sql += " and content=" + talk.getContent();
+				sql += " and content='" + talk.getContent()+"'";
 			if (talk.getTtime() != null && !talk.getTtime().equals(""))
-				sql += " and ttime=" + talk.getTtime();
+				sql += " and ttime='" + talk.getTtime()+"'";
 			
 		}
 

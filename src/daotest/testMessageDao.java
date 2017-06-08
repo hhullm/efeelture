@@ -10,10 +10,10 @@ public class testMessageDao {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		add();
+//		add();
 //	    delete();
 //		update();
-//    	select();
+    	select();
 
 	}
 	
@@ -33,14 +33,16 @@ public class testMessageDao {
 	}
 	
 	public static void update(){
-		m.setId("d4209a1aaa054989");
+		m.setId("b30fc35c92264e19");
+		m.setLikenumber("1");
 		mi.modifyMessage(m);;
 		
 	}
 	
 	public static void select(){
-		System.out.println(mi.selectMessage(m).get(0).getId());
-		System.out.println(mi.selectMessage(m).get(1).getId());
+		m.setId("b30fc35c92264e19");
+		System.out.println(mi.selectMessage(m).get(0).getLikenumber());
+		System.out.println(mi.selectMessage(m).get(0).getUid());
 		
 	}
 

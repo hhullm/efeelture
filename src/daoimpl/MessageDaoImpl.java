@@ -162,27 +162,27 @@ public class MessageDaoImpl implements MessageDao{
 		if (message != null) {
 			sql += " WHERE 1=1 ";
 			if (message.getId() != null && !message.getId().equals(""))
-				sql += " and id=" + message.getId();
+				sql += " and id='" + message.getId()+"'";
 			if (message.getContent() != null && !message.getContent().equals(""))
-				sql += " and content=" + message.getContent();
+				sql += " and content='" + message.getContent()+"'";
 			if (message.getPicture() != null && !message.getPicture().equals(""))
-				sql += " and picture=" + message.getPicture();
+				sql += " and picture='" + message.getPicture()+"'";
 			if (message.getAddress() != null && !message.getAddress().equals(""))
-				sql += " and address=" + message.getAddress();
+				sql += " and address='" + message.getAddress()+"'";
 			if (message.getMstatus() != null && !message.getMstatus().equals(""))
-				sql += " and mstatus=" + message.getMstatus();
+				sql += " and mstatus='" + message.getMstatus()+"'";
 			if (message.getPermission() != null && !message.getPermission().equals(""))
-				sql += " and permission=" + message.getPermission();
+				sql += " and permission='" + message.getPermission()+"'";
 			if (message.getLikenumber() != null && !message.getLikenumber().equals(""))
-				sql += " and likenumber=" + message.getLikenumber();
+				sql += " and likenumber='" + message.getLikenumber()+"'";
 			if (message.getUname() != null && !message.getUname().equals(""))
-				sql += " and uname=" + message.getUname();
+				sql += " and uname='" + message.getUname()+"'";
 			if (message.getUid() != null && !message.getUid().equals(""))
-				sql += " and uid=" + message.getUid();
+				sql += " and uid='" + message.getUid()+"'";
 			if (message.getMtype() != null && !message.getMtype().equals(""))
-				sql += " and mtype=" + message.getMtype();
+				sql += " and mtype='" + message.getMtype()+"'";
 			if (message.getMtime() != null && !message.getMtime().equals(""))
-				sql += " and mtime=" + message.getMtime();
+				sql += " and mtime='" + message.getMtime()+"'";
 			
 		}
 

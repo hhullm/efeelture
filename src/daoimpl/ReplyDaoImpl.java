@@ -135,17 +135,17 @@ public class ReplyDaoImpl implements ReplyDao{
 		if (reply != null) {
 			sql += " WHERE 1=1 ";
 			if (reply.getId() != null && !reply.getId().equals(""))
-				sql += " and id=" + reply.getId();
+				sql += " and id='" + reply.getId()+"'";
 			if (reply.getMessageid() != null && !reply.getMessageid().equals(""))
-				sql += " and messageid=" + reply.getMessageid();
+				sql += " and messageid='" + reply.getMessageid()+"'";
 			if (reply.getRtime()!= null && !reply.getRtime().equals(""))
-				sql += " and rtime=" + reply.getRtime();
+				sql += " and rtime='" + reply.getRtime()+"'";
 			if (reply.getFirstid() != null && !reply.getFirstid().equals(""))
-				sql += " and firstid=" + reply.getFirstid();
+				sql += " and firstid='" + reply.getFirstid()+"'";
 			if (reply.getSecondid() != null && !reply.getSecondid().equals(""))
-				sql += " and secondid=" + reply.getSecondid();
+				sql += " and secondid='" + reply.getSecondid()+"'";
 			if (reply.getContent() != null && !reply.getContent().equals(""))
-				sql += " and content=" + reply.getContent();
+				sql += " and content='" + reply.getContent()+"'";
 			
 		}
 

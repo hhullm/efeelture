@@ -78,7 +78,7 @@ public class LikeDaoImpl implements LikeDao{
 	private Like getLike(Like like, String id) {
 		// TODO Auto-generated method stub
 		Like l = new Like();
-		l.setId(id);;
+		l.setId(id);
 		l = selectLike(l).get(0);
 		if (like.getId() != null && !like.getId().equals(""))
 			l.setId(like.getId());
@@ -124,13 +124,13 @@ public class LikeDaoImpl implements LikeDao{
 		if (like != null) {
 			sql += " WHERE 1=1 ";
 			if (like.getId() != null && !like.getId().equals(""))
-				sql += " and id=" + like.getId();
+				sql += " and id='" + like.getId()+"'";
 			if (like.getUid() != null && !like.getUid().equals(""))
-				sql += " and uid=" + like.getUid();
+				sql += " and uid='" + like.getUid()+"'";
 			if (like.getMessageid()!= null && !like.getMessageid().equals(""))
-				sql += " and messageid=" + like.getMessageid();
+				sql += " and messageid='" + like.getMessageid()+"'";
 			if (like.getLtime()!= null && !like.getLtime().equals(""))
-				sql += " and ltime=" + like.getLtime();
+				sql += " and ltime='" + like.getLtime()+"'";
 			
 		}
 

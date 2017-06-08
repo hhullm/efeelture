@@ -10,11 +10,8 @@ import dao.JectiveDao;
 import util.DBUtil;
 import util.DateUtil;
 import util.PKUtil;
+import entity.Ctrl;
 import entity.Jective;
-/**
- * DAO�㣬�����ݿ�����
- */
-
 
 public class JectiveDaoImpl implements JectiveDao {
 
@@ -39,8 +36,6 @@ public class JectiveDaoImpl implements JectiveDao {
 			stat.setString(10, jective.getPicturenumber());
 			stat.setString(11, jective.getMusic());
 			stat.setString(12, jective.getJtime());
-			stat.executeUpdate();
-
 			stat.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,12 +68,13 @@ public class JectiveDaoImpl implements JectiveDao {
 
 	@Override
 	public void modifyJective(Jective jective) {
+		// TODO Auto-generated method stub
 		Connection conn = null;
 		try {
 			jective = getJective(jective,jective.getId());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("update db_jective set uid=?,temperature=?,humidity=?,air=?,weekday=?,peoplenumber=?,word=?,picturecolor=?,Picturenumber=?,music=?,jtime=? where id=?");
+					.prepareStatement("update db_jective set uid=?,temperature=?,humidity=?,air=?,weekday=?,peoplenumber=?,word=?,picturecolor=?,picturenumber=?,music=?,jtime=? where id=?");
 			stat.setString(1, jective.getUid());
 			stat.setString(2, jective.getTemperature());
 			stat.setString(3, jective.getHumidity());
@@ -92,7 +88,6 @@ public class JectiveDaoImpl implements JectiveDao {
 			stat.setString(11, jective.getJtime());
 			stat.setString(12, jective.getId());
 			stat.executeUpdate();
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -103,15 +98,51 @@ public class JectiveDaoImpl implements JectiveDao {
 
 
 
+	private Jective getJective(Jective jective, String id) {
+		// TODO Auto-generated method stub
+		Jective j = new Jective();
+		j.setId(id);
+		j = selectJective(j).get(0);
+		if (jective.getId() != null && !jective.getId().equals(""))
+			j.setId(jective.getId());
+		if (jective.getUid() != null && !jective.getUid().equals(""))
+			j.setUid(jective.getUid());
+		if (jective.getTemperature() != null && !jective.getTemperature().equals(""))
+			j.setTemperature(jective.getTemperature());
+		if (jective.getHumidity() != null && !jective.getHumidity().equals(""))
+			j.setHumidity(jective.getHumidity());
+		if (jective.getAir() != null && !jective.getAir().equals(""))
+			j.setAir(jective.getAir());
+		if (jective.getWeekday() != null && !jective.getWeekday().equals(""))
+			j.setWeekday(jective.getWeekday());
+		if (jective.getPeoplenumber() != null && !jective.getPeoplenumber().equals(""))
+			j.setPeoplenumber(jective.getPeoplenumber());
+		if (jective.getWord() != null && !jective.getWord().equals(""))
+			j.setWord(jective.getWord());
+		if (jective.getPicturecolor() != null && !jective.getPicturecolor().equals(""))
+			j.setPicturecolor(jective.getPicturecolor());
+		if (jective.getPicturenumber() != null && !jective.getPicturenumber().equals(""))
+			j.setPicturenumber(jective.getPicturenumber());
+		if (jective.getMusic() != null && !jective.getMusic().equals(""))
+			j.setMusic(jective.getMusic());
+		if (jective.getJtime() != null && !jective.getJtime().equals(""))
+			j.setJtime(jective.getJtime());
+		
+		return j;
+	}
+
+
+
 	@Override
 	public List<Jective> selectJective(Jective jective) {
+		// TODO Auto-generated method stub
 		Connection conn = null;
 		List<Jective> jectiveList = new ArrayList<Jective>();
 		try {
 			conn = DBUtil.getConnection();
+			PreparedStatement stat = null;
 			String sql = getSql(jective);
-			PreparedStatement stat = conn.prepareStatement(sql);
-			stat.setString(1, jective.getId());
+			stat = conn.prepareStatement(sql);
 			ResultSet rst = stat.executeQuery();
 			while (rst.next()) {
 				jective = new Jective();
@@ -120,9 +151,9 @@ public class JectiveDaoImpl implements JectiveDao {
 				jective.setTemperature(rst.getString("temperature"));
 				jective.setHumidity(rst.getString("humidity"));
 				jective.setAir(rst.getString("air"));
-				jective.setWeekday(rst.getString("weekdays"));
-				jective.setPeoplenumber(rst.getString("amountofpeople"));
-				jective.setWord(rst.getString("words"));
+				jective.setWeekday(rst.getString("weekday"));
+				jective.setPeoplenumber(rst.getString("peoplenumber"));
+				jective.setWord(rst.getString("word"));
 				jective.setPicturecolor(rst.getString("picturecolor"));
 				jective.setPicturenumber(rst.getString("picturenumber"));
 				jective.setMusic(rst.getString("music"));
@@ -135,75 +166,45 @@ public class JectiveDaoImpl implements JectiveDao {
 			DBUtil.close(conn);
 		}
 		return jectiveList;
-	
 	}
-	private Jective getJective(Jective jective,String Id) {
-		Jective f = new Jective();
-		f.setId(Id);
-		f = selectJective(f).get(0);
-		if (jective.getId() != null && !jective.getId().equals(""))
-			f.setId(jective.getId());
-		if (jective.getUid() != null && !jective.getUid().equals(""))
-			f.setUid(jective.getUid());
-		if (jective.getTemperature() != null && !jective.getTemperature().equals(""))
-			f.setTemperature(jective.getTemperature());
-		if (jective.getHumidity() != null && !jective.getHumidity().equals(""))
-			f.setHumidity(jective.getHumidity());
-		if (jective.getAir() != null && !jective.getAir().equals(""))
-			f.setAir(jective.getAir());
-		if (jective.getWeekday() != null && !jective.getWeekday().equals(""))
-			f.setWeekday(jective.getWeekday());
-		if (jective.getPeoplenumber() != null && !jective.getPeoplenumber().equals(""))
-			f.setPeoplenumber(jective.getPeoplenumber());
-		if (jective.getWord() != null && !jective.getWord().equals(""))
-			f.setWord(jective.getWord());
-		if (jective.getPicturecolor() != null && !jective.getPicturecolor().equals(""))
-			f.setPicturecolor(jective.getPicturecolor());
-		if (jective.getPicturenumber() != null && !jective.getPicturenumber().equals(""))
-			f.setPicturenumber(jective.getPicturenumber());
-		if (jective.getMusic() != null && !jective.getMusic().equals(""))
-			f.setMusic(jective.getMusic());
-		if (jective.getJtime() != null && !jective.getJtime().equals(""))
-			f.setJtime(jective.getJtime());
-	
-		
-		
-		return f;
-	}
-	
+
+
+
 	private String getSql(Jective jective) {
-		String sql = "selete * from db_jective";
+		// TODO Auto-generated method stub
+		String sql = "select * from db_jective";
 		if (jective != null) {
 			sql += " WHERE 1=1 ";
-				
 			if (jective.getId() != null && !jective.getId().equals(""))
-				sql += " and id=" + jective.getId();
+				sql += " and id='" + jective.getId()+"'";
 			if (jective.getUid() != null && !jective.getUid().equals(""))
-				sql += " and uid=" + jective.getUid();
+				sql += " and uid='" + jective.getUid()+"'";
 			if (jective.getTemperature() != null && !jective.getTemperature().equals(""))
-				sql += " and temperature=" + jective.getTemperature();
+				sql += " and temperature='" + jective.getTemperature()+"'";
 			if (jective.getHumidity() != null && !jective.getHumidity().equals(""))
-				sql += " and humidity=" + jective.getHumidity();
+				sql += " and humidity='" + jective.getHumidity()+"'";
 			if (jective.getAir() != null && !jective.getAir().equals(""))
-				sql += " and air=" + jective.getAir();
+				sql += " and air='" + jective.getAir()+"'";
 			if (jective.getWeekday() != null && !jective.getWeekday().equals(""))
-				sql += " and weekday=" + jective.getWeekday();
+				sql += " and weekday='" + jective.getWeekday()+"'";
 			if (jective.getPeoplenumber() != null && !jective.getPeoplenumber().equals(""))
-				sql += " and eoplenumber=" + jective.getPeoplenumber();
+				sql += " and peoplenumber='" + jective.getPeoplenumber()+"'";
 			if (jective.getWord() != null && !jective.getWord().equals(""))
-				sql += " and word=" + jective.getWord();
+				sql += " and word='" + jective.getWord()+"'";
 			if (jective.getPicturecolor() != null && !jective.getPicturecolor().equals(""))
-				sql += " and picturecolor=" + jective.getPicturecolor();
+				sql += " and picturecolor='" + jective.getPicturecolor()+"'";
 			if (jective.getPicturenumber() != null && !jective.getPicturenumber().equals(""))
-				sql += " and icturenumber=" + jective.getPicturenumber();
+				sql += " and picturenumber='" + jective.getPicturenumber()+"'";
 			if (jective.getMusic() != null && !jective.getMusic().equals(""))
-				sql += " and music=" + jective.getMusic();
+				sql += " and music='" + jective.getMusic()+"'";
 			if (jective.getJtime() != null && !jective.getJtime().equals(""))
-				sql += " and jtime=" + jective.getJtime();
-			
+				sql += " and jtime='" + jective.getJtime()+"'";
 			
 		}
 
 		return sql;
 	}
+
+
+	
 }
