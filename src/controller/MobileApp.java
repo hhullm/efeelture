@@ -27,6 +27,7 @@ public interface MobileApp {
 	int deleteMessage = 1052;// 删除信息
 	int selectFriendMessage = 1053;// 查找好友信息
 	int selectMessage = 1054;// 查找信息
+	int updataLikenumberMessage = 1055;// 更新点赞信息
 
 	int addReply = 1061;// 添加回复
 	int deleteReply = 1062;// 删除回复

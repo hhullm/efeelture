@@ -64,6 +64,10 @@ public class ResultUtil {
 			return "未知错误604";
 		case 620:
 			return "未知错误604";
+		case 621:
+			return "未知错误604";
+		case 622:
+			return "未知错误604";
 		case 630:
 			return "未知错误604";
 		case 631:

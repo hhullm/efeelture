@@ -10,7 +10,6 @@ import dao.JectiveDao;
 import util.DBUtil;
 import util.DateUtil;
 import util.PKUtil;
-import entity.Ctrl;
 import entity.Jective;
 
 public class JectiveDaoImpl implements JectiveDao {

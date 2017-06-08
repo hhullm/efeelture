@@ -28,7 +28,7 @@ public class MessageServiceImpl implements MessageService {
 		}
 		return j.toJson(m);
 	}
-	
+
 	/*
 	 * 
 	 */
@@ -40,6 +40,39 @@ public class MessageServiceImpl implements MessageService {
 			message.setMstatus("0");
 			Impl.modifyMessage(message);
 			m.put("resultCode", "999");
+		} catch (Exception e) {
+			e.printStackTrace();
+			m.put("resultCode", "620");
+		}
+		return j.toJson(m);
+	}
+
+	public String updateLikenumberMessage(Message message) {
+		Map<String, Object> m = new HashMap<String, Object>();
+		Gson j = new Gson();
+		try {
+			MessageDaoImpl Impl = new MessageDaoImpl();
+			String likenumber = Impl.selectMessage(message).get(0).getLikenumber();
+			int liken = Integer.parseInt(likenumber);
+			if (message.getLikenumber() != null && message.getLikenumber() != "") {
+				if (message.getLikenumber().equals("-1")) {
+					liken--;
+					message.setLikenumber(String.valueOf(liken));
+					Impl.modifyMessage(message);
+					m.put("resultCode", "999");
+				} else if (message.getLikenumber().equals("1")) {
+					liken++;
+					message.setLikenumber(String.valueOf(liken));
+					Impl.modifyMessage(message);
+					m.put("resultCode", "999");
+				} else {
+					m.put("resultCode", "621");
+					// data format error
+				}
+			} else {
+				// not have data
+				m.put("resultCode", "622");
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			m.put("resultCode", "620");
@@ -67,8 +100,7 @@ public class MessageServiceImpl implements MessageService {
 		}
 		return j.toJson(m);
 	}
-	
-	
+
 	/*
 	 * no realize
 	 */

@@ -7,7 +7,6 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import daoimpl.UserDaoImpl;
-import entity.Status;
 import entity.User;
 import service.UserService;
 import util.MapToEntity;
