@@ -146,9 +146,8 @@ public class ReplyDaoImpl implements ReplyDao{
 				sql += " and secondid='" + reply.getSecondid()+"'";
 			if (reply.getContent() != null && !reply.getContent().equals(""))
 				sql += " and content='" + reply.getContent()+"'";
-			
 		}
-
+		sql += " order by rtime asc";
 		return sql;
 	}
 
