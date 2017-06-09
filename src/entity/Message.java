@@ -13,7 +13,35 @@ public class Message {
 	private String uid;
 	private String mtype;
 	private String mtime;
+	private String jword;
+	private String jpicturecolor;
+	private String jpicturenumber;
+	private String jmusic;
 	
+	public String getJword() {
+		return jword;
+	}
+	public void setJword(String jword) {
+		this.jword = jword;
+	}
+	public String getJpicturecolor() {
+		return jpicturecolor;
+	}
+	public void setJpicturecolor(String jpicturecolor) {
+		this.jpicturecolor = jpicturecolor;
+	}
+	public String getJpicturenumber() {
+		return jpicturenumber;
+	}
+	public void setJpicturenumber(String jpicturenumber) {
+		this.jpicturenumber = jpicturenumber;
+	}
+	public String getJmusic() {
+		return jmusic;
+	}
+	public void setJmusic(String jmusic) {
+		this.jmusic = jmusic;
+	}
 	public String getId() {
 		return id;
 	}

@@ -635,4 +635,7 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 		out.close();
 	}
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
+	}
 }
