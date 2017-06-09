@@ -26,15 +26,15 @@ public class CtrlServiceImpl implements CtrlService {
 			String uipaddress = ctrl.getUipaddress();
 			if (hid == null || hid.equals("") || uid == null || uid.equals("") || uipaddress == null
 					|| uipaddress.equals(""))
-				m.put("resultCode", "111");
+				m.put("resultCode", "111");//miss data
 			else {
 				CtrlDaoImpl daoimpl = new CtrlDaoImpl();
 				daoimpl.addCtrl(ctrl);
-				m.put("resultCode", "999");
+				m.put("resultCode", "999");//success
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "110");
+			m.put("resultCode", "110");//savectrl failed
 		}
 		return j.toJson(m);
 	};
@@ -60,10 +60,10 @@ public class CtrlServiceImpl implements CtrlService {
 				m.put("ctrlList", ctrlList);
 				m.put("resultCode", "999");
 			} else
-				m.put("resultCode", "131");
+				m.put("resultCode", "131");//have no ctrl
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "130");
+			m.put("resultCode", "130");//selectctrl failed
 		}
 		return j.toJson(m);
 	}

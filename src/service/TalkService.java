@@ -2,11 +2,6 @@ package service;
 
 import entity.Talk;
 
-/**
- * @author 
- * 
- * 
- */
 
 
 public interface TalkService {

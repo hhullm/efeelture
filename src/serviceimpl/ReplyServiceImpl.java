@@ -60,7 +60,7 @@ public class ReplyServiceImpl implements ReplyService {
 				m.put("replyList", replyList);
 				m.put("resultCode", "999");
 			} else
-				m.put("resultCode", "731");
+				m.put("resultCode", "731");//have no reply
 		} catch (Exception e) {
 			e.printStackTrace();
 			m.put("resultCode", "730");

@@ -43,7 +43,7 @@ public class JectiveServiceImpl implements JectiveService {
 				m.put("jectiveList", jectiveList);
 				m.put("resultCode", "999");
 			} else
-				m.put("resultCode", "421");
+				m.put("resultCode", "421");//have no jective
 		} catch (Exception e) {
 			e.printStackTrace();
 			m.put("resultCode", "420");

@@ -10,12 +10,6 @@ import daoimpl.TalkDaoImpl;
 import entity.Talk;
 import service.TalkService;
 
-/**
- * @author 
- * 
- * 
- */
-
 
 public class TalkServiceImpl implements TalkService {
 
@@ -67,7 +61,7 @@ public class TalkServiceImpl implements TalkService {
 				m.put("talkList", talkList);
 				m.put("resultCode", "999");
 			} else
-				m.put("resultCode", "931");
+				m.put("resultCode", "931");//have no talk
 		} catch (Exception e) {
 			e.printStackTrace();
 			m.put("resultCode", "930");

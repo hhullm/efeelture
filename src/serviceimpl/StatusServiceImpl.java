@@ -41,10 +41,10 @@ public class StatusServiceImpl implements StatusService {
 			StatusDaoImpl Impl = new StatusDaoImpl();
 			List<Status> statusList = Impl.selectStatus(status);
 			if (statusList.size() > 0) {
-				m.put("StatusList", statusList);
+				m.put("statusList", statusList);
 				m.put("resultCode", "999");
 			} else
-				m.put("resultCode", "831");
+				m.put("resultCode", "831");//have no status
 		} catch (Exception e) {
 			e.printStackTrace();
 			m.put("resultCode", "830");

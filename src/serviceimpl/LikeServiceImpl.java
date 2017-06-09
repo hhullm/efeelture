@@ -58,7 +58,7 @@ public class LikeServiceImpl implements LikeService {
 				m.put("likeList", likeList);
 				m.put("resultCode", "999");
 			} else
-				m.put("resultCode", "531");
+				m.put("resultCode", "531");//have no people like
 		} catch (Exception e) {
 			e.printStackTrace();
 			m.put("resultCode", "530");

@@ -58,7 +58,7 @@ public class HardwareServiceImpl implements HardwareService {
 				m.put("hardwareList", hardwareList);
 				m.put("resultCode", "999");
 			} else
-				m.put("resultCode", "331");
+				m.put("resultCode", "331");//have no hardware
 		} catch (Exception e) {
 			e.printStackTrace();
 			m.put("resultCode", "330");

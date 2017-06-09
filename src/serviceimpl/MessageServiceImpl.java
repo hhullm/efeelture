@@ -66,12 +66,10 @@ public class MessageServiceImpl implements MessageService {
 					Impl.modifyMessage(message);
 					m.put("resultCode", "999");
 				} else {
-					m.put("resultCode", "621");
-					// data format error
+					m.put("resultCode", "621");// data format error
 				}
 			} else {
-				// not have data
-				m.put("resultCode", "622");
+				m.put("resultCode", "622");//have no data
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -93,7 +91,7 @@ public class MessageServiceImpl implements MessageService {
 				m.put("messageList", messageList);
 				m.put("resultCode", "999");
 			} else
-				m.put("resultCode", "631");
+				m.put("resultCode", "631");//have no message
 		} catch (Exception e) {
 			e.printStackTrace();
 			m.put("resultCode", "630");

@@ -26,17 +26,14 @@ public class FriendServiceImpl implements FriendService {
 				m.put("friendList", friendList);
 				m.put("resultCode", "999");
 			} else
-				m.put("resultCode", "211");
+				m.put("resultCode", "211");//have no friend
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "210");
+			m.put("resultCode", "210");//selectfirend failed
 		}
 		return j.toJson(m);
 	}
 
-	/*
-	 * 加好友
-	 */
 	public String addFriend(Friend friend) {
 		Map<String, Object> m = new HashMap<String, Object>();
 		Gson j = new Gson();
@@ -46,14 +43,11 @@ public class FriendServiceImpl implements FriendService {
 			m.put("resultCode", "999");
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "220");
+			m.put("resultCode", "220");//addfriend failed
 		}
 		return j.toJson(m);
 	}
 
-	/*
-	 * 删除好友
-	 */
 	public String deleteFriend(Friend friend) {
 		Map<String, Object> m = new HashMap<String, Object>();
 		Gson j = new Gson();
@@ -64,14 +58,11 @@ public class FriendServiceImpl implements FriendService {
 			m.put("resultCode", "999");
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "230");
+			m.put("resultCode", "230");//deletefriend failed
 		}
 		return j.toJson(m);
 	}
 
-	/*
-	 * 修改好友信息
-	 */
 	public String modifyFriend(Friend friend) {
 		Map<String, Object> m = new HashMap<String, Object>();
 		Gson j = new Gson();
@@ -81,14 +72,11 @@ public class FriendServiceImpl implements FriendService {
 			m.put("resultCode", "999");
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "240");
+			m.put("resultCode", "240");//modifyfriend failed
 		}
 		return j.toJson(m);
 	}
 
-	/*
-	 * 查询非好友信息
-	 */
 	public String selectNoFriend(User user) {
 		Map<String, Object> m = new HashMap<String, Object>();
 		Gson j = new Gson();
@@ -114,7 +102,7 @@ public class FriendServiceImpl implements FriendService {
 			m.put("resultCode", "999");
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "250");
+			m.put("resultCode", "250");//selectNoFriend failed
 		}
 		return j.toJson(m);
 	}
