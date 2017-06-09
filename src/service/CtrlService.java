@@ -1,6 +1,5 @@
 package service;
 
-
 import entity.Ctrl;
 
 public interface CtrlService {

@@ -3,7 +3,7 @@ package controller;
 /**
  * @author zhangshu
  * 
- * 与其他接口端通讯
+ * 涓庡叾浠栨帴鍙ｇ閫氳
  * 
  */
 import java.io.IOException;
@@ -45,7 +45,7 @@ import util.ResultUtil;
 public class MobileAppServlet extends HttpServlet implements MobileApp {
 
 	/**
-	 * 版本号
+	 * 鐗堟湰鍙�
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -53,15 +53,15 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 			throws ServletException, IOException {
 
 		request.setCharacterEncoding("UTF-8");
-		int tid = Integer.valueOf(request.getParameter("tid"));
-		String des = request.getParameter("des");
+		int func = Integer.valueOf(request.getParameter("func"));
+		String zson = request.getParameter("zson");
 		response.setCharacterEncoding("UTF-8");
 		PrintWriter out = response.getWriter();
 
 		Gson gson = new Gson();
-		Map<String, Object> map = gson.fromJson(des, new TypeToken<Map<String, Object>>() {
+		Map<String, Object> map = gson.fromJson(zson, new TypeToken<Map<String, Object>>() {
 		}.getType());
-		switch (tid) {
+		switch (func) {
 
 		// not write
 		case forwardCtrl:
