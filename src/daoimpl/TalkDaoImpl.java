@@ -25,13 +25,16 @@ public class TalkDaoImpl implements TalkDao {
 			talk.setTtime(DateUtil.getDate());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("insert into db_talk(id,firstid,secondid,ttype,content,ttime) VALUES(?,?,?,?,?,?)");
+					.prepareStatement("insert into db_talk(id,firstid,secondid,ttype,content,ttime,trantype,resulttype,sendname) VALUES(?,?,?,?,?,?,?,?,?)");
 			stat.setString(1, talk.getId());
 			stat.setString(2, talk.getFirstid());
 			stat.setString(3, talk.getSecondid());
 			stat.setString(4, talk.getTtype());
 			stat.setString(5, talk.getContent());
 			stat.setString(6, talk.getTtime());
+			stat.setString(7, talk.getTrantype());
+			stat.setString(8, talk.getResulttype());
+			stat.setString(9, talk.getSendname());
 			stat.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -67,13 +70,16 @@ public class TalkDaoImpl implements TalkDao {
 			talk = getTalk(talk,talk.getId());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("update db_talk set firstid=?,secondid=?,ttype=?,content=?,ttime=? where id=?");
+					.prepareStatement("update db_talk set firstid=?,secondid=?,ttype=?,content=?,ttime=?,trantype=?,resulttype=?,sendname=? where id=?");
 			stat.setString(1, talk.getFirstid());
 			stat.setString(2, talk.getSecondid());
 			stat.setString(3, talk.getTtype());
 			stat.setString(4, talk.getContent());
 			stat.setString(5, talk.getTtime());
-			stat.setString(6, talk.getId());
+			stat.setString(6, talk.getTrantype());
+			stat.setString(7, talk.getResulttype());
+			stat.setString(8, talk.getSendname());
+			stat.setString(9, talk.getId());
 			stat.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -101,6 +107,9 @@ public class TalkDaoImpl implements TalkDao {
 				talk.setTtype(rst.getString("ttype"));
 				talk.setContent(rst.getString("content"));
 				talk.setTtime(rst.getString("ttime"));
+				talk.setTrantype(rst.getString("trantype"));
+				talk.setResulttype(rst.getString("resulttype"));
+				talk.setSendname(rst.getString("sendname"));
 				talkList.add(talk);
 			}
 		} catch (Exception e) {
@@ -127,6 +136,12 @@ public class TalkDaoImpl implements TalkDao {
 			f.setContent(talk.getContent());
 		if (talk.getTtime() != null && !talk.getTtime().equals(""))
 			f.setTtime(talk.getTtime());
+		if (talk.getTrantype() != null && !talk.getTrantype().equals(""))
+			f.setTrantype(talk.getTrantype());
+		if (talk.getResulttype() != null && !talk.getResulttype().equals(""))
+			f.setResulttype(talk.getResulttype());
+		if (talk.getSendname() != null && !talk.getSendname().equals(""))
+			f.setSendname(talk.getSendname());
 		
 		return f;
 	}
@@ -147,6 +162,12 @@ public class TalkDaoImpl implements TalkDao {
 				sql += " and content='" + talk.getContent()+"'";
 			if (talk.getTtime() != null && !talk.getTtime().equals(""))
 				sql += " and ttime='" + talk.getTtime()+"'";
+			if (talk.getTrantype() != null && !talk.getTrantype().equals(""))
+				sql += " and trantype='" + talk.getTrantype()+"'";
+			if (talk.getResulttype() != null && !talk.getResulttype().equals(""))
+				sql += " and resulttype='" + talk.getResulttype()+"'";
+			if (talk.getSendname() != null && !talk.getSendname().equals(""))
+				sql += " and sendname='" + talk.getSendname()+"'";
 			
 		}
 		sql += " order by ttime asc";

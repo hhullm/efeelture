@@ -25,7 +25,7 @@ public class MessageDaoImpl implements MessageDao{
 			message.setLikenumber("0");
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("insert into db_message(id,content,picture,address,mstatus,permission,likenumber,uname,uid,mtype,mtime) VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+					.prepareStatement("insert into db_message(id,content,picture,address,mstatus,permission,likenumber,uname,uid,mtype,mtime,jword,jpicturecolor,jpicturenumber,jmusic) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 			stat.setString(1, message.getId());
 			stat.setString(2, message.getContent());
 			stat.setString(3, message.getPicture());
@@ -37,6 +37,10 @@ public class MessageDaoImpl implements MessageDao{
 			stat.setString(9, message.getUid());
 			stat.setString(10, message.getMtype());
 			stat.setString(11, message.getMtime());
+			stat.setString(12, message.getJword());
+			stat.setString(13, message.getJpicturecolor());
+			stat.setString(14, message.getJpicturenumber());
+			stat.setString(15, message.getJmusic());
 			stat.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -71,7 +75,7 @@ public class MessageDaoImpl implements MessageDao{
 			message = getMessage(message,message.getId());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("update db_message set content=?,picture=?,address=?,mstatus=?,permission=?,likenumber=?,uname=?,uid=?,mtype=?,mtime=? where id=?");
+					.prepareStatement("update db_message set content=?,picture=?,address=?,mstatus=?,permission=?,likenumber=?,uname=?,uid=?,mtype=?,mtime=?,jword=?,jpicturecolor=?,jpicturenumber=?,jmusic=? where id=?");
 			stat.setString(1, message.getContent());
 			stat.setString(2, message.getPicture());
 			stat.setString(3, message.getAddress());
@@ -82,7 +86,11 @@ public class MessageDaoImpl implements MessageDao{
 			stat.setString(8, message.getUid());
 			stat.setString(9, message.getMtype());
 			stat.setString(10, message.getMtime());
-			stat.setString(11, message.getId());
+			stat.setString(11, message.getJword());
+			stat.setString(12, message.getJpicturecolor());
+			stat.setString(13, message.getJpicturenumber());
+			stat.setString(14, message.getJmusic());
+			stat.setString(15, message.getId());
 			stat.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -119,6 +127,14 @@ public class MessageDaoImpl implements MessageDao{
 			m.setMtype(message.getMtype());
 		if (message.getMtime() != null && !message.getMtime().equals(""))
 			m.setMtime(message.getMtime());
+		if (message.getJword() != null && !message.getJword().equals(""))
+			m.setJword(message.getJword());
+		if (message.getJpicturecolor() != null && !message.getJpicturecolor().equals(""))
+			m.setJpicturecolor(message.getJpicturecolor());
+		if (message.getJpicturenumber() != null && !message.getJpicturenumber().equals(""))
+			m.setJpicturenumber(message.getJpicturenumber());
+		if (message.getJmusic() != null && !message.getJmusic().equals(""))
+			m.setJmusic(message.getJmusic());
 		return m;
 	}
 
@@ -147,6 +163,10 @@ public class MessageDaoImpl implements MessageDao{
 				message.setUid(rst.getString("uid"));
 				message.setMtype(rst.getString("mtype"));
 				message.setMtime(rst.getString("mtime"));
+				message.setJword(rst.getString("jword"));
+				message.setJpicturecolor(rst.getString("jpicturecolor"));
+				message.setJpicturenumber(rst.getString("jpicturenumber"));
+				message.setJmusic(rst.getString("jmusic"));
 				messageList.add(message);
 			}
 		} catch (Exception e) {
@@ -184,6 +204,14 @@ public class MessageDaoImpl implements MessageDao{
 				sql += " and mtype='" + message.getMtype()+"'";
 			if (message.getMtime() != null && !message.getMtime().equals(""))
 				sql += " and mtime='" + message.getMtime()+"'";
+			if (message.getJword() != null && !message.getJword().equals(""))
+				sql += " and jword='" + message.getJword()+"'";
+			if (message.getJpicturecolor() != null && !message.getJpicturecolor().equals(""))
+				sql += " and jpicturecolor='" + message.getJpicturecolor()+"'";
+			if (message.getJpicturenumber() != null && !message.getJpicturenumber().equals(""))
+				sql += " and jpicturenumber='" + message.getJpicturenumber()+"'";
+			if (message.getJmusic() != null && !message.getJmusic().equals(""))
+				sql += " and jmusic='" + message.getJmusic()+"'";
 			
 		}
 		sql += " order by mtime desc";

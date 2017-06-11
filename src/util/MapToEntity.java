@@ -215,6 +215,12 @@ public class MapToEntity {
 			talk.setTtype((String) map.get("ttype"));
 		if (map.containsKey("ttime"))
 			talk.setTtime((String) map.get("ttime"));
+		if (map.containsKey("trantype"))
+			talk.setTrantype((String) map.get("trantype"));
+		if (map.containsKey("resulttype"))
+			talk.setResulttype((String) map.get("resulttype"));
+		if (map.containsKey("sendname"))
+			talk.setSendname((String) map.get("sendname"));
 		return talk;
 	}
 }

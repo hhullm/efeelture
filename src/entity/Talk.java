@@ -14,6 +14,9 @@ public class Talk implements Serializable{
 	private String ttype;
 	private String content;
 	private String ttime;
+	private String trantype;
+	private String resulttype;
+	private String sendname;
 	
 	public String getId() {
 		return id;
@@ -51,9 +54,29 @@ public class Talk implements Serializable{
 	public void setTtime(String ttime) {
 		this.ttime = ttime;
 	}
+	public String getTrantype() {
+		return trantype;
+	}
+	public void setTrantype(String trantype) {
+		this.trantype = trantype;
+	}
+	public String getResulttype() {
+		return resulttype;
+	}
+	public void setResulttype(String resulttype) {
+		this.resulttype = resulttype;
+	}
+	public String getSendname() {
+		return sendname;
+	}
+	public void setSendname(String sendname) {
+		this.sendname = sendname;
+	}
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 	
-	
-	
+
 	
 	
 	
