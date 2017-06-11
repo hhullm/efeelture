@@ -1,7 +1,13 @@
 package entity;
 
-public class Talk {
+import java.io.Serializable;
+
+public class Talk implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String id;
 	private String firstid;
 	private String secondid;
