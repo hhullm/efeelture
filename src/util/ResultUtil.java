@@ -110,6 +110,24 @@ public class ResultUtil {
 			return "未知错误604";
 		case 1060:
 			return "未知错误604";
+		case 1111:
+			return "ACCOUNT_EXISTED";
+		case 1112:
+			return "ACCOUNT_CAN_USE";
+		case 1113:
+			return "REGISTER_SUCCESS";
+		case 1114:
+			return "REGISTER_FAILED";
+		case 1115:
+			return "LOGIN_SUCCESS";
+		case 1116:
+			return "LOGIN_FAILED";
+		case 1117:
+			return "MAKE_FRIEND_REQUEST";
+		case 1118:
+			return "FRIEND_REQUEST_RESPONSE_REJECT";
+		case 1119:
+			return "FRIEND_REQUEST_RESPONSE_ACCEPT";
 		default:
 			return "未知错误";
 		}
