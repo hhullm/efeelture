@@ -133,6 +133,7 @@ public class LikeDaoImpl implements LikeDao{
 				sql += " and ltime='" + like.getLtime()+"'";
 			
 		}
+		sql += " order by ltime desc";
 
 		return sql;
 	}

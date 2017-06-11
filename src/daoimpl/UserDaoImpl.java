@@ -186,6 +186,7 @@ public class UserDaoImpl implements UserDao {
 				sql += " and utime='" + user.getUtime()+"'";
 			
 		}
+		sql += " order by utime desc";
 
 		return sql;
 	}

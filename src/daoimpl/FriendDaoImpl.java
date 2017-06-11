@@ -144,6 +144,7 @@ public class FriendDaoImpl implements FriendDao{
 				sql += " and ftime='" + friend.getFtime()+"'";
 			
 		}
+		sql += " order by ftime desc";
 
 		return sql;
 	}

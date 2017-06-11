@@ -134,6 +134,7 @@ public class HardwareDaoImpl implements HardwareDao{
 				sql += " and htime='" + hardware.getHtime()+"'";
 			
 		}
+		sql += " order by htime desc";
 
 		return sql;
 	}

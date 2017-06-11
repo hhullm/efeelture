@@ -200,6 +200,7 @@ public class JectiveDaoImpl implements JectiveDao {
 				sql += " and jtime='" + jective.getJtime()+"'";
 			
 		}
+		sql += " order by jtime desc";
 
 		return sql;
 	}

@@ -186,6 +186,7 @@ public class MessageDaoImpl implements MessageDao{
 				sql += " and mtime='" + message.getMtime()+"'";
 			
 		}
+		sql += " order by mtime desc";
 
 		return sql;
 	}

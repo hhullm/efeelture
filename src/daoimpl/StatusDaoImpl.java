@@ -170,6 +170,7 @@ private String getSql(Status status) {
 			sql += " and address='" + status.getAddress()+"'";
 		
 		}
+	sql += " order by stime desc";
 
 	return sql;
 	}

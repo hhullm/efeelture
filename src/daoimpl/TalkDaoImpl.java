@@ -149,6 +149,7 @@ public class TalkDaoImpl implements TalkDao {
 				sql += " and ttime='" + talk.getTtime()+"'";
 			
 		}
+		sql += " order by ttime asc";
 
 		return sql;
 	}

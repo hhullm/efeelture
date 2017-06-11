@@ -170,6 +170,7 @@ public class CtrlDaoImpl implements CtrlDao{
 				sql += " and content='" + ctrl.getContent()+"'";
 			
 		}
+		sql += " order by ctime desc";
 
 		return sql;
 	}
