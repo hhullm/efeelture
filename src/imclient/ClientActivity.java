@@ -22,8 +22,10 @@ import util.TranObjectType;
  * @author Administrator 客户端线程
  */
 public class ClientActivity {
-	/*  发送队列， 因为服务器有多个监听客户端的线程，当很多好友一起向他发送消息，每个服务器线程
-	   都同时调用此实例的socket争夺send ，并发控制异常。*/
+	/*
+	 * 发送队列， 因为服务器有多个监听客户端的线程，当很多好友一起向他发送消息，每个服务器线程 都同时调用此实例的socket争夺send
+	 * ，并发控制异常。
+	 */
 	private LinkedList<TranObject> sendQueue;
 	private ServerListen mServer; // 服务器
 	private User user;
@@ -91,7 +93,6 @@ public class ClientActivity {
 	 * 检查账号和用户名是否存在
 	 */
 
-
 	public void login(TranObject tran) {
 		User user = (User) tran.getObject();
 		// 验证密码和用户名是否存在，若存在则为user对象赋值
@@ -112,12 +113,10 @@ public class ClientActivity {
 		} else
 			tran.setResult(Result.LOGIN_FAILED);
 		send(tran);
-		/*try {
-				TimeUnit.SECONDS.sleep(5);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}*/
+		/*
+		 * try { TimeUnit.SECONDS.sleep(5); } catch (InterruptedException e) {
+		 * // TODO Auto-generated catch block e.printStackTrace(); }
+		 */
 		// 获取离线信息
 		ArrayList<TranObject> offMsg = SaveMsgDao.selectMsg(user.getId());
 		for (int i = 0; i < offMsg.size(); i++)
@@ -139,18 +138,13 @@ public class ClientActivity {
 	/**
 	 * 注册
 	 */
-	public void regist(TranObject tran) {
-		User user = (User) tran.getObject();
-		int id = UserDao.insertInfo(user);
-		user.setId(id);
-		if (id == -1)
-			tran.setResult(ResultUtil.getResult("1114"));
-		else
-			tran.setResult(ResultUtil.getResult("1113"));
-		System.out.println("发送注册结果...");
-		send(tran);
-	}
-
+	/*
+	 * public void regist(TranObject tran) { User user = (User)
+	 * tran.getObject(); int id = UserDao.insertInfo(user); user.setId(id); if
+	 * (id == -1) tran.setResult(ResultUtil.getResult("1114")); else
+	 * tran.setResult(ResultUtil.getResult("1113"));
+	 * System.out.println("发送注册结果..."); send(tran); }
+	 */
 	/**
 	 * 客户端下线
 	 */
@@ -199,16 +193,17 @@ public class ClientActivity {
 	 */
 	public void friendRequset(TranObject tran) {
 		System.out.println("添加好友");
-		Result result = tran.getResult();
-		if (result == Result.FRIEND_REQUEST_RESPONSE_ACCEPT) {
+		String result = tran.getResult();
+		// if (result == Result.FRIEND_REQUEST_RESPONSE_ACCEPT) {
+
+		if (result.equals("1119")) {
 			System.out.println("接收方id" + tran.getReceiveId());
 			FriendDao.addFriend(tran.getReceiveId(), tran.getSendId());
 			FriendDao.addFriend(tran.getSendId(), tran.getReceiveId());
 			System.out.println("添加好友成功....");
 			// 向好友发起方 发送自己的信息
 			tran.setObject(user);
-			ArrayList<User> friend = UserDao.selectFriendByAccountOrID(tran
-					.getSendId());
+			ArrayList<User> friend = UserDao.selectFriendByAccountOrID(tran.getSendId());
 			tran.setObject(friend.get(0));
 			tran.setSendName(user.getUserName());
 			// 向自己添加好友
@@ -231,8 +226,7 @@ public class ClientActivity {
 	 */
 	public void sendFriend(TranObject tran) {
 		ClientActivity friendClient = null;
-		System.out.println("包含要发送的那个好友吗？" + tran.getReceiveId()
-				+ mServer.contatinId(tran.getReceiveId()));
+		System.out.println("包含要发送的那个好友吗？" + tran.getReceiveId() + mServer.contatinId(tran.getReceiveId()));
 		if (mServer.contatinId(tran.getReceiveId())) {
 			friendClient = mServer.getClientByID(tran.getReceiveId());
 			System.out.println("将好友请求发给好友...");

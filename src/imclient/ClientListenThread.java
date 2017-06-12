@@ -37,6 +37,9 @@ public class ClientListenThread implements Runnable {
 			TranObject tran = (TranObject) read.readObject();
 			TranObjectType type = tran.getTranType();
 			switch (type) {
+			
+			//delete
+			/*
 			case REGISTER_ACCOUNT:
 				String account = (String) tran.getObject();
 				System.out.println(account);
@@ -45,6 +48,7 @@ public class ClientListenThread implements Runnable {
 			case REGISTER:
 				client.regist(tran);
 				break;
+				*/
 			case LOGIN:
 				client.login(tran);
 				break;
