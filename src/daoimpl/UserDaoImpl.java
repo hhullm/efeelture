@@ -3,6 +3,7 @@ package daoimpl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,10 +24,10 @@ public class UserDaoImpl implements UserDao {
 		Connection conn = null;
 		try {
 			user.setId(PKUtil.getRandomPk());
-			user.setUtime(DateUtil.getDate());			
+			user.setUtime(DateUtil.getDate());
 			conn = DBUtil.getConnection();
-			PreparedStatement stat = conn
-					.prepareStatement("insert into db_user(id,phone,uname,utype,upassword,ipaddress,ustatus,sex,age,picture,sign,utime) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
+			PreparedStatement stat = conn.prepareStatement(
+					"insert into db_user(id,phone,uname,utype,upassword,ipaddress,ustatus,sex,age,picture,sign,utime) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)");
 			stat.setString(1, user.getId());
 			stat.setString(2, user.getPhone());
 			stat.setString(3, user.getUname());
@@ -67,10 +68,10 @@ public class UserDaoImpl implements UserDao {
 	public void modifyUser(User user) {
 		Connection conn = null;
 		try {
-			user = getUser(user,user.getId());
+			user = getUser(user, user.getId());
 			conn = DBUtil.getConnection();
-			PreparedStatement stat = conn
-					.prepareStatement("update db_user set phone=?,uname=?,utype=?,upassword=?,ipaddress=?,ustatus=?,sex=?,age=?,picture=?,sign=?,utime=? where id=?");
+			PreparedStatement stat = conn.prepareStatement(
+					"update db_user set phone=?,uname=?,utype=?,upassword=?,ipaddress=?,ustatus=?,sex=?,age=?,picture=?,sign=?,utime=? where id=?");
 			stat.setString(1, user.getPhone());
 			stat.setString(2, user.getUname());
 			stat.setString(3, user.getUtype());
@@ -105,8 +106,8 @@ public class UserDaoImpl implements UserDao {
 				user = new User();
 				user.setId(rst.getString("id"));
 				user.setPhone(rst.getString("phone"));
-				user.setUname(rst.getString("uname"));		
-				user.setUtype(rst.getString("utype"));	
+				user.setUname(rst.getString("uname"));
+				user.setUtype(rst.getString("utype"));
 				user.setUpassword(rst.getString("upassword"));
 				user.setIpaddress(rst.getString("ipaddress"));
 				user.setUstatus(rst.getString("ustatus"));
@@ -124,7 +125,8 @@ public class UserDaoImpl implements UserDao {
 		}
 		return userList;
 	}
-	private User getUser(User user,String Id) {
+
+	private User getUser(User user, String Id) {
 		User f = new User();
 		f.setId(Id);
 		f = selectUser(f).get(0);
@@ -152,39 +154,39 @@ public class UserDaoImpl implements UserDao {
 			f.setSign(user.getSign());
 		if (user.getUtime() != null && !user.getUtime().equals(""))
 			f.setUtime(user.getUtime());
-		
+
 		return f;
 	}
-	
+
 	private String getSql(User user) {
 		String sql = "select * from db_user";
 		if (user != null) {
 			sql += " WHERE 1=1";
 			if (user.getId() != null && !user.getId().equals(""))
-				sql += " and id='" + user.getId()+"'";
+				sql += " and id='" + user.getId() + "'";
 			if (user.getPhone() != null && !user.getPhone().equals(""))
-				sql += " and phone='" + user.getPhone()+"'";
+				sql += " and phone='" + user.getPhone() + "'";
 			if (user.getUname() != null && !user.getUname().equals(""))
-				sql += " and uname='" + user.getUname()+"'";
+				sql += " and uname='" + user.getUname() + "'";
 			if (user.getUtype() != null && !user.getUtype().equals(""))
-				sql += " and utype='" + user.getUtype()+"'";
+				sql += " and utype='" + user.getUtype() + "'";
 			if (user.getUpassword() != null && !user.getUpassword().equals(""))
-				sql += " and upassword='" + user.getUpassword()+"'";
+				sql += " and upassword='" + user.getUpassword() + "'";
 			if (user.getIpaddress() != null && !user.getIpaddress().equals(""))
-				sql += " and ipaddress='" + user.getIpaddress()+"'";
+				sql += " and ipaddress='" + user.getIpaddress() + "'";
 			if (user.getUstatus() != null && !user.getUstatus().equals(""))
-				sql += " and ustatus='" + user.getUstatus()+"'";
+				sql += " and ustatus='" + user.getUstatus() + "'";
 			if (user.getSex() != null && !user.getSex().equals(""))
-				sql += " and sex='" + user.getSex()+"'";
+				sql += " and sex='" + user.getSex() + "'";
 			if (user.getAge() != null && !user.getAge().equals(""))
-				sql += " and age='" + user.getAge()+"'";
+				sql += " and age='" + user.getAge() + "'";
 			if (user.getPicture() != null && !user.getPicture().equals(""))
-				sql += " and picture='" + user.getPicture()+"'";
+				sql += " and picture='" + user.getPicture() + "'";
 			if (user.getSign() != null && !user.getSign().equals(""))
-				sql += " and sign='" + user.getSign()+"'";
+				sql += " and sign='" + user.getSign() + "'";
 			if (user.getUtime() != null && !user.getUtime().equals(""))
-				sql += " and utime='" + user.getUtime()+"'";
-			
+				sql += " and utime='" + user.getUtime() + "'";
+
 		}
 		sql += " order by utime desc";
 
@@ -195,7 +197,8 @@ public class UserDaoImpl implements UserDao {
 	public User loginUser(User user) {
 		Connection conn = null;
 		try {
-			user.setUpassword(CipherUtil.generatePassword(user.getUpassword()));
+			// user.setUpassword(CipherUtil.generatePassword(user.getUpassword()));
+			user.setUpassword(user.getUpassword());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
 					.prepareStatement("select * from db_user where (uname=? or phone=? or id=?) and upassword=?");
@@ -208,8 +211,8 @@ public class UserDaoImpl implements UserDao {
 			if (rst.next()) {
 				user.setId(rst.getString("id"));
 				user.setPhone(rst.getString("phone"));
-				user.setUname(rst.getString("uname"));		
-				user.setUtype(rst.getString("utype"));	
+				user.setUname(rst.getString("uname"));
+				user.setUtype(rst.getString("utype"));
 				user.setUpassword(rst.getString("upassword"));
 				user.setIpaddress(rst.getString("ipaddress"));
 				user.setUstatus(rst.getString("ustatus"));
@@ -218,7 +221,7 @@ public class UserDaoImpl implements UserDao {
 				user.setPicture(rst.getString("picture"));
 				user.setSign(rst.getString("sign"));
 				user.setUtime(rst.getString("utime"));
-			
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -226,8 +229,7 @@ public class UserDaoImpl implements UserDao {
 			DBUtil.close(conn);
 		}
 		return user;
-		
-		
+
 	}
 
 	@Override
@@ -257,23 +259,23 @@ public class UserDaoImpl implements UserDao {
 			user.setSign("");
 		if (user.getUtime() == null)
 			user.setUtime("");
-		
+
 		if (user.getId().equals("") && user.getPhone().equals("") && user.getUname().equals("")
 				&& user.getUtype().equals("") && user.getUpassword().equals("") && user.getIpaddress().equals("")
 				&& user.getUstatus().equals("") && user.getSex().equals("") && user.getAge().equals("")
-				&& user.getPicture().equals("") && user.getSign().equals("") && user.getUtime().equals("")
-				)
+				&& user.getPicture().equals("") && user.getSign().equals("") && user.getUtime().equals(""))
 			return null;
 		else
 			return user;
-	
+
 	}
 
 	@Override
 	public User checkUser(User user) {
 		Connection conn = null;
 		try {
-			user.setUpassword(CipherUtil.generatePassword(user.getUpassword()));
+			// user.setUpassword(CipherUtil.generatePassword(user.getUpassword()));
+			user.setUpassword(user.getUpassword());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn.prepareStatement("select * from db_user where uname=? or phone=?");
 			stat.setString(1, user.getUname());
@@ -291,4 +293,77 @@ public class UserDaoImpl implements UserDao {
 		return user;
 	}
 
+	public static void updateIsOnline(String id, String ustatus) {
+		Connection con = null;
+		try {
+			con = DBUtil.getConnection();
+			String sql = "update db_user set ustatus=? where id=?";
+			PreparedStatement ps;
+			try {
+				ps = con.prepareStatement(sql);
+				ps.setString(1, ustatus);
+				ps.setString(2, id);
+				ps.executeUpdate();
+			} catch (SQLException e) {
+				try {
+					System.out.println("数据库正在回滚....");
+					con.rollback();
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+				e.printStackTrace();
+			}
+		} catch (Exception e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		DBUtil.close(con);
+	}
+
+	public static ArrayList<User> selectFriendByAccountOrID(String id) {
+		User user = new User();
+		user.setId(id);
+		UserDaoImpl udi = new UserDaoImpl();
+		ArrayList<User> list = (ArrayList<User>) udi.selectUser(user);
+		return list;
+	}
+
+	/**
+	 * 查询账号是否存在
+	 * 
+	 */
+	public static boolean selectAccount(String id) {
+		String sql = "select * from user where id=?";
+		Connection con = null;
+		try {
+			con = DBUtil.getConnection();
+			try {
+				con.setAutoCommit(false);
+				PreparedStatement ps;
+				ps = con.prepareStatement(sql);
+				ps.setString(1, id);
+				ResultSet rs = ps.executeQuery();
+				return rs.first() ? true : false;
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		DBUtil.close(con);
+		return false;
+	}
+
+	/**
+	 * 进行登录的验证
+	 */
+	public static boolean login(User user) {
+		boolean isExisted = false;
+		UserDaoImpl udi = new UserDaoImpl();
+		User u = udi.loginUser(user);
+		if (u != null)
+			isExisted = true;
+		return isExisted;
+	}
 }
