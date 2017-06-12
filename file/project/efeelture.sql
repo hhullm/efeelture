@@ -1,5 +1,5 @@
 ﻿# Host: 115.159.120.220  (Version 5.7.15)
-# Date: 2017-06-10 02:50:30
+# Date: 2017-06-12 16:43:54
 # Generator: MySQL-Front 6.0  (Build 2.20)
 
 
@@ -7,7 +7,6 @@
 # Structure for table "db_ctrl"
 #
 
-DROP TABLE IF EXISTS `db_ctrl`;
 CREATE TABLE `db_ctrl` (
   `id` varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'pk',
   `uid` varchar(32) NOT NULL DEFAULT '' COMMENT 'user pk',
@@ -25,13 +24,12 @@ CREATE TABLE `db_ctrl` (
 # Structure for table "db_friend"
 #
 
-DROP TABLE IF EXISTS `db_friend`;
 CREATE TABLE `db_friend` (
   `id` varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'pk',
   `firstid` varchar(32) NOT NULL DEFAULT '' COMMENT '用户id',
   `secondid` varchar(32) NOT NULL DEFAULT '' COMMENT '朋友id',
   `fstatus` varchar(32) NOT NULL DEFAULT '1' COMMENT '朋友状态 0删除 1好友',
-  `ftime` varchar(32) DEFAULT '',
+  `ftime` varchar(32) DEFAULT '' COMMENT '加好友时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -39,12 +37,11 @@ CREATE TABLE `db_friend` (
 # Structure for table "db_hardware_match"
 #
 
-DROP TABLE IF EXISTS `db_hardware_match`;
 CREATE TABLE `db_hardware_match` (
   `id` varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'pk',
   `uid` varchar(32) NOT NULL DEFAULT '' COMMENT '用户id',
   `hardwareid` varchar(32) NOT NULL DEFAULT '' COMMENT '硬件id',
-  `htime` varchar(32) DEFAULT NULL,
+  `htime` varchar(32) DEFAULT NULL COMMENT '硬件修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -52,7 +49,6 @@ CREATE TABLE `db_hardware_match` (
 # Structure for table "db_jective"
 #
 
-DROP TABLE IF EXISTS `db_jective`;
 CREATE TABLE `db_jective` (
   `id` varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'pk',
   `uid` varchar(32) NOT NULL DEFAULT '' COMMENT 'user pk',
@@ -73,12 +69,11 @@ CREATE TABLE `db_jective` (
 # Structure for table "db_like"
 #
 
-DROP TABLE IF EXISTS `db_like`;
 CREATE TABLE `db_like` (
   `id` varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'pk',
   `uid` varchar(32) NOT NULL DEFAULT '' COMMENT 'user表pk',
   `messageid` varchar(32) NOT NULL DEFAULT '' COMMENT 'message表pk',
-  `ltime` varchar(32) DEFAULT NULL,
+  `ltime` varchar(32) DEFAULT NULL COMMENT '点赞时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -86,7 +81,6 @@ CREATE TABLE `db_like` (
 # Structure for table "db_message"
 #
 
-DROP TABLE IF EXISTS `db_message`;
 CREATE TABLE `db_message` (
   `id` varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'pk',
   `content` varchar(64) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '动态内容',
@@ -98,11 +92,11 @@ CREATE TABLE `db_message` (
   `uname` varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '用户名',
   `uid` varchar(32) NOT NULL DEFAULT '' COMMENT 'user表pk',
   `mtype` varchar(32) NOT NULL DEFAULT '0' COMMENT '动态类型 0所有 1学习交流 2情感天地 3生活趣事',
-  `mtime` varchar(32) DEFAULT NULL,
-  `jword` varchar(8) DEFAULT NULL,
-  `jpicturecolor` varchar(8) DEFAULT NULL,
-  `jpicturenumber` varchar(8) DEFAULT NULL,
-  `jmusic` varchar(8) DEFAULT NULL,
+  `mtime` varchar(32) DEFAULT NULL COMMENT '发布时间',
+  `jword` varchar(8) DEFAULT NULL COMMENT '动态文本',
+  `jpicturecolor` varchar(8) DEFAULT NULL COMMENT '动态图片颜色',
+  `jpicturenumber` varchar(8) DEFAULT NULL COMMENT '动态图片数量',
+  `jmusic` varchar(8) DEFAULT NULL COMMENT '动态音乐',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -110,7 +104,6 @@ CREATE TABLE `db_message` (
 # Structure for table "db_reply"
 #
 
-DROP TABLE IF EXISTS `db_reply`;
 CREATE TABLE `db_reply` (
   `id` varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'pk',
   `messageid` varchar(32) NOT NULL DEFAULT '' COMMENT '动态id',
@@ -125,7 +118,6 @@ CREATE TABLE `db_reply` (
 # Structure for table "db_status"
 #
 
-DROP TABLE IF EXISTS `db_status`;
 CREATE TABLE `db_status` (
   `id` varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'pk',
   `uid` varchar(32) NOT NULL DEFAULT '' COMMENT 'user pk',
@@ -142,14 +134,16 @@ CREATE TABLE `db_status` (
 # Structure for table "db_talk"
 #
 
-DROP TABLE IF EXISTS `db_talk`;
 CREATE TABLE `db_talk` (
   `id` varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'pk',
   `firstid` varchar(32) NOT NULL DEFAULT '' COMMENT '发送方id',
   `secondid` varchar(32) NOT NULL DEFAULT '' COMMENT '接收方id',
   `ttype` varchar(32) NOT NULL DEFAULT '0' COMMENT '聊天内容类型 0文本 1语音 2视频',
   `content` varchar(64) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '聊天内容',
-  `ttime` varchar(32) DEFAULT NULL,
+  `ttime` varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '发送时间',
+  `trantype` varchar(8) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT 'socket消息功能',
+  `resulttype` varchar(8) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '返回码',
+  `sendname` varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '发送人名字',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -157,7 +151,6 @@ CREATE TABLE `db_talk` (
 # Structure for table "db_user"
 #
 
-DROP TABLE IF EXISTS `db_user`;
 CREATE TABLE `db_user` (
   `id` varchar(32) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT 'pk',
   `phone` varchar(32) NOT NULL DEFAULT '12345678900' COMMENT '手机号',
@@ -170,7 +163,7 @@ CREATE TABLE `db_user` (
   `age` varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '年龄',
   `picture` varchar(32) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '图片头像',
   `sign` varchar(64) CHARACTER SET utf8mb4 DEFAULT NULL COMMENT '签名',
-  `utime` varchar(32) DEFAULT NULL,
+  `utime` varchar(32) DEFAULT NULL COMMENT '注册时间',
   PRIMARY KEY (`id`),
   UNIQUE KEY `phone` (`phone`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
