@@ -1,7 +1,5 @@
 package imclient;
 
-import java.io.ObjectOutputStream;
-import java.util.LinkedList;
 import java.util.concurrent.TimeUnit;
 
 import entity.TranObject;

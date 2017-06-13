@@ -7,13 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dao.UserDao;
-import util.CipherUtil;
 import util.DBUtil;
 import util.DateUtil;
 import util.PKUtil;
-/**
- * DAO�㣬�����ݿ�����
- */
+
 import entity.User;
 
 public class UserDaoImpl implements UserDao {

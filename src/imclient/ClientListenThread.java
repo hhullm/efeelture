@@ -3,7 +3,6 @@ package imclient;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.net.SocketAddress;
 
 import entity.TranObject;
 import util.TranObjectType;
@@ -25,14 +24,14 @@ public class ClientListenThread implements Runnable {
 
 	@Override
 	public void run() {
-		SocketAddress s = client.getmClient().getRemoteSocketAddress();
+		//SocketAddress s = client.getmClient().getRemoteSocketAddress();
 		while (isRunning) {
 			readMsg();
 		}
 	}
 
 	private void readMsg() {
-		SocketAddress s = client.getmClient().getRemoteSocketAddress();
+		//SocketAddress s = client.getmClient().getRemoteSocketAddress();
 		try {
 			TranObject tran = (TranObject) read.readObject();
 			TranObjectType type = tran.getTranType();

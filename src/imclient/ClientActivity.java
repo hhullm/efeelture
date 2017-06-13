@@ -5,13 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
-import daoimpl.UserDaoImpl;
 import entity.TranObject;
 import entity.User;
 import imdao.FriendImDao;
