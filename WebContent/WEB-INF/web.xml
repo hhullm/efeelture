@@ -19,7 +19,7 @@
 
 
 	<listener>
-		<listener-class>imserver.ServerListen</listener-class>
+		<listener-class>imserver.OpenImServer</listener-class>
 	</listener>
 
 
