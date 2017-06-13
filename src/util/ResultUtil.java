@@ -23,93 +23,95 @@ public class ResultUtil {
 		case 111:
 			return "lose data";
 		case 131:
-			return "未知错误602";
+			return "have no ctrl";
 		case 130:
-			return "未知错误603";
+			return "selectctrl failed";
 		case 211:
-			return "未知错误604";
+			return "have no friend";
 		case 210:
-			return "未知错误604";
+			return "selectfriend failed";
 		case 220:
-			return "未知错误604";
+			return "addfriend failed";
 		case 230:
-			return "未知错误604";
+			return "deletefriend failed";
 		case 240:
-			return "未知错误604";
+			return "modifyfriend failed";
 		case 250:
-			return "未知错误604";
+			return "selectNoFriend failed";
 		case 310:
-			return "未知错误604";
+			return "addHardware failed";
 		case 320:
-			return "未知错误604";
+			return "deleteHardware failed";
 		case 331:
-			return "未知错误604";
+			return "have no hardware";
 		case 330:
-			return "未知错误604";
+			return "selectHardware failed";
 		case 410:
-			return "未知错误604";
+			return "addJective failed";
 		case 420:
-			return "未知错误604";
+			return "selectJective failed";
 		case 421:
-			return "未知错误604";
+			return "have no jective";
 		case 510:
-			return "未知错误604";
+			return "addLike failed";
 		case 520:
-			return "未知错误604";
+			return "deleteLike failed";
 		case 530:
-			return "未知错误604";
+			return "selectLike failed";
 		case 531:
-			return "未知错误604";
+			return "have no people like";
 		case 610:
-			return "未知错误604";
+			return "addMessage failed";
 		case 620:
-			return "未知错误604";
+			return "deleteMessage failed";
 		case 621:
-			return "未知错误604";
+			return "data format error";
 		case 622:
-			return "未知错误604";
+			return "have no data";
 		case 630:
-			return "未知错误604";
+			return "selectMessage failed";
 		case 631:
-			return "未知错误604";
+			return "have no message";
 		case 710:
-			return "未知错误604";
+			return "addReply failed";
 		case 720:
-			return "未知错误604";
+			return "deleteReply failed";
 		case 730:
-			return "未知错误604";
+			return "selectReply failed";
 		case 731:
-			return "未知错误604";
+			return "have no reply";
 		case 810:
-			return "未知错误604";
+			return "addStatus failed";
 		case 830:
-			return "未知错误604";
+			return "selectStatus failed";
+		case 831:
+			return "have no status";
 		case 910:
-			return "未知错误604";
+			return "addTalk failed";
 		case 920:
-			return "未知错误604";
+			return "deleteTalk failed";
 		case 930:
-			return "未知错误604";
+			return "selectTalk failed";
 		case 931:
-			return "未知错误604";
+			return "have no talk";
 		case 1010:
-			return "未知错误604";
+			return "register failed";
 		case 1011:
-			return "未知错误604";
+			return "already used";
 		case 1020:
-			return "未知错误604";
+			return "login failed";
 		case 1021:
-			return "未知错误604";
+			return "data error";
 		case 1040:
-			return "未知错误604";
+			return "modifyUser failed";
 		case 1051:
-			return "未知错误604";
+			return "from data error";
 		case 1050:
-			return "未知错误604";
+			return "resetPassword failed";
 		case 1061:
-			return "未知错误604";
+			return "data error";
 		case 1060:
-			return "未知错误604";
+			return "modifyPassword failed";
 		case 1111:
 			return "ACCOUNT_EXISTED";
 		case 1112:
