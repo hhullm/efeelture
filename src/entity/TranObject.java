@@ -27,8 +27,8 @@ public class TranObject implements Serializable {
 	//1111~1119 resultcode
 	private String result;
 	private String sendTime;
-	private int sendId;
-	private int receiveId;
+	private String sendId;
+	private String receiveId;
 	private String sendName;
 
 	public Object getObject() {
@@ -63,19 +63,19 @@ public class TranObject implements Serializable {
 		this.sendTime = sendTime;
 	}
 
-	public int getSendId() {
+	public String getSendId() {
 		return sendId;
 	}
 
-	public void setSendId(int sendId) {
+	public void setSendId(String sendId) {
 		this.sendId = sendId;
 	}
 
-	public int getReceiveId() {
+	public String getReceiveId() {
 		return receiveId;
 	}
 
-	public void setReceiveId(int receiveId) {
+	public void setReceiveId(String receiveId) {
 		this.receiveId = receiveId;
 	}
 

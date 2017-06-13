@@ -12,7 +12,7 @@ import util.DBUtil;
 import util.DateUtil;
 import util.PKUtil;
 
-public class FriendDaoImpl implements FriendDao{
+public class FriendDaoImpl implements FriendDao {
 
 	@Override
 	public void addFriend(Friend friend) {
@@ -36,7 +36,7 @@ public class FriendDaoImpl implements FriendDao{
 		} finally {
 			DBUtil.close(conn);
 		}
-		
+
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class FriendDaoImpl implements FriendDao{
 		} finally {
 			DBUtil.close(conn);
 		}
-		
+
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class FriendDaoImpl implements FriendDao{
 		// TODO Auto-generated method stub
 		Connection conn = null;
 		try {
-			friend = getFriend(friend,friend.getId());
+			friend = getFriend(friend, friend.getId());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
 					.prepareStatement("update db_friend set firstid=?,secondid=?,fstatus=?,ftime=? where id=?");
@@ -76,7 +76,7 @@ public class FriendDaoImpl implements FriendDao{
 		} finally {
 			DBUtil.close(conn);
 		}
-		
+
 	}
 
 	private Friend getFriend(Friend friend, String id) {
@@ -133,20 +133,21 @@ public class FriendDaoImpl implements FriendDao{
 		if (friend != null) {
 			sql += " WHERE 1=1 ";
 			if (friend.getId() != null && !friend.getId().equals(""))
-				sql += " and id='" + friend.getId()+"'";
+				sql += " and id='" + friend.getId() + "'";
 			if (friend.getFirstid() != null && !friend.getFirstid().equals(""))
-				sql += " and firstid='" + friend.getFirstid()+"'";
-			if (friend.getSecondid()!= null && !friend.getSecondid().equals(""))
-				sql += " and secondid='" + friend.getSecondid()+"'";
-			if (friend.getFstatus()!= null && !friend.getFstatus().equals(""))
-				sql += " and fstatus='" + friend.getFstatus()+"'";
-			if (friend.getFtime()!= null && !friend.getFtime().equals(""))
-				sql += " and ftime='" + friend.getFtime()+"'";
-			
+				sql += " and firstid='" + friend.getFirstid() + "'";
+			if (friend.getSecondid() != null && !friend.getSecondid().equals(""))
+				sql += " and secondid='" + friend.getSecondid() + "'";
+			if (friend.getFstatus() != null && !friend.getFstatus().equals(""))
+				sql += " and fstatus='" + friend.getFstatus() + "'";
+			if (friend.getFtime() != null && !friend.getFtime().equals(""))
+				sql += " and ftime='" + friend.getFtime() + "'";
+
 		}
 		sql += " order by ftime desc";
 
 		return sql;
 	}
+
 
 }

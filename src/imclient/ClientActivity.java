@@ -14,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 import daoimpl.UserDaoImpl;
 import entity.TranObject;
 import entity.User;
+import imdao.UserImDao;
 import imserver.ServerListen;
 import util.ResultUtil;
 import util.TranObjectType;
@@ -80,7 +81,7 @@ public class ClientActivity {
 	 */
 	public void checkAccount(String account) {
 		mServer.addClient(user.getId(), this);
-		boolean isExisted = UserDaoImpl.select(account);
+		boolean isExisted = UserImDao.selectAccount(account);
 		TranObject tran = new TranObject("", TranObjectType.REGISTER_ACCOUNT);
 		if (isExisted)
 			tran.setResult(ResultUtil.getResult("1111"));
@@ -96,16 +97,16 @@ public class ClientActivity {
 	public void login(TranObject tran) {
 		User user = (User) tran.getObject();
 		// 验证密码和用户名是否存在，若存在则为user对象赋值
-		boolean isExisted = UserDao.login(user);
+		boolean isExisted = UserImDao.login(user);
 		if (isExisted == true) {
-			UserDao.updateIsOnline(user.getId(), 1);
+			UserImDao.updateIsOnline(user.getId(), 1);
 			setUser(user);
 			System.out.println(user.getAccount() + "上线了");
 			tran.setResult(Result.LOGIN_SUCCESS);
 			mServer.addClient(user.getId(), this);
 			System.out.println("当前在线人数：" + mServer.size());
 			// 获取好友列表
-			ArrayList<User> friendList = FriendDao.getFriend(user.getId());
+			ArrayList<User> friendList = FriendImDao.getFriend(user.getId());
 			user.setFriendList(friendList);
 
 			tran.setObject(user);
@@ -150,7 +151,7 @@ public class ClientActivity {
 	 */
 	public void getOffLine() {
 		mServer.closeClientByID(user.getId());
-		UserDao.updateIsOnline(user.getId(), 0);
+		UserImDao.updateIsOnline(user.getId(), 0);
 	}
 
 	/**
@@ -177,9 +178,9 @@ public class ClientActivity {
 		String values[] = ((String) tran.getObject()).split(" ");
 		ArrayList<User> list;
 		if (values[0].equals("0"))
-			list = UserDao.selectFriendByAccountOrID(values[1]);
+			list = UserImDao.selectFriendByAccountOrID(values[1]);
 		else
-			list = UserDao.selectFriendByMix(values);
+			list = UserImDao.selectFriendByMix(values);
 		System.out.println((String) tran.getObject());
 		System.out.println("发送客户端查找的好友列表...");
 		for (int i = 0; i < list.size(); i++)
@@ -198,16 +199,16 @@ public class ClientActivity {
 
 		if (result.equals("1119")) {
 			System.out.println("接收方id" + tran.getReceiveId());
-			FriendDao.addFriend(tran.getReceiveId(), tran.getSendId());
-			FriendDao.addFriend(tran.getSendId(), tran.getReceiveId());
+			FriendImDao.addFriend(tran.getReceiveId(), tran.getSendId());
+			FriendImDao.addFriend(tran.getSendId(), tran.getReceiveId());
 			System.out.println("添加好友成功....");
 			// 向好友发起方 发送自己的信息
 			tran.setObject(user);
-			ArrayList<User> friend = UserDao.selectFriendByAccountOrID(tran.getSendId());
+			ArrayList<User> friend = UserImDao.selectFriendByAccountOrID(tran.getSendId());
 			tran.setObject(friend.get(0));
 			tran.setSendName(user.getUserName());
 			// 向自己添加好友
-			friend = UserDao.selectFriendByAccountOrID(tran.getReceiveId());
+			friend = UserImDao.selectFriendByAccountOrID(tran.getReceiveId());
 			TranObject tran2 = new TranObject();
 			tran2.setObject(friend.get(0));
 			tran2.setResult(tran.getResult());

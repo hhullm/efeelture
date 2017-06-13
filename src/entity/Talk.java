@@ -8,6 +8,8 @@ public class Talk implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	public static final String RECEIVE = "0";
+	public static final String SEND = "1";
 	private String id;
 	private String firstid;
 	private String secondid;

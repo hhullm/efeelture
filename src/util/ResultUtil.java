@@ -131,7 +131,7 @@ public class ResultUtil {
 		case 1119:
 			return "FRIEND_REQUEST_RESPONSE_ACCEPT";
 		default:
-			return "未知错误";
+			return "unknown error";
 		}
 	}
 	public static String getResultCode() {
