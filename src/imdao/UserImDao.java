@@ -27,7 +27,7 @@ public class UserImDao {
 				ps.executeUpdate();
 			} catch (SQLException e) {
 				try {
-					System.out.println("数据库正在回滚....");
+					//System.out.println("数据库正在回滚....");
 					con.rollback();
 				} catch (SQLException e1) {
 					e1.printStackTrace();

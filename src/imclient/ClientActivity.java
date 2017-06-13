@@ -97,10 +97,10 @@ public class ClientActivity {
 		if (isExisted == true) {
 			UserImDao.updateIsOnline(user.getId(), "1");
 			setUser(user);
-			System.out.println(user.getPhone() + "上线了");
+			// System.out.println(user.getPhone() + "上线了");
 			tran.setResult(ResultUtil.getResult("1115"));
 			mServer.addClient(user.getId(), this);
-			System.out.println("当前在线人数：" + mServer.size());
+			// System.out.println("当前在线人数：" + mServer.size());
 			// 获取好友列表
 
 			tran.setObject(user);
@@ -158,9 +158,9 @@ public class ClientActivity {
 			mClientSend.close();
 			if (!user.getId().equals("0"))
 				getOffLine();
-			System.out.println(user.getPhone() + "下线了...");
+			// System.out.println(user.getPhone() + "下线了...");
 		} catch (IOException e) {
-			System.out.println("关闭失败.....");
+			// System.out.println("关闭失败.....");
 			e.printStackTrace();
 		}
 	}
@@ -170,11 +170,11 @@ public class ClientActivity {
 	 */
 	public void searchFriend(TranObject tran) {
 		String values[] = ((String) tran.getObject()).split(" ");
-		ArrayList<User> list= UserImDao.selectFriendByAccountOrID(values[1]);
-		System.out.println((String) tran.getObject());
-		System.out.println("发送客户端查找的好友列表...");
-		for (int i = 0; i < list.size(); i++)
-			System.out.println(list.get(i));
+		ArrayList<User> list = UserImDao.selectFriendByAccountOrID(values[1]);
+		// System.out.println((String) tran.getObject());
+		// System.out.println("发送客户端查找的好友列表...");
+		// for (int i = 0; i < list.size(); i++)
+		// System.out.println(list.get(i));
 		tran.setObject(list);
 		send(tran);
 	}
@@ -183,15 +183,15 @@ public class ClientActivity {
 	 * 处理好友请求
 	 */
 	public void friendRequset(TranObject tran) {
-		System.out.println("添加好友");
+		// System.out.println("添加好友");
 		String result = tran.getResult();
 		// if (result == Result.FRIEND_REQUEST_RESPONSE_ACCEPT) {
 
 		if (result.equals("1119")) {
-			System.out.println("接收方id" + tran.getReceiveId());
+			// System.out.println("接收方id" + tran.getReceiveId());
 			FriendImDao.addFriend(tran.getReceiveId(), tran.getSendId());
 			FriendImDao.addFriend(tran.getSendId(), tran.getReceiveId());
-			System.out.println("添加好友成功....");
+			// System.out.println("添加好友成功....");
 			// 向好友发起方 发送自己的信息
 			tran.setObject(user);
 			ArrayList<User> friend = UserImDao.selectFriendByAccountOrID(tran.getSendId());
@@ -217,10 +217,11 @@ public class ClientActivity {
 	 */
 	public void sendFriend(TranObject tran) {
 		ClientActivity friendClient = null;
-		System.out.println("包含要发送的那个好友吗？" + tran.getReceiveId() + mServer.contatinId(tran.getReceiveId()));
+		// System.out.println("包含要发送的那个好友吗？" + tran.getReceiveId() +
+		// mServer.contatinId(tran.getReceiveId()));
 		if (mServer.contatinId(tran.getReceiveId())) {
 			friendClient = mServer.getClientByID(tran.getReceiveId());
-			System.out.println("将好友请求发给好友...");
+			// System.out.println("将好友请求发给好友...");
 			friendClient.insertQueue(tran);
 		} else {
 			TalkImDao.insertSaveMsg(user.getId(), tran);
@@ -230,7 +231,7 @@ public class ClientActivity {
 
 	public void sendMessage(TranObject tran) {
 		// 添加到好友的发送队列
-		System.out.println("发送聊天信息....");
+		// System.out.println("发送聊天信息....");
 		sendFriend(tran);
 	}
 

@@ -38,9 +38,9 @@ public class ServerListen implements ServletContextListener{
 	public void begin(){
 		try {
 			server = new ServerSocket(PORT);
-			System.out.println("服务器已经启动...");
+			//System.out.println("服务器已经启动...");
 		} catch (IOException e) {
-			System.out.println("服务器启动失败");
+			//System.out.println("服务器启动失败");
 			e.printStackTrace();
 		}
 		while(true){
