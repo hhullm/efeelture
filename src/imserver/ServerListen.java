@@ -36,16 +36,16 @@ public class ServerListen {
 	/*
 	 * 获得在线用户
 	 */
-    public ClientActivity getClientByID(int id){
+    public ClientActivity getClientByID(String id){
     	return OnMap.getInstance().getClientById(id);
     }
-    public void closeClientByID(int id){
+    public void closeClientByID(String id){
     	OnMap.getInstance().removeClient(id);
     }
-    public void addClient(int id, ClientActivity ca0){
+    public void addClient(String id, ClientActivity ca0){
     	OnMap.getInstance().addClient(id, ca0);
     }
-    public boolean contatinId(int id){
+    public boolean contatinId(String id){
     	return OnMap.getInstance().isContainId(id);
     }
     public void close(){

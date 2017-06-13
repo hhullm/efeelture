@@ -14,6 +14,8 @@ import java.util.concurrent.TimeUnit;
 import daoimpl.UserDaoImpl;
 import entity.TranObject;
 import entity.User;
+import imdao.FriendImDao;
+import imdao.TalkImDao;
 import imdao.UserImDao;
 import imserver.ServerListen;
 import util.ResultUtil;
@@ -99,30 +101,28 @@ public class ClientActivity {
 		// 验证密码和用户名是否存在，若存在则为user对象赋值
 		boolean isExisted = UserImDao.login(user);
 		if (isExisted == true) {
-			UserImDao.updateIsOnline(user.getId(), 1);
+			UserImDao.updateIsOnline(user.getId(), "1");
 			setUser(user);
-			System.out.println(user.getAccount() + "上线了");
-			tran.setResult(Result.LOGIN_SUCCESS);
+			System.out.println(user.getPhone() + "上线了");
+			tran.setResult(ResultUtil.getResult("1115"));
 			mServer.addClient(user.getId(), this);
 			System.out.println("当前在线人数：" + mServer.size());
 			// 获取好友列表
-			ArrayList<User> friendList = FriendImDao.getFriend(user.getId());
-			user.setFriendList(friendList);
 
 			tran.setObject(user);
 
 		} else
-			tran.setResult(Result.LOGIN_FAILED);
+			tran.setResult(ResultUtil.getResult("1116"));
 		send(tran);
 		/*
 		 * try { TimeUnit.SECONDS.sleep(5); } catch (InterruptedException e) {
 		 * // TODO Auto-generated catch block e.printStackTrace(); }
 		 */
 		// 获取离线信息
-		ArrayList<TranObject> offMsg = SaveMsgDao.selectMsg(user.getId());
+		ArrayList<TranObject> offMsg = TalkImDao.selectMsg(user.getId());
 		for (int i = 0; i < offMsg.size(); i++)
 			insertQueue(offMsg.get(i));
-		SaveMsgDao.deleteSaveMsg(user.getId());
+		TalkImDao.deleteSaveMsg(user.getId());
 
 	}
 
@@ -151,7 +151,7 @@ public class ClientActivity {
 	 */
 	public void getOffLine() {
 		mServer.closeClientByID(user.getId());
-		UserImDao.updateIsOnline(user.getId(), 0);
+		UserImDao.updateIsOnline(user.getId(), "0");
 	}
 
 	/**
@@ -162,9 +162,9 @@ public class ClientActivity {
 			mClient.close();// socket关闭后，他所在的流也都自动关闭
 			mClientListen.close();
 			mClientSend.close();
-			if (user.getId() != 0)
+			if (!user.getId().equals("0"))
 				getOffLine();
-			System.out.println(user.getAccount() + "下线了...");
+			System.out.println(user.getPhone() + "下线了...");
 		} catch (IOException e) {
 			System.out.println("关闭失败.....");
 			e.printStackTrace();
@@ -176,11 +176,7 @@ public class ClientActivity {
 	 */
 	public void searchFriend(TranObject tran) {
 		String values[] = ((String) tran.getObject()).split(" ");
-		ArrayList<User> list;
-		if (values[0].equals("0"))
-			list = UserImDao.selectFriendByAccountOrID(values[1]);
-		else
-			list = UserImDao.selectFriendByMix(values);
+		ArrayList<User> list= UserImDao.selectFriendByAccountOrID(values[1]);
 		System.out.println((String) tran.getObject());
 		System.out.println("发送客户端查找的好友列表...");
 		for (int i = 0; i < list.size(); i++)
@@ -206,7 +202,7 @@ public class ClientActivity {
 			tran.setObject(user);
 			ArrayList<User> friend = UserImDao.selectFriendByAccountOrID(tran.getSendId());
 			tran.setObject(friend.get(0));
-			tran.setSendName(user.getUserName());
+			tran.setSendName(user.getUname());
 			// 向自己添加好友
 			friend = UserImDao.selectFriendByAccountOrID(tran.getReceiveId());
 			TranObject tran2 = new TranObject();
@@ -214,7 +210,7 @@ public class ClientActivity {
 			tran2.setResult(tran.getResult());
 			tran2.setReceiveId(tran.getSendId());
 			tran2.setSendId(tran.getReceiveId());
-			tran2.setSendName(friend.get(0).getUserName());
+			tran2.setSendName(friend.get(0).getUname());
 			tran2.setTranType(tran.getTranType());
 			tran2.setSendTime(tran2.getSendTime());
 			send(tran2);
@@ -233,7 +229,7 @@ public class ClientActivity {
 			System.out.println("将好友请求发给好友...");
 			friendClient.insertQueue(tran);
 		} else {
-			SaveMsgDao.insertSaveMsg(user.getId(), tran);
+			TalkImDao.insertSaveMsg(user.getId(), tran);
 		}
 
 	}
