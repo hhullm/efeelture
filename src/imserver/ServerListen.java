@@ -38,9 +38,9 @@ public class ServerListen
 	public void begin() {
 		try {
 			server = new ServerSocket(PORT);
-			System.out.println("鏈嶅姟鍣ㄥ凡缁忓惎鍔�...");
+			//System.out.println("鏈嶅姟鍣ㄥ凡缁忓惎鍔�...");
 		} catch (IOException e) {
-			System.out.println("鏈嶅姟鍣ㄥ惎鍔ㄥけ璐�");
+			//System.out.println("鏈嶅姟鍣ㄥ惎鍔ㄥけ璐�");
 			e.printStackTrace();
 		}
 		while (true) {
