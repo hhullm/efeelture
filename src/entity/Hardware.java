@@ -6,8 +6,6 @@ public class Hardware {
 	private String uid;
 	private String hardwareid;
 	private String htime;
-	
-	
 	public String getId() {
 		return id;
 	}

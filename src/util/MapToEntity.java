@@ -63,6 +63,8 @@ public class MapToEntity {
 			ctrl.setUipaddress((String) map.get("uipaddress"));
 		if (map.containsKey("uname"))
 			ctrl.setUname((String) map.get("uname"));
+		if (map.containsKey("hipaddress"))
+			ctrl.setHipaddress((String) map.get("hipaddress"));
 		return ctrl;
 	}
 	public static Friend toFriend(Map<String, Object> map){

@@ -11,6 +11,7 @@ public class Ctrl {
 	private String ctime;
 	private String clevel;
 	private String content;
+	private String hipaddress;
 	
 	public String getId() {
 		return id;
@@ -66,6 +67,13 @@ public class Ctrl {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public String getHipaddress() {
+		return hipaddress;
+	}
+	public void setHipaddress(String hipaddress) {
+		this.hipaddress = hipaddress;
+	}
+	
 
 
 
