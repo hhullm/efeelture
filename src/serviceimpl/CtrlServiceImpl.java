@@ -3,7 +3,6 @@ package serviceimpl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import com.google.gson.Gson;
 
 import daoimpl.CtrlDaoImpl;
@@ -35,8 +34,8 @@ public class CtrlServiceImpl implements CtrlService {
 			else {
 				CtrlDaoImpl daoimpl = new CtrlDaoImpl();
 				daoimpl.addCtrl(ctrl);
-				String resp=HttpUtil.sendPost(HttpUtil.getUrl(hipaddress, hname, clevel), "");
-				m.put("resultCode", "999");// success
+				String resp = HttpUtil.sendPost(HttpUtil.getUrl(hipaddress, hname, clevel), "");
+				return resp;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
