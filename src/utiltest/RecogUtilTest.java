@@ -6,8 +6,8 @@ public class RecogUtilTest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String txt = "我想打开灯，设置为三档";
-		System.out.println(RecogUtil.getSemantic(txt));
+		String txt = "绌鸿皟寮�浜旀。";
+		System.out.println(RecogUtil.getUname(txt)+RecogUtil.getClevel(txt));
 		
 	}
 
