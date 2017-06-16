@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import daoimpl.CtrlDaoImpl;
 import entity.Ctrl;
 import service.CtrlService;
+import util.HttpUtil;
 
 public class CtrlServiceImpl implements CtrlService {
 
@@ -20,21 +21,26 @@ public class CtrlServiceImpl implements CtrlService {
 		Gson j = new Gson();
 		Map<String, Object> m = new HashMap<String, Object>();
 		try {
-			
+
 			String hid = ctrl.getHid();
 			String uid = ctrl.getUid();
 			String uipaddress = ctrl.getUipaddress();
+			String hname = ctrl.getHname();
+			String hipaddress = ctrl.getHipaddress();
+			String clevel = ctrl.getClevel();
 			if (hid == null || hid.equals("") || uid == null || uid.equals("") || uipaddress == null
-					|| uipaddress.equals(""))
-				m.put("resultCode", "111");//miss data
+					|| uipaddress.equals("") || hname == null || hname.equals("") || hipaddress == null
+					|| hipaddress.equals("") || clevel == null || clevel.equals(""))
+				m.put("resultCode", "111");// miss data
 			else {
 				CtrlDaoImpl daoimpl = new CtrlDaoImpl();
 				daoimpl.addCtrl(ctrl);
-				m.put("resultCode", "999");//success
+				String resp=HttpUtil.sendPost(HttpUtil.getUrl(hipaddress, hname, clevel), "");
+				m.put("resultCode", "999");// success
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "110");//savectrl failed
+			m.put("resultCode", "110");// savectrl failed
 		}
 		return j.toJson(m);
 	};
@@ -43,6 +49,7 @@ public class CtrlServiceImpl implements CtrlService {
 	 * to raspberry
 	 */
 	public String forwardCtrl(Ctrl ctrl) {
+
 		return "";
 	}
 
@@ -60,10 +67,10 @@ public class CtrlServiceImpl implements CtrlService {
 				m.put("ctrlList", ctrlList);
 				m.put("resultCode", "999");
 			} else
-				m.put("resultCode", "131");//have no ctrl
+				m.put("resultCode", "131");// have no ctrl
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "130");//selectctrl failed
+			m.put("resultCode", "130");// selectctrl failed
 		}
 		return j.toJson(m);
 	}
