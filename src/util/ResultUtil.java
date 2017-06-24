@@ -112,6 +112,12 @@ public class ResultUtil {
 			return "data error";
 		case 1060:
 			return "modifyPassword failed";
+		case 1080:
+			return "select users failed";
+		case 1081:
+			return "hava no users";
+		case 1082:
+			return "lack of type";
 		case 1111:
 			return "ACCOUNT_EXISTED";
 		case 1112:

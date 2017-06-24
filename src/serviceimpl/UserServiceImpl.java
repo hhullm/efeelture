@@ -1,6 +1,7 @@
 package serviceimpl;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.google.gson.Gson;
@@ -146,5 +147,24 @@ public class UserServiceImpl implements UserService {
 	public String getCode(User user) {
 		return null;
 	}
-
+	public String getUserByType(User user) {
+		Map<String, Object> m = new HashMap<String, Object>();
+		Gson j = new Gson();
+		try {
+			UserDaoImpl daoImpl = new UserDaoImpl();
+			List<User> userList = daoImpl.selectUser(user);
+			if (user.getUtype()!=null && user.getUtype()!=""){
+			if (userList.size() > 0) {
+				m.put("ctrlList", userList);
+				m.put("resultCode", "999");
+			} else
+				m.put("resultCode", "1081");// have no user
+			}else
+				m.put("resultCode", "1082");// lack of type 
+		} catch (Exception e) {
+			e.printStackTrace();
+			m.put("resultCode", "1080");// select failed
+		}
+		return j.toJson(m);
+	}
 }

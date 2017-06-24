@@ -48,5 +48,6 @@ public interface MobileApp {
 	int register = 1096;// 注册
 	int resetPassword = 1097;// 重设密码
 	int uploadPicture = 1098;// 上传图片
+	int getUserByType = 1099;// 通过类型找用户
 
 }

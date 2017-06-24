@@ -81,7 +81,8 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 			break;
 		case saveCtrl:
 			try {
-				if (map.containsKey("hid") && map.containsKey("uid") && map.containsKey("uipaddress")) {
+				if (map.containsKey("hid") && map.containsKey("uid") && map.containsKey("uname")
+						&& map.containsKey("uipaddress") && map.containsKey("hname") && map.containsKey("clevel")) {
 					CtrlServiceImpl mobile = new CtrlServiceImpl();
 					Ctrl ctrl = new Ctrl();
 					ctrl = MapToEntity.toCtrl(map);
@@ -619,7 +620,21 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 				out.write(ResultUtil.getErrorResultCode());
 			}
 			break;
-
+		case getUserByType:
+			try {
+				if (map.containsKey("utype")) {
+					UserServiceImpl mobile = new UserServiceImpl();
+					User user = new User();
+					user = MapToEntity.toUser(map);
+					String resultCode = mobile.getUserByType(user);
+					out.write(resultCode);
+				} else
+					out.write(ResultUtil.getResultCode());
+			} catch (Exception e) {
+				e.printStackTrace();
+				out.write(ResultUtil.getErrorResultCode());
+			}
+			break;
 		default:
 			try {
 				Map<String, Object> m = new HashMap<String, Object>();
@@ -635,7 +650,8 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 		out.close();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		doPost(request, response);
 	}
 }
