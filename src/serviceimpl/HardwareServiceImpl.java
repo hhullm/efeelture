@@ -11,8 +11,8 @@ import entity.Hardware;
 import service.HardwareService;
 
 public class HardwareServiceImpl implements HardwareService {
-	/*
-	 * 
+	/**
+	 * 1021
 	 */
 	public String addHardware(Hardware hardware) {
 		Map<String, Object> m = new HashMap<String, Object>();
@@ -27,9 +27,9 @@ public class HardwareServiceImpl implements HardwareService {
 		}
 		return j.toJson(m);
 	}
-	
-	/*
-	 * 
+
+	/**
+	 * 1022
 	 */
 	public String deleteHardware(Hardware hardware) {
 		Map<String, Object> m = new HashMap<String, Object>();
@@ -44,9 +44,9 @@ public class HardwareServiceImpl implements HardwareService {
 		}
 		return j.toJson(m);
 	}
-	
-	/*
-	 * 
+
+	/**
+	 * 1023
 	 */
 	public String selectHardware(Hardware hardware) {
 		Map<String, Object> m = new HashMap<String, Object>();
@@ -58,7 +58,7 @@ public class HardwareServiceImpl implements HardwareService {
 				m.put("hardwareList", hardwareList);
 				m.put("resultCode", "999");
 			} else
-				m.put("resultCode", "331");//have no hardware
+				m.put("resultCode", "331");// have no hardware
 		} catch (Exception e) {
 			e.printStackTrace();
 			m.put("resultCode", "330");

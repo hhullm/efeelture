@@ -6,3 +6,12 @@ user resetpassword input is map
 user modifypassword input is map
 
 delete use update,and set status -->0
+
+2017/6/27
+friend select param have status,add the function modifyFriendStatus
+ctrl delete function forwardctrl
+
+2017/6/28
+result_code and mobile_app_number
+set key(status) in controller 
+likenumber select like_table

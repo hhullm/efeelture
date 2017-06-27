@@ -14,27 +14,33 @@ import entity.User;
 import service.FriendService;
 
 public class FriendServiceImpl implements FriendService {
-
-	public String selectFriend(Friend friend) {
+	/**
+	 * 1014
+	 */
+	public String selectFriend(Friend friend, String fstatus) {
 
 		Map<String, Object> m = new HashMap<String, Object>();
 		Gson j = new Gson();
 		try {
 			FriendDaoImpl friendImpl = new FriendDaoImpl();
+			friend.setFstatus(fstatus);
 			List<Friend> friendList = friendImpl.selectFriend(friend);
 			if (friendList.size() > 0) {
 				m.put("friendList", friendList);
 				m.put("resultCode", "999");
 			} else
-				m.put("resultCode", "211");//have no friend
+				m.put("resultCode", "241");// have no friend
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "210");//selectfirend failed
+			m.put("resultCode", "240");// selectfirend failed
 		}
 		return j.toJson(m);
 	}
 
-	public String addFriend(Friend friend) {
+	/**
+	 * 1011
+	 */
+	public String addFriend(Friend friend,String fstatus) {
 		Map<String, Object> m = new HashMap<String, Object>();
 		Gson j = new Gson();
 		try {
@@ -43,26 +49,32 @@ public class FriendServiceImpl implements FriendService {
 			m.put("resultCode", "999");
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "220");//addfriend failed
+			m.put("resultCode", "210");// addfriend failed
 		}
 		return j.toJson(m);
 	}
 
+	/**
+	 * 1012
+	 */
 	public String deleteFriend(Friend friend) {
 		Map<String, Object> m = new HashMap<String, Object>();
 		Gson j = new Gson();
 		try {
 			FriendDaoImpl friendImpl = new FriendDaoImpl();
-			friend.setFstatus("0");
-			friendImpl.modifyFriend(friend);
+			// friend.setFstatus("0");
+			friendImpl.deleteFriend(friend);
 			m.put("resultCode", "999");
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "230");//deletefriend failed
+			m.put("resultCode", "220");// deletefriend failed
 		}
 		return j.toJson(m);
 	}
 
+	/**
+	 * 1013
+	 */
 	public String modifyFriend(Friend friend) {
 		Map<String, Object> m = new HashMap<String, Object>();
 		Gson j = new Gson();
@@ -72,11 +84,32 @@ public class FriendServiceImpl implements FriendService {
 			m.put("resultCode", "999");
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "240");//modifyfriend failed
+			m.put("resultCode", "230");// modifyfriend failed
 		}
 		return j.toJson(m);
 	}
 
+	/**
+	 * 1016
+	 */
+	public String modifyFriendStatus(Friend friend, String fstatus) {
+		Map<String, Object> m = new HashMap<String, Object>();
+		Gson j = new Gson();
+		try {
+			FriendDaoImpl friendImpl = new FriendDaoImpl();
+			friend.setFstatus(fstatus);
+			friendImpl.modifyFriend(friend);
+			m.put("resultCode", "999");
+		} catch (Exception e) {
+			e.printStackTrace();
+			m.put("resultCode", "260");// deletefriend failed
+		}
+		return j.toJson(m);
+	}
+
+	/**
+	 * 1015
+	 */
 	public String selectNoFriend(User user) {
 		Map<String, Object> m = new HashMap<String, Object>();
 		Gson j = new Gson();
@@ -102,7 +135,7 @@ public class FriendServiceImpl implements FriendService {
 			m.put("resultCode", "999");
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "250");//selectNoFriend failed
+			m.put("resultCode", "250");// selectNoFriend failed
 		}
 		return j.toJson(m);
 	}

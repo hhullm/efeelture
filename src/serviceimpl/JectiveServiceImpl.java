@@ -13,8 +13,8 @@ import service.JectiveService;
 
 public class JectiveServiceImpl implements JectiveService {
 
-	/*
-	 * 
+	/**
+	 * 1031
 	 */
 	public String addJective(Jective jective) {
 		Map<String, Object> m = new HashMap<String, Object>();
@@ -30,8 +30,9 @@ public class JectiveServiceImpl implements JectiveService {
 		return j.toJson(m);
 	}
 	
-	/*
-	 * 
+	/**
+	 * 1032
+	 * select by null or uid
 	 */
 	public String selectJective(Jective jective) {
 		Map<String, Object> m = new HashMap<String, Object>();

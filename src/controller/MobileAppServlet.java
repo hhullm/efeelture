@@ -63,26 +63,10 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 		}.getType());
 		switch (func) {
 
-		// not write
-		case forwardCtrl:
-			try {
-				if (map.containsKey("hid") && map.containsKey("uid") && map.containsKey("uipaddress")) {
-					CtrlServiceImpl mobile = new CtrlServiceImpl();
-					Ctrl ctrl = new Ctrl();
-					ctrl = MapToEntity.toCtrl(map);
-					String resultCode = mobile.forwardCtrl(ctrl);
-					out.write(resultCode);
-				} else
-					out.write(ResultUtil.getResultCode());
-			} catch (Exception e) {
-				e.printStackTrace();
-				out.write(ResultUtil.getErrorResultCode());
-			}
-			break;
 		case saveCtrl:
 			try {
-				if (map.containsKey("hid") && map.containsKey("uid") && map.containsKey("uname")
-						&& map.containsKey("uipaddress") && map.containsKey("hname") && map.containsKey("clevel")) {
+				if (map.containsKey("hid") && map.containsKey("uid") && map.containsKey("hipaddress")
+						&& map.containsKey("hname") && map.containsKey("clevel")) {
 					CtrlServiceImpl mobile = new CtrlServiceImpl();
 					Ctrl ctrl = new Ctrl();
 					ctrl = MapToEntity.toCtrl(map);
@@ -117,7 +101,8 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 					FriendServiceImpl mobile = new FriendServiceImpl();
 					Friend friend = new Friend();
 					friend = MapToEntity.toFriend(map);
-					String resultCode = mobile.addFriend(friend);
+					friend.setFstatus("1");
+					String resultCode = mobile.addFriend(friend, friend.getFstatus());
 					out.write(resultCode);
 				} else
 					out.write(ResultUtil.getResultCode());
@@ -126,13 +111,13 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 				out.write(ResultUtil.getErrorResultCode());
 			}
 			break;
-		case deleteFriend:
+		case modifyFriendStatus:
 			try {
-				if (map.containsKey("id")) {
+				if (map.containsKey("id") && map.containsKey("fstatus")) {
 					FriendServiceImpl mobile = new FriendServiceImpl();
 					Friend friend = new Friend();
 					friend = MapToEntity.toFriend(map);
-					String resultCode = mobile.deleteFriend(friend);
+					String resultCode = mobile.modifyFriendStatus(friend, friend.getFstatus());
 					out.write(resultCode);
 				} else
 					out.write(ResultUtil.getResultCode());
@@ -141,28 +126,28 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 				out.write(ResultUtil.getErrorResultCode());
 			}
 			break;
-		case modifyFriend:
-			try {
-				if (map.containsKey("id")) {
-					FriendServiceImpl mobile = new FriendServiceImpl();
-					Friend friend = new Friend();
-					friend = MapToEntity.toFriend(map);
-					String resultCode = mobile.modifyFriend(friend);
-					out.write(resultCode);
-				} else
-					out.write(ResultUtil.getResultCode());
-			} catch (Exception e) {
-				e.printStackTrace();
-				out.write(ResultUtil.getErrorResultCode());
-			}
-			break;
+		// case modifyFriend:
+		// try {
+		// if (map.containsKey("id")) {
+		// FriendServiceImpl mobile = new FriendServiceImpl();
+		// Friend friend = new Friend();
+		// friend = MapToEntity.toFriend(map);
+		// String resultCode = mobile.modifyFriend(friend);
+		// out.write(resultCode);
+		// } else
+		// out.write(ResultUtil.getResultCode());
+		// } catch (Exception e) {
+		// e.printStackTrace();
+		// out.write(ResultUtil.getErrorResultCode());
+		// }
+		// break;
 		case selectFriend:
 			try {
-				if (map.containsKey("firstid")) {
+				if (map.containsKey("firstid") && map.containsKey("fstatus")) {
 					FriendServiceImpl mobile = new FriendServiceImpl();
 					Friend friend = new Friend();
 					friend = MapToEntity.toFriend(map);
-					String resultCode = mobile.selectFriend(friend);
+					String resultCode = mobile.selectFriend(friend, friend.getFstatus());
 					out.write(resultCode);
 				} else
 					out.write(ResultUtil.getResultCode());
@@ -309,26 +294,13 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 
 		case addMessage:
 			try {
-				if (map.containsKey("uid")) {
+				if (map.containsKey("uid") && map.containsKey("content")) {
 					MessageServiceImpl mobile = new MessageServiceImpl();
 					Message message = new Message();
 					message = MapToEntity.toMessage(map);
-					String resultCode = mobile.addMessage(message);
-					out.write(resultCode);
-				} else
-					out.write(ResultUtil.getResultCode());
-			} catch (Exception e) {
-				e.printStackTrace();
-				out.write(ResultUtil.getErrorResultCode());
-			}
-			break;
-		case deleteMessage:
-			try {
-				if (map.containsKey("id")) {
-					MessageServiceImpl mobile = new MessageServiceImpl();
-					Message message = new Message();
-					message = MapToEntity.toMessage(map);
-					String resultCode = mobile.deleteMessage(message);
+					message.setMstatus("1");
+					message.setLikenumber("0");
+					String resultCode = mobile.addMessage(message, message.getMstatus(), message.getLikenumber());
 					out.write(resultCode);
 				} else
 					out.write(ResultUtil.getResultCode());
@@ -338,13 +310,17 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 			}
 			break;
 		case selectFriendMessage:
-			// not write
 			try {
-				MessageServiceImpl mobile = new MessageServiceImpl();
-				Message message = new Message();
-				message = MapToEntity.toMessage(map);
-				String resultCode = mobile.selectFriendMessage(message);
-				out.write(resultCode);
+				if (map.containsKey("uid")) {
+					MessageServiceImpl mobile = new MessageServiceImpl();
+					Message message = new Message();
+					message = MapToEntity.toMessage(map);
+					message.setMstatus("1");
+					String resultCode = mobile.selectFriendMessage(message);
+					out.write(resultCode);
+				} else {
+					out.write(ResultUtil.getResultCode());
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 				out.write(ResultUtil.getErrorResultCode());
@@ -355,20 +331,51 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 				MessageServiceImpl mobile = new MessageServiceImpl();
 				Message message = new Message();
 				message = MapToEntity.toMessage(map);
-				String resultCode = mobile.selectMessage(message);
+				message.setMstatus("1");
+				String resultCode = mobile.selectMessage(message, message.getMstatus());
 				out.write(resultCode);
 			} catch (Exception e) {
 				e.printStackTrace();
 				out.write(ResultUtil.getErrorResultCode());
 			}
 			break;
-		case updataLikenumberMessage:
+		case modifyMessageLikenumber:
 			try {
-				if (map.containsKey("id") && map.containsKey("likenumber")) {
+				if (map.containsKey("id")) {
 					MessageServiceImpl mobile = new MessageServiceImpl();
 					Message message = new Message();
 					message = MapToEntity.toMessage(map);
-					String resultCode = mobile.updateLikenumberMessage(message);
+					String resultCode = mobile.modifyMessageLikenumber(message);
+					out.write(resultCode);
+				} else
+					out.write(ResultUtil.getResultCode());
+			} catch (Exception e) {
+				e.printStackTrace();
+				out.write(ResultUtil.getErrorResultCode());
+			}
+			break;
+		case modifyMessageStatus:
+			try {
+				if (map.containsKey("id") && map.containsKey("mstatus")) {
+					MessageServiceImpl mobile = new MessageServiceImpl();
+					Message message = new Message();
+					message = MapToEntity.toMessage(map);
+					String resultCode = mobile.modifyMessageStatus(message, message.getMstatus());
+					out.write(resultCode);
+				} else
+					out.write(ResultUtil.getResultCode());
+			} catch (Exception e) {
+				e.printStackTrace();
+				out.write(ResultUtil.getErrorResultCode());
+			}
+			break;
+		case modifyMessage:
+			try {
+				if (map.containsKey("id")) {
+					MessageServiceImpl mobile = new MessageServiceImpl();
+					Message message = new Message();
+					message = MapToEntity.toMessage(map);
+					String resultCode = mobile.modifyMessage(message);
 					out.write(resultCode);
 				} else
 					out.write(ResultUtil.getResultCode());
@@ -426,11 +433,11 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 
 		case addStatus:
 			try {
-				if (map.containsKey("uid")) {
+				if (map.containsKey("uid") && map.containsKey("sstatus")) {
 					StatusServiceImpl mobile = new StatusServiceImpl();
 					Status status = new Status();
 					status = MapToEntity.toStatus(map);
-					String resultCode = mobile.addStatus(status);
+					String resultCode = mobile.addStatus(status, status.getSstatus());
 					out.write(resultCode);
 				} else
 					out.write(ResultUtil.getResultCode());
@@ -501,38 +508,6 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 			}
 			break;
 
-		case bindPhone:
-			// not write
-			try {
-				if (map.containsKey("custName") && map.containsKey("phoneNumber") && map.containsKey("upassword")) {
-					UserServiceImpl mobile = new UserServiceImpl();
-					User user = new User();
-					user = MapToEntity.toUser(map);
-					String resultCode = mobile.bindPhone(user);
-					out.write(resultCode);
-				} else
-					out.write(ResultUtil.getResultCode());
-			} catch (Exception e) {
-				e.printStackTrace();
-				out.write(ResultUtil.getErrorResultCode());
-			}
-			break;
-		case getCode:
-			// not write
-			try {
-				if (map.containsKey("custName") && map.containsKey("phoneNumber") && map.containsKey("upassword")) {
-					UserServiceImpl mobile = new UserServiceImpl();
-					User user = new User();
-					user = MapToEntity.toUser(map);
-					String resultCode = mobile.getCode(user);
-					out.write(resultCode);
-				} else
-					out.write(ResultUtil.getResultCode());
-			} catch (Exception e) {
-				e.printStackTrace();
-				out.write(ResultUtil.getErrorResultCode());
-			}
-			break;
 		case login:
 			try {
 				if (map.containsKey("upassword")) {
@@ -605,21 +580,7 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 				out.write(ResultUtil.getErrorResultCode());
 			}
 			break;
-		case uploadPicture:
-			try {
-				if (map.containsKey("id") && map.containsKey("picture")) {
-					UserServiceImpl mobile = new UserServiceImpl();
-					User user = new User();
-					user = MapToEntity.toUser(map);
-					String resultCode = mobile.uploadPicture(user);
-					out.write(resultCode);
-				} else
-					out.write(ResultUtil.getResultCode());
-			} catch (Exception e) {
-				e.printStackTrace();
-				out.write(ResultUtil.getErrorResultCode());
-			}
-			break;
+
 		case getUserByType:
 			try {
 				if (map.containsKey("utype")) {

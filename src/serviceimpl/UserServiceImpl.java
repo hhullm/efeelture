@@ -11,11 +11,10 @@ import entity.User;
 import service.UserService;
 import util.MapToEntity;
 
-
 public class UserServiceImpl implements UserService {
 
-	/*
-	 * 
+	/**
+	 * 1096
 	 */
 	public String register(User user) {
 		Gson j = new Gson();
@@ -25,20 +24,20 @@ public class UserServiceImpl implements UserService {
 			User u = userDaoImpl.checkUser(user);
 			String custId = u.getId();
 			if (custId != null && !custId.equals(""))
-				m.put("resultCode", "1011");//already used
+				m.put("resultCode", "1061");// already used
 			else {
 				userDaoImpl.addUser(user);
 				m.put("resultCode", "999");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "1010");
+			m.put("resultCode", "1060");
 		}
 		return j.toJson(m);
 	}
 
-	/*
-	 * 
+	/**
+	 * 1093
 	 */
 	public String login(User user) {
 		Gson j = new Gson();
@@ -47,20 +46,20 @@ public class UserServiceImpl implements UserService {
 			UserDaoImpl userDaoImpl = new UserDaoImpl();
 			user = userDaoImpl.loginUser(user);
 			if (user.getId() == null || (user.getId()).equals(""))
-				m.put("resultCode", "1021");// data error
+				m.put("resultCode", "1031");// data error
 			else {
 				m.put("user", user);
 				m.put("resultCode", "999");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "1020");
+			m.put("resultCode", "1030");
 		}
 		return j.toJson(m);
 	}
 
-	/*
-	 * 
+	/**
+	 * 1098
 	 */
 	public String uploadPicture(User user) {
 		Map<String, Object> m = new HashMap<String, Object>();
@@ -68,8 +67,8 @@ public class UserServiceImpl implements UserService {
 		return j.toJson(m);
 	}
 
-	/*
-	 * 
+	/**
+	 * 1095
 	 */
 	public String modifyUser(User user) {
 		Map<String, Object> m = new HashMap<String, Object>();
@@ -80,13 +79,13 @@ public class UserServiceImpl implements UserService {
 			m.put("resultCode", "999");
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "1040");
+			m.put("resultCode", "1050");
 		}
 		return j.toJson(m);
 	}
 
-	/*
-	 *
+	/**
+	 * 1097
 	 */
 	public String resetPassword(Map<String, Object> map) {
 		Map<String, Object> m = new HashMap<String, Object>();
@@ -100,14 +99,17 @@ public class UserServiceImpl implements UserService {
 				userImpl.modifyUser(user);
 				m.put("resultCode", "999");
 			} else
-				m.put("resultCode", "1051");//from data error
+				m.put("resultCode", "1071");// from data error
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "1050");//
+			m.put("resultCode", "1070");//
 		}
 		return j.toJson(m);
 	}
 
+	/**
+	 * 1094
+	 */
 	public String modifyPassword(Map<String, Object> map) {
 		Map<String, Object> m = new HashMap<String, Object>();
 		Gson j = new Gson();
@@ -126,44 +128,48 @@ public class UserServiceImpl implements UserService {
 				userImpl.modifyUser(user);
 				m.put("resultCode", "999");
 			} else
-				m.put("resultCode", "1061");//data error
+				m.put("resultCode", "1041");// data error
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "1060");
+			m.put("resultCode", "1040");
 		}
 		return j.toJson(m);
 	}
 
-	/*
-	 * 
+	/**
+	 * 1091
 	 */
 	public String bindPhone(User user) {
 		return null;
 	}
 
-	/*
-	 * get yanzhen
+	/**
+	 * 1092
 	 */
 	public String getCode(User user) {
 		return null;
 	}
+
+	/**
+	 * 1099
+	 */
 	public String getUserByType(User user) {
 		Map<String, Object> m = new HashMap<String, Object>();
 		Gson j = new Gson();
 		try {
 			UserDaoImpl daoImpl = new UserDaoImpl();
 			List<User> userList = daoImpl.selectUser(user);
-			if (user.getUtype()!=null && user.getUtype()!=""){
-			if (userList.size() > 0) {
-				m.put("ctrlList", userList);
-				m.put("resultCode", "999");
+			if (user.getUtype() != null && user.getUtype() != "") {
+				if (userList.size() > 0) {
+					m.put("ctrlList", userList);
+					m.put("resultCode", "999");
+				} else
+					m.put("resultCode", "1091");// have no user
 			} else
-				m.put("resultCode", "1081");// have no user
-			}else
-				m.put("resultCode", "1082");// lack of type 
+				m.put("resultCode", "1092");// lack of type
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "1080");// select failed
+			m.put("resultCode", "1090");// select failed
 		}
 		return j.toJson(m);
 	}

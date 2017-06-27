@@ -11,8 +11,8 @@ import entity.Like;
 import service.LikeService;
 
 public class LikeServiceImpl implements LikeService {
-	/*
-	 * 
+	/**
+	 * 1041
 	 */
 	public String addLike(Like like) {
 		Map<String, Object> m = new HashMap<String, Object>();
@@ -28,8 +28,8 @@ public class LikeServiceImpl implements LikeService {
 		return j.toJson(m);
 	}
 
-	/*
-	 * 
+	/**
+	 * 1042
 	 */
 	public String deleteLike(Like like) {
 		Map<String, Object> m = new HashMap<String, Object>();
@@ -44,9 +44,9 @@ public class LikeServiceImpl implements LikeService {
 		}
 		return j.toJson(m);
 	}
-	
-	/*
-	 * 
+
+	/**
+	 * 1043
 	 */
 	public String selectLike(Like like) {
 		Map<String, Object> m = new HashMap<String, Object>();
@@ -58,7 +58,7 @@ public class LikeServiceImpl implements LikeService {
 				m.put("likeList", likeList);
 				m.put("resultCode", "999");
 			} else
-				m.put("resultCode", "531");//have no people like
+				m.put("resultCode", "531");// have no people like
 		} catch (Exception e) {
 			e.printStackTrace();
 			m.put("resultCode", "530");

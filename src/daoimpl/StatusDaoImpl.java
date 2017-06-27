@@ -12,7 +12,7 @@ import util.DBUtil;
 import util.DateUtil;
 import util.PKUtil;
 
-public class StatusDaoImpl implements StatusDao{
+public class StatusDaoImpl implements StatusDao {
 
 	@Override
 	public void addStatus(Status status) {
@@ -21,10 +21,10 @@ public class StatusDaoImpl implements StatusDao{
 		try {
 			status.setId(PKUtil.getRandomPk());
 			status.setStime(DateUtil.getDate());
-			status.setSstatus("1");
+			// status.setSstatus("1");
 			conn = DBUtil.getConnection();
-			PreparedStatement stat = conn
-					.prepareStatement("insert into db_status(id,uid,sstatus,stime,ipaddress,ipport,uname,address) VALUES(?,?,?,?,?,?,?,?)");
+			PreparedStatement stat = conn.prepareStatement(
+					"insert into db_status(id,uid,sstatus,stime,ipaddress,ipport,uname,address) VALUES(?,?,?,?,?,?,?,?)");
 			stat.setString(1, status.getId());
 			stat.setString(2, status.getUid());
 			stat.setString(3, status.getSstatus());
@@ -39,7 +39,7 @@ public class StatusDaoImpl implements StatusDao{
 		} finally {
 			DBUtil.close(conn);
 		}
-		
+
 	}
 
 	@Override
@@ -56,7 +56,7 @@ public class StatusDaoImpl implements StatusDao{
 		} finally {
 			DBUtil.close(conn);
 		}
-		
+
 	}
 
 	@Override
@@ -64,10 +64,10 @@ public class StatusDaoImpl implements StatusDao{
 		// TODO Auto-generated method stub
 		Connection conn = null;
 		try {
-			status = getStatus(status,status.getId());
+			status = getStatus(status, status.getId());
 			conn = DBUtil.getConnection();
-			PreparedStatement stat = conn
-					.prepareStatement("update db_status set uid=?,sstatus=?,stime=?,ipaddress=?,ipport=?,uname=?,address=? where id=?");
+			PreparedStatement stat = conn.prepareStatement(
+					"update db_status set uid=?,sstatus=?,stime=?,ipaddress=?,ipport=?,uname=?,address=? where id=?");
 			stat.setString(1, status.getUid());
 			stat.setString(2, status.getSstatus());
 			stat.setString(3, status.getStime());
@@ -82,7 +82,7 @@ public class StatusDaoImpl implements StatusDao{
 		} finally {
 			DBUtil.close(conn);
 		}
-		
+
 	}
 
 	private Status getStatus(Status status, String id) {
@@ -115,7 +115,7 @@ public class StatusDaoImpl implements StatusDao{
 		Connection conn = null;
 		List<Status> statusList = new ArrayList<Status>();
 		try {
-			status.setSstatus("1");
+			// status.setSstatus("1");
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = null;
 			String sql = getSql(status);
@@ -139,41 +139,34 @@ public class StatusDaoImpl implements StatusDao{
 			DBUtil.close(conn);
 		}
 		return statusList;
-		
 	}
 
-
-
-
-
-
-private String getSql(Status status) {
+	private String getSql(Status status) {
 		// TODO Auto-generated method stub
-	String sql = "select * from db_status";
-	if (status != null) {
-		sql += " WHERE 1=1 ";
-		if (status.getId() != null && !status.getId().equals(""))
-			sql += " and id='" + status.getId()+"'";
-		if (status.getUid() != null && !status.getUid().equals(""))
-			sql += " and uid='" + status.getUid()+"'";
-		if (status.getSstatus() != null && !status.getSstatus().equals(""))
-			sql += " and sstatus='" + status.getSstatus()+"'";
-		if (status.getStime() != null && !status.getStime().equals(""))
-			sql += " and stime='" + status.getStime()+"'";
-		if (status.getIpaddress() != null && !status.getIpaddress().equals(""))
-			sql += " and ipaddress='" + status.getIpaddress()+"'";
-		if (status.getIpport() != null && !status.getIpport().equals(""))
-			sql += " and ipport='" + status.getIpport()+"'";
-		if (status.getUname() != null && !status.getUname().equals(""))
-			sql += " and uname='" + status.getUname()+"'";
-		if (status.getAddress() != null && !status.getAddress().equals(""))
-			sql += " and address='" + status.getAddress()+"'";
-		
+		String sql = "select * from db_status";
+		if (status != null) {
+			sql += " WHERE 1=1 ";
+			if (status.getId() != null && !status.getId().equals(""))
+				sql += " and id='" + status.getId() + "'";
+			if (status.getUid() != null && !status.getUid().equals(""))
+				sql += " and uid='" + status.getUid() + "'";
+			if (status.getSstatus() != null && !status.getSstatus().equals(""))
+				sql += " and sstatus='" + status.getSstatus() + "'";
+			if (status.getStime() != null && !status.getStime().equals(""))
+				sql += " and stime='" + status.getStime() + "'";
+			if (status.getIpaddress() != null && !status.getIpaddress().equals(""))
+				sql += " and ipaddress='" + status.getIpaddress() + "'";
+			if (status.getIpport() != null && !status.getIpport().equals(""))
+				sql += " and ipport='" + status.getIpport() + "'";
+			if (status.getUname() != null && !status.getUname().equals(""))
+				sql += " and uname='" + status.getUname() + "'";
+			if (status.getAddress() != null && !status.getAddress().equals(""))
+				sql += " and address='" + status.getAddress() + "'";
+
 		}
-	sql += " order by stime desc";
+		sql += " order by stime desc";
 
-	return sql;
+		return sql;
 	}
-
 
 }

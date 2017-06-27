@@ -12,8 +12,9 @@ import util.HttpUtil;
 
 public class CtrlServiceImpl implements CtrlService {
 
-	/*
+	/**
 	 * save db
+	 * 1002
 	 */
 
 	public String saveCtrl(Ctrl ctrl) {
@@ -30,7 +31,7 @@ public class CtrlServiceImpl implements CtrlService {
 			if (hid == null || hid.equals("") || uid == null || uid.equals("") || uipaddress == null
 					|| uipaddress.equals("") || hname == null || hname.equals("") || hipaddress == null
 					|| hipaddress.equals("") || clevel == null || clevel.equals(""))
-				m.put("resultCode", "111");// miss data
+				m.put("resultCode", "121");// miss data
 			else {
 				CtrlDaoImpl daoimpl = new CtrlDaoImpl();
 				daoimpl.addCtrl(ctrl);
@@ -39,21 +40,14 @@ public class CtrlServiceImpl implements CtrlService {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "110");// savectrl failed
+			m.put("resultCode", "120");// savectrl failed
 		}
 		return j.toJson(m);
 	};
 
-	/*
-	 * to raspberry
-	 */
-	public String forwardCtrl(Ctrl ctrl) {
-
-		return "";
-	}
-
-	/*
+	/**
 	 * select ctrl
+	 * 1003
 	 */
 	public String selectCtrl(Ctrl ctrl) {
 

@@ -14,8 +14,8 @@ import service.TalkService;
 public class TalkServiceImpl implements TalkService {
 
 
-	/*
-	 * 
+	/**
+	 * 1081
 	 */
 	public String addTalk(Talk talk) {
 		Map<String, Object> m = new HashMap<String, Object>();
@@ -31,8 +31,8 @@ public class TalkServiceImpl implements TalkService {
 		return j.toJson(m);
 	}
 
-	/*
-	 * 
+	/**
+	 * 1082
 	 */
 	public String deleteTalk(Talk talk) {
 		Map<String, Object> m = new HashMap<String, Object>();
@@ -48,8 +48,8 @@ public class TalkServiceImpl implements TalkService {
 		return j.toJson(m);
 	}
 	
-	/*
-	 * 
+	/**
+	 * 1083
 	 */
 	public String selectTalk(Talk talk) {
 		Map<String, Object> m = new HashMap<String, Object>();

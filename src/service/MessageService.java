@@ -7,7 +7,7 @@ public interface MessageService {
 	/*
 	 * 
 	 */
-	String addMessage(Message message);
+	String addMessage(Message message,String mstatus,String likenumber);
 	
 	/*
 	 * 
@@ -17,7 +17,7 @@ public interface MessageService {
 	/*
 	 * 
 	 */
-	String selectMessage(Message message);
+	String selectMessage(Message message, String mstatus);
 	
 	
 	/*

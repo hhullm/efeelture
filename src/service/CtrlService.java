@@ -9,10 +9,6 @@ public interface CtrlService {
 	 */
 	String saveCtrl(Ctrl ctrl);
 
-	/*
-	 * to raspberry
-	 */
-	String forwardCtrl(Ctrl ctrl);
 
 	/*
 	 * select ctrl

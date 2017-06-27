@@ -10,14 +10,12 @@ import daoimpl.StatusDaoImpl;
 import entity.Status;
 import service.StatusService;
 
-
 public class StatusServiceImpl implements StatusService {
-	
 
-	/*
-	 * 
+	/**
+	 * 1071
 	 */
-	public String addStatus(Status status) {
+	public String addStatus(Status status,String sstatus) {
 		Map<String, Object> m = new HashMap<String, Object>();
 		Gson j = new Gson();
 		try {
@@ -30,9 +28,9 @@ public class StatusServiceImpl implements StatusService {
 		}
 		return j.toJson(m);
 	}
-	
-	/*
-	 * 
+
+	/**
+	 * 1072
 	 */
 	public String selectStatus(Status status) {
 		Map<String, Object> m = new HashMap<String, Object>();
@@ -44,10 +42,10 @@ public class StatusServiceImpl implements StatusService {
 				m.put("statusList", statusList);
 				m.put("resultCode", "999");
 			} else
-				m.put("resultCode", "831");//have no status
+				m.put("resultCode", "821");// have no status
 		} catch (Exception e) {
 			e.printStackTrace();
-			m.put("resultCode", "830");
+			m.put("resultCode", "820");
 		}
 		return j.toJson(m);
 	}

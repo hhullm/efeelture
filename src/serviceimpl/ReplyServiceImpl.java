@@ -10,11 +10,10 @@ import daoimpl.ReplyDaoImpl;
 import entity.Reply;
 import service.ReplyService;
 
-
 public class ReplyServiceImpl implements ReplyService {
 
-	/*
-	 * 
+	/**
+	 * 1061
 	 */
 	public String addReply(Reply reply) {
 		Map<String, Object> m = new HashMap<String, Object>();
@@ -30,8 +29,8 @@ public class ReplyServiceImpl implements ReplyService {
 		return j.toJson(m);
 	}
 
-	/*
-	 * 
+	/**
+	 * 1062
 	 */
 	public String deleteReply(Reply reply) {
 		Map<String, Object> m = new HashMap<String, Object>();
@@ -46,9 +45,9 @@ public class ReplyServiceImpl implements ReplyService {
 		}
 		return j.toJson(m);
 	}
-	
-	/*
-	 * 
+
+	/**
+	 * 1063
 	 */
 	public String selectReply(Reply reply) {
 		Map<String, Object> m = new HashMap<String, Object>();
@@ -60,7 +59,7 @@ public class ReplyServiceImpl implements ReplyService {
 				m.put("replyList", replyList);
 				m.put("resultCode", "999");
 			} else
-				m.put("resultCode", "731");//have no reply
+				m.put("resultCode", "731");// have no reply
 		} catch (Exception e) {
 			e.printStackTrace();
 			m.put("resultCode", "730");
