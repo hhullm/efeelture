@@ -197,7 +197,7 @@ public class UserDaoImpl implements UserDao {
 			user.setUpassword(user.getUpassword());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
-					.prepareStatement("select * from db_user where (uname=? or phone=? or id=?) and upassword=?");
+					.prepareStatement("select * from db_user where (phone=? or id=?) and upassword=?");
 			stat.setString(1, user.getUname());
 			stat.setString(2, user.getPhone());
 			stat.setString(3, user.getId());
@@ -272,7 +272,7 @@ public class UserDaoImpl implements UserDao {
 			// user.setUpassword(CipherUtil.generatePassword(user.getUpassword()));
 			user.setUpassword(user.getUpassword());
 			conn = DBUtil.getConnection();
-			PreparedStatement stat = conn.prepareStatement("select * from db_user where uname=? or phone=?");
+			PreparedStatement stat = conn.prepareStatement("select * from db_user where phone=?");
 			stat.setString(1, user.getUname());
 			stat.setString(2, user.getPhone());
 			ResultSet rst = stat.executeQuery();
@@ -287,6 +287,5 @@ public class UserDaoImpl implements UserDao {
 		}
 		return user;
 	}
-
 
 }

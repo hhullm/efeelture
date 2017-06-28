@@ -387,7 +387,8 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 
 		case addReply:
 			try {
-				if (map.containsKey("firstid") && map.containsKey("secondid") && map.containsKey("messageid")) {
+				if (map.containsKey("firstid") && map.containsKey("secondid") && map.containsKey("messageid")
+						&& map.containsKey("content")) {
 					ReplyServiceImpl mobile = new ReplyServiceImpl();
 					Reply reply = new Reply();
 					reply = MapToEntity.toReply(map);
@@ -464,7 +465,7 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 
 		case addTalk:
 			try {
-				if (map.containsKey("firstid")) {
+				if (map.containsKey("firstid") && map.containsKey("second") && map.containsKey("content")) {
 					TalkServiceImpl mobile = new TalkServiceImpl();
 					Talk talk = new Talk();
 					talk = MapToEntity.toTalk(map);
@@ -494,7 +495,7 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 			break;
 		case selectTalk:
 			try {
-				if (map.containsKey("firstid")) {
+				if (map.containsKey("firstid") && map.containsKey("secondid")) {
 					TalkServiceImpl mobile = new TalkServiceImpl();
 					Talk talk = new Talk();
 					talk = MapToEntity.toTalk(map);
@@ -510,7 +511,7 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 
 		case login:
 			try {
-				if (map.containsKey("upassword")) {
+				if (map.containsKey("upassword") && map.containsKey("phone")) {
 					UserServiceImpl mobile = new UserServiceImpl();
 					User user = new User();
 					user = MapToEntity.toUser(map);
@@ -525,8 +526,7 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 			break;
 		case modifyPassword:
 			try {
-				if (map.containsKey("upassword") && map.containsKey("newpassword")
-						&& (map.containsKey("id") || map.containsKey("phone") || map.containsKey("uname"))) {
+				if (map.containsKey("upassword") && map.containsKey("newpassword") && (map.containsKey("id"))) {
 					UserServiceImpl mobile = new UserServiceImpl();
 					String resultCode = mobile.modifyPassword(map);
 					out.write(resultCode);
@@ -559,19 +559,6 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 					User user = new User();
 					user = MapToEntity.toUser(map);
 					String resultCode = mobile.register(user);
-					out.write(resultCode);
-				} else
-					out.write(ResultUtil.getResultCode());
-			} catch (Exception e) {
-				e.printStackTrace();
-				out.write(ResultUtil.getErrorResultCode());
-			}
-			break;
-		case resetPassword:
-			try {
-				if (map.containsKey("phone") || map.containsKey("uname")) {
-					UserServiceImpl mobile = new UserServiceImpl();
-					String resultCode = mobile.resetPassword(map);
 					out.write(resultCode);
 				} else
 					out.write(ResultUtil.getResultCode());

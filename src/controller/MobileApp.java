@@ -49,7 +49,7 @@ public interface MobileApp {
 	int modifyPassword = 1094;// 修改密码
 	int modifyUser = 1095;// 切换用户
 	int register = 1096;// 注册
-	int resetPassword = 1097;// 重设密码
+	// int resetPassword = 1097;// 重设密码
 	// int uploadPicture = 1098;// 上传图片
 	int getUserByType = 1099;// 通过类型找用户
 
