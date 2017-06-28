@@ -118,7 +118,6 @@ public class UserServiceImpl implements UserService {
 			User user = new User();
 			user.setId((String) map.get("id"));
 			user.setPhone((String) map.get("phone"));
-			user.setUname((String) map.get("uname"));
 			user.setUpassword((String) map.get("upassword"));
 			user = userImpl.loginUser(user);
 			if (user.getId() != null && !user.getId().equals("")) {
