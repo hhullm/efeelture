@@ -198,10 +198,9 @@ public class UserDaoImpl implements UserDao {
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn
 					.prepareStatement("select * from db_user where (phone=? or id=?) and upassword=?");
-			stat.setString(1, user.getUname());
-			stat.setString(2, user.getPhone());
-			stat.setString(3, user.getId());
-			stat.setString(4, user.getUpassword());
+			stat.setString(1, user.getPhone());
+			stat.setString(2, user.getId());
+			stat.setString(3, user.getUpassword());
 			ResultSet rst = stat.executeQuery();
 			user = new User();
 			if (rst.next()) {
@@ -273,8 +272,7 @@ public class UserDaoImpl implements UserDao {
 			user.setUpassword(user.getUpassword());
 			conn = DBUtil.getConnection();
 			PreparedStatement stat = conn.prepareStatement("select * from db_user where phone=?");
-			stat.setString(1, user.getUname());
-			stat.setString(2, user.getPhone());
+			stat.setString(1, user.getPhone());
 			ResultSet rst = stat.executeQuery();
 			user = new User();
 			if (rst.next()) {
