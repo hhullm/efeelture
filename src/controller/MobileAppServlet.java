@@ -126,21 +126,6 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 				out.write(ResultUtil.getErrorResultCode());
 			}
 			break;
-		// case modifyFriend:
-		// try {
-		// if (map.containsKey("id")) {
-		// FriendServiceImpl mobile = new FriendServiceImpl();
-		// Friend friend = new Friend();
-		// friend = MapToEntity.toFriend(map);
-		// String resultCode = mobile.modifyFriend(friend);
-		// out.write(resultCode);
-		// } else
-		// out.write(ResultUtil.getResultCode());
-		// } catch (Exception e) {
-		// e.printStackTrace();
-		// out.write(ResultUtil.getErrorResultCode());
-		// }
-		// break;
 		case selectFriend:
 			try {
 				if (map.containsKey("firstid") && map.containsKey("fstatus")) {
@@ -294,7 +279,7 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 
 		case addMessage:
 			try {
-				if (map.containsKey("uid") && map.containsKey("content")) {
+				if (map.containsKey("uid") && map.containsKey("content") && map.containsKey("mtype")) {
 					MessageServiceImpl mobile = new MessageServiceImpl();
 					Message message = new Message();
 					message = MapToEntity.toMessage(map);
