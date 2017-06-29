@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
 			UserDaoImpl userDaoImpl = new UserDaoImpl();
 			user = userDaoImpl.loginUser(user);
 			if (user.getId() == null || (user.getId()).equals(""))
-				m.put("resultCode", "1031");// data error
+				m.put("resultCode", "1031");
 			else {
 				m.put("user", user);
 				m.put("resultCode", "999");
@@ -160,7 +160,7 @@ public class UserServiceImpl implements UserService {
 			List<User> userList = daoImpl.selectUser(user);
 			if (user.getUtype() != null && user.getUtype() != "") {
 				if (userList.size() > 0) {
-					m.put("ctrlList", userList);
+					m.put("userList", userList);
 					m.put("resultCode", "999");
 				} else
 					m.put("resultCode", "1091");// have no user

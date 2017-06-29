@@ -4,9 +4,6 @@ import java.util.Map;
 
 import entity.User;
 
-
-
-
 public interface UserService {
 
 	/*
@@ -33,20 +30,22 @@ public interface UserService {
 	 * 
 	 */
 	String resetPassword(Map<String, Object> map);
-	
+
 	/*
 	 * 
 	 */
 	String modifyPassword(Map<String, Object> map);
-	
+
 	/*
 	 * 
 	 */
 	String bindPhone(User user);
-	
+
 	/*
 	 * get yanzhen
 	 */
 	String getCode(User user);
-	
+
+	String getUserByType(User user);
+
 }

@@ -10,114 +10,134 @@ public class ResultUtil {
 		int result = Integer.valueOf(resultCode);
 		switch (result) {
 		/*
-		 * first table
-		 * second function
-		 * third 0:Exception 1~9
+		 * first number is table
 		 * 
-		 * 999 true
+		 * middle number is function id
+		 * 
+		 * last number is result,0 is succeed,1~9 is error
+		 * 
+		 * 999 100 1000 is other code
 		 */
 		case 999:
 			return "operate success";
-		case 110:
-			return "save ctrl error";
-		case 111:
-			return "lose data";
+		case 100:
+			return "lack of nessary data";
+		case 1000:
+			return "server error";
+		case 120:
+			return "save ctrl failed";
+		case 121:
+			return "lack of data";
 		case 131:
-			return "have no ctrl";
+			return "not have ctrl data";
 		case 130:
-			return "selectctrl failed";
-		case 211:
-			return "have no friend";
-		case 210:
-			return "selectfriend failed";
-		case 220:
-			return "addfriend failed";
-		case 230:
-			return "deletefriend failed";
+			return "select ctrl failed";
+		case 241:
+			return "not have friend data";
 		case 240:
-			return "modifyfriend failed";
+			return "select friend failed";
+		case 210:
+			return "add friend failed";
+		case 220:
+			return "delete friend failed";
+		case 230:
+			return "modify friend failed";
+		case 260:
+			return "modify friend status failed";
 		case 250:
-			return "selectNoFriend failed";
+			return "select Not Friend failed";
 		case 310:
-			return "addHardware failed";
+			return "add hardware failed";
 		case 320:
-			return "deleteHardware failed";
+			return "delete hardware failed";
 		case 331:
-			return "have no hardware";
+			return "not have hardware data";
 		case 330:
-			return "selectHardware failed";
+			return "select hardware failed";
 		case 410:
-			return "addJective failed";
+			return "add jective failed";
 		case 420:
-			return "selectJective failed";
+			return "select jective failed";
 		case 421:
-			return "have no jective";
+			return "not have jective data";
 		case 510:
-			return "addLike failed";
+			return "add like failed";
 		case 520:
-			return "deleteLike failed";
+			return "delete like failed";
 		case 530:
-			return "selectLike failed";
+			return "select like failed";
 		case 531:
-			return "have no people like";
+			return "not have like data";
 		case 610:
-			return "addMessage failed";
+			return "add message failed";
 		case 620:
-			return "deleteMessage failed";
-		case 621:
-			return "data format error";
-		case 622:
-			return "have no data";
+			return "delete message failed";
+		case 660:
+			return "modify message status failed";
+		case 662:
+			return "status data error";
+		case 661:
+			return "status data format error";
+		case 670:
+			return "modify message failed";
+		case 650:
+			return "modify message likenumber failed";
+		case 641:
+			return "not have message data";
+		case 640:
+			return "select message failed";
 		case 630:
-			return "selectMessage failed";
+			return "select friend message failed";
 		case 631:
-			return "have no message";
+			return "not have friend message data";
+		case 632:
+			return "lack of data";
 		case 710:
-			return "addReply failed";
+			return "add reply failed";
 		case 720:
-			return "deleteReply failed";
+			return "delete reply failed";
 		case 730:
-			return "selectReply failed";
+			return "select reply failed";
 		case 731:
-			return "have no reply";
+			return "not have reply data";
 		case 810:
-			return "addStatus failed";
-		case 830:
-			return "selectStatus failed";
-		case 831:
-			return "have no status";
+			return "add status failed";
+		case 820:
+			return "select status failed";
+		case 821:
+			return "not have status data";
 		case 910:
-			return "addTalk failed";
+			return "add talk failed";
 		case 920:
-			return "deleteTalk failed";
+			return "delete talk failed";
 		case 930:
-			return "selectTalk failed";
+			return "select talk failed";
 		case 931:
-			return "have no talk";
-		case 1010:
-			return "register failed";
-		case 1011:
-			return "already used";
-		case 1020:
-			return "login failed";
-		case 1021:
-			return "data error";
-		case 1040:
-			return "modifyUser failed";
-		case 1051:
-			return "from data error";
-		case 1050:
-			return "resetPassword failed";
-		case 1061:
-			return "data error";
+			return "not have talk data";
 		case 1060:
-			return "modifyPassword failed";
-		case 1080:
+			return "register failed";
+		case 1061:
+			return "phone already used";
+		case 1030:
+			return "login failed";
+		case 1031:
+			return "please register";
+		case 1050:
+			return "modify user failed";
+		case 1070:
+			return "reset password failed";
+		case 1071:
+			return "the phone have not been used";
+		case 1040:
+			return "modify password failed";
+		case 1041:
+			return "the phone have not been used";
+		case 1090:
 			return "select users failed";
-		case 1081:
-			return "hava no users";
-		case 1082:
-			return "lack of type";
+		case 1091:
+			return "not hava users data";
+		case 1092:
+			return "lack of type data";
 		case 1111:
 			return "ACCOUNT_EXISTED";
 		case 1112:
@@ -140,18 +160,19 @@ public class ResultUtil {
 			return "unknown error";
 		}
 	}
+
 	public static String getResultCode() {
 		Map<String, Object> map = new HashMap<String, Object>();
 		Gson gson = new Gson();
 		map.put("resultCode", "100");
-		//upload data format not ture
+		// upload data format not ture
 		return gson.toJson(map);
 	}
-	
-	public static String getErrorResultCode(){
+
+	public static String getErrorResultCode() {
 		Map<String, Object> map = new HashMap<String, Object>();
 		Gson gson = new Gson();
-		map.put("resultCode", "0000");
+		map.put("resultCode", "1000");
 		return gson.toJson(map);
 	}
 }

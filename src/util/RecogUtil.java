@@ -7,7 +7,7 @@ public class RecogUtil {
 		String clevel = "";
 		for (int i = 1; i <= txt.length(); i++) {
 			clevel = txt.substring(i - 1, i);
-			//System.out.println(clevel);
+			// System.out.println(clevel);
 			switch (clevel) {
 			case "零":
 				result = "0";
@@ -89,19 +89,17 @@ public class RecogUtil {
 			case "车":
 				result = "car";
 				break;
-			case "空调":
+			case "空":
+			case "温":
 				result = "air";
 				break;
 			case "灯":
 				result = "light";
 				break;
 			case "抓":
-			case "机器臂":
+			case "臂":
 			case "取":
 				result = "arm";
-				break;
-			default:
-				result = "light";
 				break;
 			}
 		}
