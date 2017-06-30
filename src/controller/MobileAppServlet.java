@@ -66,7 +66,7 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 		case saveCtrl:
 			try {
 				if (map.containsKey("hid") && map.containsKey("uid") && map.containsKey("hipaddress")
-						&& map.containsKey("hname") && map.containsKey("clevel")) {
+						&& map.containsKey("hname") && map.containsKey("clevel") && map.containsKey("uipaddress")) {
 					CtrlServiceImpl mobile = new CtrlServiceImpl();
 					Ctrl ctrl = new Ctrl();
 					ctrl = MapToEntity.toCtrl(map);
