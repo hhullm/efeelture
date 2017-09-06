@@ -1,0 +1,16 @@
+Please readme!
+
+
+This is a program that could finish image-recognition, text-recognition and feeling prediction.
+
+Please do not remove any files!
+
+Please put the whole folder under the /home directory!
+
+To use this program,
+
+1st you should copy/move the folder all to /home/
+
+2nd Then, you should give the permission to the file Environment_setup.sh(runing "chmod 777 Environment_setup.sh" in the Terminal) to configure the environment.
+
+3rd you could run the program by exectuing ML.sh.
