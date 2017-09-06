@@ -279,7 +279,8 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 
 		case addMessage:
 			try {
-				if (map.containsKey("uid") && map.containsKey("content") && map.containsKey("mtype")) {
+				if (map.containsKey("uid") && map.containsKey("content") && map.containsKey("mtype")
+						&& map.containsKey("uname")) {
 					MessageServiceImpl mobile = new MessageServiceImpl();
 					Message message = new Message();
 					message = MapToEntity.toMessage(map);
@@ -450,7 +451,7 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 
 		case addTalk:
 			try {
-				if (map.containsKey("firstid") && map.containsKey("second") && map.containsKey("content")) {
+				if (map.containsKey("firstid") && map.containsKey("secondid") && map.containsKey("content")) {
 					TalkServiceImpl mobile = new TalkServiceImpl();
 					Talk talk = new Talk();
 					talk = MapToEntity.toTalk(map);
