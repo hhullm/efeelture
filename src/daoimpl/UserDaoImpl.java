@@ -104,7 +104,7 @@ public class UserDaoImpl implements UserDao {
 				user.setPhone(rst.getString("phone"));
 				user.setUname(rst.getString("uname"));
 				user.setUtype(rst.getString("utype"));
-				user.setUpassword(rst.getString("upassword"));
+				//user.setUpassword(rst.getString("upassword"));
 				user.setIpaddress(rst.getString("ipaddress"));
 				user.setUstatus(rst.getString("ustatus"));
 				user.setSex(rst.getString("sex"));

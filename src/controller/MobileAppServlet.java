@@ -451,7 +451,7 @@ public class MobileAppServlet extends HttpServlet implements MobileApp {
 
 		case addTalk:
 			try {
-				if (map.containsKey("firstid") && map.containsKey("secondid") && map.containsKey("content")) {
+				if (map.containsKey("firstid") && map.containsKey("secondid") && map.containsKey("content") && map.containsKey("ttype")) {
 					TalkServiceImpl mobile = new TalkServiceImpl();
 					Talk talk = new Talk();
 					talk = MapToEntity.toTalk(map);
