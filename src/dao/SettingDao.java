@@ -13,6 +13,6 @@ public interface SettingDao {
 	
 	void modifySetting(Setting setting);
 	
-	List<Setting> selectLike(Setting setting);
+	List<Setting> selectSetting(Setting setting);
 
 }

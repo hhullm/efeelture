@@ -4,6 +4,7 @@ public class Setting {
 	
 	private String id;
 	private String uid;
+	private String stime;
 	private String topbutton;
 	private String personbutton;
 	public String getId() {
@@ -29,6 +30,12 @@ public class Setting {
 	}
 	public void setPersonbutton(String personbutton) {
 		this.personbutton = personbutton;
+	}
+	public String getStime() {
+		return stime;
+	}
+	public void setStime(String stime) {
+		this.stime = stime;
 	}
 	
 

@@ -9,6 +9,7 @@ import entity.Jective;
 import entity.Like;
 import entity.Message;
 import entity.Reply;
+import entity.Setting;
 import entity.Status;
 import entity.Talk;
 import entity.User;
@@ -224,5 +225,19 @@ public class MapToEntity {
 		if (map.containsKey("sendname"))
 			talk.setSendname((String) map.get("sendname"));
 		return talk;
+	}
+	public static Setting toSetting(Map<String, Object> map){
+		Setting setting = new Setting();
+		if (map.containsKey("uid"))
+			setting.setUid((String) map.get("uid"));
+		if (map.containsKey("stime"))
+			setting.setStime((String) map.get("stime"));
+		if (map.containsKey("id"))
+			setting.setId((String) map.get("id"));
+		if (map.containsKey("topbutton"))
+			setting.setTopbutton((String) map.get("topbutton"));
+		if (map.containsKey("personbutton"))
+			setting.setPersonbutton((String) map.get("personbutton"));
+		return setting;
 	}
 }
